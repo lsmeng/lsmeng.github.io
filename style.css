@@ -129,6 +129,14 @@ section h2 {
 .ref { color: var(--muted); }
 .figcap { color: var(--muted); font-size: 14px; font-style: italic; margin-top: 8px; border-left: 3px solid var(--line); padding-left: 12px; }
 
+/* Figures */
+.fig { margin: 18px 0 4px; }
+.fig img {
+  width: 100%; max-width: 760px; height: auto; display: block;
+  border: 1px solid var(--line); border-radius: 8px; background: #fff;
+}
+.fig figcaption { color: var(--muted); font-size: 14px; font-style: italic; margin-top: 8px; max-width: 760px; line-height: 1.5; }
+
 /* News */
 .news-list { list-style: none; padding: 0; margin: 0; }
 .news-list li {
@@ -145,6 +153,9 @@ section h2 {
   padding: 22px; background: #fff; transition: box-shadow .15s, transform .15s;
 }
 .card:hover { box-shadow: 0 8px 28px rgba(20,40,70,.08); transform: translateY(-2px); }
+a.card { color: inherit; text-decoration: none; display: block; }
+a.card:hover { text-decoration: none; color: inherit; border-color: var(--accent); }
+a.card h3 { color: var(--accent-dark); }
 .card h3 { margin: 0 0 8px; font-size: 18px; }
 .card p { margin: 0; color: var(--muted); font-size: 15.5px; }
 .card .tag { font-size: 22px; }
