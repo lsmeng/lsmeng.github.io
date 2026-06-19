@@ -84,10 +84,27 @@ BADGES = {
     "nature": '<span class="badge badge-nature">Nature Geosci.</span>',
 }
 
+# publication numbers that have a hosted, shareable author preprint/accepted/OA PDF
+PDF_NUMS = {6, 7, 9, 10, 11, 12, 13, 16, 17, 20, 21, 27, 29, 31, 33, 35, 38, 39, 41, 49, 51, 52, 60}
+# DOIs recovered from the manuscripts (filled in where the list lacked one)
+DOI_FIX = {
+    16: "https://doi.org/10.1002/2015GL067034",
+    17: "https://doi.org/10.1002/2016GL068786",
+    21: "https://doi.org/10.1002/2016GL071304",
+}
+
 items = []
 for num, title, authors, venue, year, doi, badge in PUBS:
     b = BADGES.get(badge, "")
-    link = f'<div class="pub-links"><a href="{doi}" target="_blank" rel="noopener">DOI ↗</a></div>' if doi else ""
+    doi = doi or DOI_FIX.get(num)
+    parts = []
+    if doi:
+        parts.append(f'<a href="{doi}" target="_blank" rel="noopener">DOI&nbsp;↗</a>')
+    if num in PDF_NUMS:
+        parts.append(f'<a href="pdf/{num}.pdf" target="_blank" rel="noopener">PDF&nbsp;↓</a>')
+    else:
+        parts.append('<span class="pdf-na" title="Author preprint not available — see the DOI link for the published version">PDF&nbsp;—</span>')
+    link = '<div class="pub-links">' + ' &nbsp;·&nbsp; '.join(parts) + '</div>'
     items.append(f'''      <li class="pub">
         <span class="pub-num">{num}</span>
         <div>
@@ -130,6 +147,7 @@ HTML = f'''<!DOCTYPE html>
     <p class="pub-controls">
       {len(PUBS)} peer-reviewed publications · 4,700+ citations · h-index 31 (Google Scholar). Names of group members in <span class="me">bold</span>. See also the
       <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar profile</a>.
+      <br><strong>DOI&nbsp;↗</strong> links to the published article; <strong>PDF&nbsp;↓</strong> is a free author preprint/accepted manuscript. <span class="pdf-na">PDF&nbsp;—</span> means no shareable preprint is posted — use the DOI (open-access articles are free there).
     </p>
     <ul class="pub-list">
 {body}
