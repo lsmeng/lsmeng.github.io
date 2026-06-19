@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Lingsen Meng</title>
+<meta name="description" content="Open-source seismology code from the Meng group: MUSIC/beamforming back-projection, slowness-enhanced back-projection (SEBP), and Mach-wave analysis.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Lingsen Meng</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html" class="active">Resource</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section style="border-top:none;">
+    <h2 style="font-size:30px;">Resources</h2>
+    <p class="lead">
+      Open-source code from our group for earthquake source imaging. The packages are developed and
+      maintained by group members; see each repository for instructions, demo data, and the related
+      papers. More on our GitHub: <a href="https://github.com/lsmeng" target="_blank" rel="noopener">github.com/lsmeng</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2>Code</h2>
+    <div class="cards">
+      <a class="card" href="https://github.com/lsmeng/MUSICBP/tree/master" target="_blank" rel="noopener">
+        <div class="tag">🛰️</div>
+        <h3>MUSIC &amp; Beamforming Back-Projection</h3>
+        <p>Teleseismic P-wave back-projection in MATLAB — both beamforming and high-resolution MUSIC. Worked example on the 2018 Mw&nbsp;7.5 Palu (and 2011 Tohoku) earthquakes. <br><span class="ref">MUSICBP · <code>master</code> branch</span></p>
+      </a>
+      <a class="card" href="https://github.com/lsmeng/MUSICBP/tree/SEBP" target="_blank" rel="noopener">
+        <div class="tag">🎯</div>
+        <h3>Slowness-Enhanced Back-Projection (SEBP)</h3>
+        <p>MUSIC back-projection with aftershock-based slowness calibration to remove array-dependent spatial bias. Worked example on the 2021 Mw&nbsp;7.4 Maduo earthquake. <br><span class="ref">MUSICBP · <code>SEBP</code> branch</span></p>
+      </a>
+      <a class="card" href="https://github.com/lsmeng/MUSICBP/tree/MachWave" target="_blank" rel="noopener">
+        <div class="tag">💥</div>
+        <h3>Mach-Wave Analysis for Supershear</h3>
+        <p>Python/ObsPy tools to identify the Rayleigh Mach wave of supershear ruptures via waveform similarity between a mainshock and a collocated empirical Green's function event. <br><span class="ref">MUSICBP · <code>MachWave</code> branch</span></p>
+      </a>
+      <a class="card" href="https://github.com/lsmeng/MachineLearning" target="_blank" rel="noopener">
+        <div class="tag">🤖</div>
+        <h3>Machine-Learning for Seismology</h3>
+        <p>Course/lab materials and machine-learning utilities used in our deep-learning seismology work (e.g., phase picking and earthquake monitoring). <br><span class="ref">MachineLearning repository</span></p>
+      </a>
+    </div>
+    <p style="margin-top:18px;" class="lead">
+      External reference: routine back-projection images of new large earthquakes are produced by
+      <a href="https://ds.iris.edu/ds/products/backprojection/" target="_blank" rel="noopener">EarthScope/IRIS</a>.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

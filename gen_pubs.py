@@ -71,12 +71,23 @@ PUBS = [
 (1,"Influence of rock strength and strain rate on horizontally compressive deformation: insights from discrete element modeling (in Chinese)","Meng, L., Yin, H., Zhang, J. & Xu, S.","Acta Petrologica Sinica, 23(11), 2918-2926","2007",None,None),
 ]
 
+# Group members (PI + students/postdocs/visitors) — bold these in author lists.
+# Taken from the names the original site emphasized; each token maps uniquely to a
+# group member (other initials, e.g. Xu, W. / Huang, Y. / Zhang, Y., are NOT group).
+GROUP_TOKENS = [
+    "Meng, L.", "Mohanna, S.", "Kawamoto, G.", "Ma, J.-Z.",
+    "Xu, L.", "Huang, H.", "Bao, H.", "Feng, T.", "Zhang, A.",
+    "Xie, Y.", "Zhou, T.", "An, C.", "Sheng, S.", "Lin, J.",
+    "Jia, H.", "Liu, Z.", "Su, E.",
+]
+
 def authors_html(a):
     a = html.escape(a)
-    for token in ["Meng, L.", "Meng. L.", "Meng, L", "& Meng, L."]:
-        pass
-    # bold the PI's name wherever it appears
-    a = a.replace("Meng, L.", '<span class="me">Meng, L.</span>')
+    # placeholder pass first so an inserted span is never re-matched
+    for i, tok in enumerate(GROUP_TOKENS):
+        a = a.replace(tok, f"\x00{i}\x00")
+    for i, tok in enumerate(GROUP_TOKENS):
+        a = a.replace(f"\x00{i}\x00", f'<span class="me">{tok}</span>')
     return a
 
 BADGES = {
@@ -136,6 +147,7 @@ HTML = f'''<!DOCTYPE html>
       <a href="research.html">Research</a>
       <a href="publications.html" class="active">Publications</a>
       <a href="group.html">Group</a>
+      <a href="resource.html">Resource</a>
       <a href="index.html#contact">Contact</a>
     </div>
   </div>

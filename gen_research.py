@@ -10,6 +10,7 @@ NAV = """<nav class="nav">
       <a href="research.html"{research_active}>Research</a>
       <a href="publications.html">Publications</a>
       <a href="group.html">Group</a>
+      <a href="resource.html">Resource</a>
       <a href="index.html#contact">Contact</a>
     </div>
   </div>
