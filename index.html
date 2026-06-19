@@ -45,7 +45,7 @@
           <a class="btn btn-primary" href="publications.html">Publications</a>
           <a class="btn" href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
           <a class="btn" href="assets/LingsenMENG_CV_Vitae2026.pdf" target="_blank" rel="noopener">CV (PDF)</a>
-          <a class="btn" href="mailto:lsmeng@g.ucla.edu">Email</a>
+          <a class="btn" id="heroEmail" href="#contact">Email</a>
           <a class="btn" href="https://epss.ucla.edu/lingsen-meng/" target="_blank" rel="noopener">UCLA EPSS</a>
         </div>
         <div class="metrics">
@@ -178,7 +178,7 @@
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact-grid">
-      <div class="k">Email</div><div><a href="mailto:lsmeng@g.ucla.edu">lsmeng@g.ucla.edu</a></div>
+      <div class="k">Email</div><div><a id="emailImgLink" href="#"><img class="email-img" src="assets/email.png" alt="email address"></a></div>
       <div class="k">Phone</div><div>+1 310 825 1885</div>
       <div class="k">Office</div><div>Dept. of Earth, Planetary and Space Sciences, UCLA, Los Angeles, CA</div>
       <div class="k">Scholar</div><div><a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar profile</a></div>
@@ -190,6 +190,13 @@
 <footer>
   <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
 </footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+// Assemble the email at runtime so the plain address never appears in the HTML source.
+(function(){var m='mailto:'+'lsmeng'+'@'+'g.ucla.edu';
+  var h=document.getElementById('heroEmail'); if(h){h.href=m;}
+  var e=document.getElementById('emailImgLink'); if(e){e.href=m;}
+})();
+</script>
 </body>
 </html>

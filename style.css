@@ -196,6 +196,7 @@ ul.plain { padding-left: 0; }
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; max-width: 720px; }
 .contact-grid .k { color: var(--muted); }
+.email-img { height: 22px; width: auto; vertical-align: middle; display: inline-block; }
 
 /* ---------- Footer ---------- */
 footer {
