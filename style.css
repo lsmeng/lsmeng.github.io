@@ -212,6 +212,8 @@ ul.plain { padding-left: 0; }
 .people .where { color: var(--accent-dark); font-weight: 500; }
 .people .me-links { font-size: 13.5px; margin-top: 3px; }
 .people .me-links a { margin-right: 12px; }
+.people .thesis { display: block; color: var(--muted); font-size: 13.5px; margin-top: 3px; }
+.people .thesis a { font-style: italic; }
 
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; max-width: 720px; }
