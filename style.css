@@ -156,6 +156,15 @@ section h2 {
 a.card { color: inherit; text-decoration: none; display: block; }
 a.card:hover { text-decoration: none; color: inherit; border-color: var(--accent); }
 a.card h3 { color: var(--accent-dark); }
+.card-thumb { width: 100%; height: 158px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); margin-bottom: 14px; background: #fff; }
+
+/* Topic sub-page chrome */
+.breadcrumb { color: var(--muted); font-size: 14px; margin: 0 0 6px; }
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--accent); }
+.prevnext { display: flex; justify-content: space-between; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+.prevnext a { font-size: 15px; }
+.prevnext .nx { margin-left: auto; text-align: right; }
 .card h3 { margin: 0 0 8px; font-size: 18px; }
 .card p { margin: 0; color: var(--muted); font-size: 15.5px; }
 .card .tag { font-size: 22px; }

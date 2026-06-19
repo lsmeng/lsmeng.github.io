@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seismic Array Source Imaging — Lingsen Meng</title>
+<meta name="description" content="Seismic Array Source Imaging — research in the Meng seismology group at UCLA.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Lingsen Meng</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="group.html">Group</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section style="border-top:none;">
+    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; Seismic Array Source Imaging</p>
+    <h2 style="font-size:30px;">Seismic Array Source Imaging</h2>
+    <p class="lead">
+      We answer fundamental questions about the physics of earthquake ruptures — initiation,
+      complex propagation, and final arrest — through high-resolution, robust observations.
+      Numerical models predict rich rupture behavior, but observational constraints have long been
+      limited by resolution. Dense seismic arrays let us trace high-frequency radiation by
+      back-tracing the seismic waves they record, tracking the strongest zones of rupture radiation
+      in space and time.
+    </p>
+    <p class="lead" style="margin-top:14px;">
+      <strong>Case study — 2012 off-Sumatra M8.6.</strong> Back-projection revealed a remarkably
+      complex rupture on four orthogonally oriented fault planes. The rupture branched onto faults
+      under compressional stress — challenging conventional dynamic-clamping theory — and jumped a
+      ~20&nbsp;km offset between parallel segments, far larger than the &le;5&nbsp;km steps typical
+      of California faults.
+    </p>
+    <figure class="fig">
+      <img src="assets/figures/seismic-array-back-projection-1.jpg" alt="Back-projection of the 2012 Mw&nbsp;8.6 off-Sumatra earthqua">
+      <figcaption>Back-projection of the 2012 Mw&nbsp;8.6 off-Sumatra earthquake, imaging rupture across four orthogonal fault branches; colors denote rupture time <span class="ref">(Meng et al., Science 2012)</span>.</figcaption>
+    </figure>
+
+    <div class="subsec" id="music">
+      <h3>High-resolution MUSIC imaging</h3>
+      <p>
+        Standard back-projection uses beamforming, which has limited resolution when multiple
+        sources radiate simultaneously. We introduced the MUltiple SIgnal Classification (MUSIC)
+        algorithm into back-projection <span class="ref">(Schmidt, 1986; Meng et al., GRL 2011)</span>
+        and made it practical for non-stationary seismic signals using multitaper cross-spectrum
+        estimates <span class="ref">(Thomson, 2000)</span>. MUSIC-enhanced back-projection yields
+        sharper images of the rupture process <span class="ref">(Meng et al., JGR 2012)</span> and
+        can separate sources with azimuth separation as small as 3&deg;.
+      </p>
+    <figure class="fig">
+      <img src="assets/figures/high-resolution-music-imaging-1.png" alt="Resolving two plane waves A and B: MUSIC (left) separates so">
+      <figcaption>Resolving two plane waves A and B: MUSIC (left) separates sources down to ~3&deg; azimuth, far sharper than beamforming (right).</figcaption>
+    </figure>
+    </div>
+
+    <div class="subsec" id="refwin">
+      <h3>Reference-window strategy (the &ldquo;swimming artifact&rdquo;)</h3>
+      <p>
+        A well-known problem in back-projection is the &ldquo;swimming artifact&rdquo; — systematic
+        transients that migrate across the image toward the receiver array, degrading confidence in
+        source details. The artifact arises because earthquake waveforms are impulsive and
+        non-stationary, whereas conventional back-projection assumes stationary signals. By
+        replacing the conventional &ldquo;absolute window&rdquo; with a &ldquo;reference
+        window&rdquo; in the sliding-window analysis, we mitigate the swimming artifact
+        <span class="ref">(Meng et al., EPS 2013)</span> without sacrificing resolution.
+      </p>
+    <figure class="fig">
+      <img src="assets/figures/reference-window-strategy-2.gif" alt="Animated back-projection of high-frequency radiation; the re">
+      <figcaption>Animated back-projection of high-frequency radiation; the reference-window strategy suppresses the migrating &ldquo;swimming artifact&rdquo; seen with conventional windowing.</figcaption>
+    </figure>
+    </div>
+
+    <div class="subsec" id="slowness">
+      <h3>Slowness calibration</h3>
+      <p>
+        Different arrays can image the same earthquake differently, largely because of
+        array-specific P-wave travel-time errors from 3-D Earth structure. We proposed slowness
+        calibration <span class="ref">(Meng et al., 2016)</span> to reconcile them. Beyond aligning
+        the first arrival to the cataloged hypocenter, we add a slowness (ray-parameter) correction
+        — the spatial derivative of travel time with source location at each station — calibrated
+        using aftershock catalogs. This markedly improves the consistency of back-projection across
+        globally distributed arrays.
+      </p>
+    <figure class="fig">
+      <img src="assets/figures/slowness-calibration-1.png" alt="2015 Gorkha earthquake: aftershock and mainshock back-projec">
+      <figcaption>2015 Gorkha earthquake: aftershock and mainshock back-projections from the Australian, North American, and European arrays disagree before calibration (left) and converge after (right).</figcaption>
+    </figure>
+    </div>
+
+    <div class="subsec" id="bp3d">
+      <h3>3-D back-projection for deep earthquakes</h3>
+      <p>
+        For deep-focus earthquakes, whose fault planes are poorly defined, we developed 3-D
+        back-projection (3DBP). Because teleseismic rays are nearly vertical, standard
+        back-projection has good horizontal but poor depth resolution. 3DBP combines P and pP
+        phases, whose ray paths intersect in space, to recover depth. Applied to the 2013 Okhotsk
+        earthquake (Mw&nbsp;8.3) — the largest deep-focus event ever recorded — 3DBP shows a
+        predominantly horizontal N&ndash;S rupture whose focal depth increases southward, consistent
+        with cascading failure along sub-parallel horizontal planes in an en-echelon pattern.
+      </p>
+    <figure class="fig">
+      <img src="assets/figures/3d-back-projection-1.png" alt="3-D spatio-temporal rupture of the 2013 Okhotsk deep earthqu">
+      <figcaption>3-D spatio-temporal rupture of the 2013 Okhotsk deep earthquake from P and pP back-projection; depth sections (b, c) reveal southward-deepening, en-echelon rupture.</figcaption>
+    </figure>
+    </div>
+
+    <div class="subsec" id="insights">
+      <h3>Physical insights from recent large earthquakes</h3>
+      <p>
+        Across many events, source imaging reveals rupture physics. In <strong>Tohoku-Oki</strong>,
+        peak low-frequency slip lies up-dip of the hypocenter while high-frequency radiation comes
+        from the deeper megathrust, consistent with small brittle asperities embedded in a ductile
+        matrix. In <strong>Haiti</strong>, two high-frequency subevents at the ends of the geodetic
+        slip mark stopping phases. In <strong>off-Sumatra</strong>, the rupture branched onto
+        compressional faults, challenging dynamic-clamping ideas. In <strong>Okhotsk</strong>,
+        olivine-to-spinel phase transformation and thermal-runaway shear instability appear to
+        control different rupture segments. Additional studies (Iquique, Gorkha, Tajikistan,
+        Illapel) show how ruptures interact with geometric barriers, narrow into confined zones,
+        and split around asperities.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="prevnext">
+      <a class="pv" href="rupture.html">&larr; Rupture Dynamics & Supershear Earthquakes</a>
+      <a class="nx" href="eew.html">Earthquake Early Warning &rarr;</a>
+    </div>
+    <p style="margin-top:16px;"><a class="btn" href="research.html">&larr; All research topics</a> &nbsp; <a class="btn btn-primary" href="publications.html">Publications &rarr;</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tsunami Prediction &amp; Early Warning — Lingsen Meng</title>
+<meta name="description" content="Tsunami Prediction & Early Warning — research in the Meng seismology group at UCLA.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Lingsen Meng</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="group.html">Group</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section style="border-top:none;">
+    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; Tsunami Prediction & Early Warning</p>
+    <h2 style="font-size:30px;">Tsunami Prediction & Early Warning</h2>
+    <p class="lead">
+      A natural extension of array-based EEW is to apply similar processing at larger spatial scale
+      and longer time span for tsunami warning: use real-time back-projection to build a simple
+      source model that feeds a tsunami simulation predicting arrival time and coastal run-up
+      height. We demonstrated this for megathrust events including the 2011 Tohoku-Oki, 2014
+      Iquique, and 2015 Illapel earthquakes <span class="ref">(An &amp; Meng, GRL 2016)</span>,
+      supporting warnings in regions exposed to near-field tsunami hazard.
+    </p>
+    <figure class="fig">
+      <img src="assets/figures/tsunami-prediction-and-early-warning-1.png" alt="Fast seismic waves reach onshore arrays well before the slow">
+      <figcaption>Fast seismic waves reach onshore arrays well before the slow tsunami wave; real-time back-projection of the rupture feeds a tsunami forecast.</figcaption>
+    </figure>
+
+    <div class="subsec" id="tri">
+      <h3>Time-reversal imaging of tsunami sources</h3>
+      <p>
+        Traditional tsunami source inversion uses finite-fault slip modeling, which is sensitive to
+        assumed fault parameters and crustal rigidity and is computationally heavy. Time-reversal
+        imaging instead reconstructs the initial sea-surface elevation by back-propagating and
+        constructively interfering the recorded tsunami waveforms
+        <span class="ref">(An &amp; Meng, 2017)</span>. It needs no pre-defined fault parameters,
+        suits events with unknown fault geometry, handles dense meshes efficiently, and can resolve
+        small secondary sources such as submarine landslides or splay-fault ruptures. We validated
+        it on synthetic sources and applied it to the 2014 Iquique and 2015 Illapel events.
+      </p>
+    <figure class="fig">
+      <img src="assets/figures/tsunami-time-reversal-imaging-1.png" alt="Initial water elevation recovered by time-reversal imaging (">
+      <figcaption>Initial water elevation recovered by time-reversal imaging (bottom rows) compared with finite-fault predictions (top), for tsunami events including 2014 Iquique.</figcaption>
+    </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="prevnext">
+      <a class="pv" href="eew.html">&larr; Earthquake Early Warning</a>
+      <a class="nx" href="swarms.html">Earthquake Swarms & Fluid-Driven Seismicity &rarr;</a>
+    </div>
+    <p style="margin-top:16px;"><a class="btn" href="research.html">&larr; All research topics</a> &nbsp; <a class="btn btn-primary" href="publications.html">Publications &rarr;</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
