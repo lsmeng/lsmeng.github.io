@@ -99,11 +99,36 @@ BADGES = {
 #   author preprint/accepted versions + open-access (CC-BY / free-to-read) articles
 PDF_NUMS = {4, 5, 6, 7, 9, 10, 11, 12, 13, 16, 17, 20, 21, 27, 29, 31, 33, 35, 38, 39,
             41, 48, 49, 51, 52, 59, 60, 61}
-# DOIs recovered from the manuscripts (filled in where the list lacked one)
+# Official journal DOIs filled in where the list lacked one (via Crossref, title+year matched).
 DOI_FIX = {
+    9:  "https://doi.org/10.5047/eps.2012.05.010",
+    10: "https://doi.org/10.5047/eps.2012.05.011",
+    11: "https://doi.org/10.1016/j.epsl.2014.01.036",
+    14: "https://doi.org/10.1016/j.epsl.2014.11.041",
     16: "https://doi.org/10.1002/2015GL067034",
     17: "https://doi.org/10.1002/2016GL068786",
+    19: "https://doi.org/10.1016/j.epsl.2016.09.055",
+    20: "https://doi.org/10.1016/j.epsl.2017.01.018",
     21: "https://doi.org/10.1002/2016GL071304",
+    24: "https://doi.org/10.1785/0120160393",
+    26: "https://doi.org/10.1002/2017GL075137",
+    28: "https://doi.org/10.1016/j.epsl.2018.02.042",
+    30: "https://doi.org/10.1016/j.epsl.2018.04.057",
+    32: "https://doi.org/10.1093/gji/ggy212",
+    38: "https://doi.org/10.1029/2018GL081074",
+    41: "https://doi.org/10.1029/2019GL085763",
+    42: "https://doi.org/10.1029/2020JB019599",
+    43: "https://doi.org/10.1029/2020GL087722",
+    46: "https://doi.org/10.1029/2021JB022663",
+    50: "https://doi.org/10.1029/2022GC010453",
+    51: "https://doi.org/10.1029/2022GL099643",
+    53: "https://doi.org/10.1029/2022JB025936",
+    54: "https://doi.org/10.1029/2022JB025525",
+    55: "https://doi.org/10.1038/s43247-023-01030-x",
+    56: "https://doi.org/10.1029/2023EA003086",
+    57: "https://doi.org/10.1126/science.adp0493",
+    58: "https://doi.org/10.1029/2025GL115218",
+    60: "https://doi.org/10.26443/seismica.v4i2.1629",
 }
 
 items = []
