@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — Lingsen Meng</title>
+<meta name="description" content="Research of the Meng group: seismic array source imaging (back-projection, MUSIC, 3D BP), earthquake & tsunami early warning, and slow slip.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Lingsen Meng</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="group.html">Group</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section style="border-top:none; padding-bottom:18px;">
+    <h2 style="font-size:30px;">Research</h2>
+    <p class="lead">
+      We study earthquake physics, seismic hazards, and tsunami processes by combining seismic
+      observations, source imaging, numerical modeling, and data-driven approaches &mdash;
+      investigating how ruptures nucleate, propagate, and interact with complex fault systems,
+      and turning that understanding into better hazard assessment, monitoring, and early warning.
+      Our topics span earthquake swarms, fluid-induced seismicity, aftershock evolution, slow slip,
+      and tsunami generation, and we increasingly incorporate artificial intelligence, large-scale
+      seismic data analytics, distributed acoustic sensing (DAS), and adjoint-state inversion.
+      A central thread of our methodological work is seismic array processing &mdash;
+      <em>back-projection</em> &mdash; for earthquake source imaging.
+    </p>
+    <div class="toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#bp">Seismic array back-projection</a></li>
+        <li><a href="#music">High-resolution MUSIC imaging</a></li>
+        <li><a href="#refwin">Reference-window strategy</a></li>
+        <li><a href="#slowness">Slowness calibration</a></li>
+        <li><a href="#bp3d">3-D back-projection</a></li>
+        <li><a href="#insights">Physical insights from large earthquakes</a></li>
+        <li><a href="#eew">Earthquake early warning</a></li>
+        <li><a href="#tsunami">Tsunami prediction &amp; early warning</a></li>
+        <li><a href="#tri">Time-reversal imaging of tsunami sources</a></li>
+        <li><a href="#slowslip">Pre-, post-, &amp; independent slow slip</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== SEISMIC ARRAY SOURCE IMAGING ===== -->
+  <section id="bp">
+    <h2>Seismic Array Source Imaging</h2>
+    <p class="lead">
+      We aim to answer fundamental questions about the physics of earthquake ruptures &mdash;
+      initiation, complex propagation, and final arrest &mdash; through high-resolution, robust
+      observations. Numerical models predict rich rupture behavior, but observational constraints
+      have long been limited by resolution. Dense seismic arrays let us trace high-frequency
+      radiation by back-tracing the seismic waves they record, tracking the strongest zones of
+      rupture radiation in space and time.
+    </p>
+    <p class="lead" style="margin-top:14px;">
+      <strong>Case study &mdash; 2012 off-Sumatra M8.6.</strong> Back-projection revealed a
+      remarkably complex rupture on four orthogonally oriented fault planes. The rupture branched
+      onto faults under compressional stress &mdash; challenging conventional dynamic-clamping
+      theory &mdash; and jumped a ~20&nbsp;km offset between parallel segments, far larger than the
+      &le;5&nbsp;km steps typical of California faults.
+    </p>
+
+    <div class="subsec" id="music">
+      <h3>High-resolution MUSIC imaging</h3>
+      <p>
+        Standard back-projection uses beamforming, which has limited resolution when multiple
+        sources radiate simultaneously. We introduced the MUltiple SIgnal Classification (MUSIC)
+        algorithm into back-projection <span class="ref">(Schmidt, 1986; Meng et al., GRL 2011)</span>
+        and made it practical for non-stationary seismic signals using multitaper cross-spectrum
+        estimates <span class="ref">(Thomson, 2000)</span>. MUSIC-enhanced back-projection yields
+        sharper images of the rupture process <span class="ref">(Meng et al., JGR 2012)</span> and
+        can separate sources with azimuth separation as small as 3&deg;.
+      </p>
+    </div>
+
+    <div class="subsec" id="refwin">
+      <h3>Reference-window strategy (the &ldquo;swimming artifact&rdquo;)</h3>
+      <p>
+        A well-known problem in back-projection is the &ldquo;swimming artifact&rdquo; &mdash;
+        systematic transients that migrate across the image toward the receiver array, degrading
+        confidence in source details. Smoothing suppresses them but sacrifices resolution. The
+        artifact arises because earthquake waveforms are impulsive and non-stationary (amplitude
+        and coherence decay quickly after the first arrival), whereas conventional back-projection
+        assumes stationary signals. By replacing the conventional &ldquo;absolute window&rdquo;
+        with a &ldquo;reference window&rdquo; in the sliding-window analysis, we mitigate the
+        swimming artifact <span class="ref">(Meng et al., EPS 2013)</span>. In synthetic tests on a
+        unilateral rupture of six moving sources, the reference-window approach cleanly reproduces
+        the linear rupture while the absolute-window approach suffers strong artifacts.
+      </p>
+    </div>
+
+    <div class="subsec" id="slowness">
+      <h3>Slowness calibration</h3>
+      <p>
+        Different arrays can image the same earthquake differently, largely because of
+        array-specific P-wave travel-time errors from 3-D Earth structure. We proposed slowness
+        calibration <span class="ref">(Meng et al., 2016)</span> to reconcile them. Conventional
+        back-projection uses teleseismic travel-time tables from 1-D velocity models and aligns the
+        first arrival to the cataloged hypocenter; cross-correlating initial P arrivals reveals
+        travel-time errors near the hypocenter, but these compound as the rupture propagates
+        outward. We add a slowness (ray-parameter) correction that captures the spatial derivative
+        of travel time with source location at each station, calibrated using aftershock catalogs.
+        This markedly improves the consistency of back-projection across globally distributed
+        arrays (e.g., for the 2015 Gorkha earthquake).
+      </p>
+      <p class="figcap">
+        The back-projections of the Gorkha earthquake with slowness correction reconcile aftershock
+        and mainshock images across the Australian, North American, and European arrays, which
+        disagree before correction.
+      </p>
+    </div>
+
+    <div class="subsec" id="bp3d">
+      <h3>3-D back-projection for deep earthquakes</h3>
+      <p>
+        For deep-focus earthquakes, whose fault planes are poorly defined, we developed 3-D
+        back-projection (3DBP). Because teleseismic rays are nearly vertical, standard
+        back-projection has good horizontal but poor depth resolution. 3DBP combines P and pP
+        phases, whose ray paths intersect in space, to recover depth. Applied to the 2013 Okhotsk
+        earthquake (Mw&nbsp;8.3) &mdash; the largest deep-focus event recorded by modern seismology
+        &mdash; 3DBP shows a predominantly horizontal N&ndash;S rupture whose focal depth increases
+        southward, consistent with cascading failure along sub-parallel horizontal planes in an
+        en-echelon pattern.
+      </p>
+    </div>
+
+    <div class="subsec" id="insights">
+      <h3>Physical insights from recent large earthquakes</h3>
+      <p>
+        Across many events, source imaging reveals rupture physics. In <strong>Tohoku-Oki</strong>,
+        peak low-frequency slip lies up-dip of the hypocenter while high-frequency radiation comes
+        from the deeper megathrust, consistent with small brittle asperities embedded in a ductile
+        matrix. In <strong>Haiti</strong>, two high-frequency subevents at the ends of the geodetic
+        slip mark stopping phases. In <strong>off-Sumatra</strong>, the rupture branched onto
+        compressional faults, challenging dynamic-clamping ideas. In <strong>Okhotsk</strong>,
+        olivine-to-spinel phase transformation and thermal-runaway shear instability appear to
+        control different rupture segments. Additional studies (Iquique, Gorkha, Tajikistan,
+        Illapel) show how ruptures interact with geometric barriers, narrow into confined zones,
+        and split around asperities.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== EARTHQUAKE EARLY WARNING ===== -->
+  <section id="eew">
+    <h2>Earthquake Early Warning</h2>
+    <p class="lead">
+      We are developing earthquake early warning (EEW) based on small-scale seismic arrays that
+      track rupture growth and the directivity (Doppler) effect in real time, providing
+      finite-source estimates that overcome the limitations of conventional point-source EEW
+      <span class="ref">(Meng, Allen &amp; Ampuero, BSSA 2014)</span>. Dense array clusters near
+      active faults can estimate rupture size, duration, and directivity in real time by
+      back-tracing the recorded waveforms &mdash; potentially enabling warning for M&gt;7 events.
+      We demonstrated the concept with the 2004 M6.0 Parkfield and 2010 M7.2 El Mayor-Cucapah
+      earthquakes.
+    </p>
+  </section>
+
+  <!-- ===== TSUNAMI ===== -->
+  <section id="tsunami">
+    <h2>Tsunami Prediction &amp; Early Warning</h2>
+    <p class="lead">
+      A natural extension of array-based EEW is to apply similar processing at larger spatial scale
+      and longer time span for tsunami warning: use real-time back-projection to build a simple
+      source model that feeds a tsunami simulation predicting arrival time and coastal run-up
+      height. We demonstrated this for megathrust events including the 2011 Tohoku-Oki, 2014
+      Iquique, and 2015 Illapel earthquakes <span class="ref">(An &amp; Meng, GRL 2016)</span>,
+      supporting warnings in regions exposed to near-field tsunami hazard.
+    </p>
+
+    <div class="subsec" id="tri">
+      <h3>Time-reversal imaging of tsunami sources</h3>
+      <p>
+        Traditional tsunami source inversion uses finite-fault slip modeling, which is sensitive to
+        assumed fault parameters and crustal rigidity and is computationally heavy, limiting
+        resolution and real-time use. Time-reversal imaging instead reconstructs the initial
+        sea-surface elevation by back-propagating and constructively interfering the recorded
+        tsunami waveforms <span class="ref">(An &amp; Meng, 2017)</span>. It needs no pre-defined
+        fault parameters, suits events with unknown fault geometry, handles dense meshes
+        efficiently, and can resolve small secondary sources such as submarine landslides or
+        splay-fault ruptures. We validated it on synthetic sources and applied it to the 2014
+        Iquique and 2015 Illapel events, providing high-resolution, low-artifact, independent
+        verification of finite-fault models.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== SLOW SLIP ===== -->
+  <section id="slowslip">
+    <h2>Pre-, Post-, and Independent Slow Slip</h2>
+    <p class="lead">
+      Many large earthquakes are preceded by foreshock sequences that are key to short-term
+      forecasting. Using matched-filter detection and repeating-earthquake analysis, we study
+      pre-seismic, post-seismic, and independent slow slip. Before the 2015 Gorkha earthquake we
+      found a significant increase in seismicity rate a few days before the mainshock; before the
+      2015 Illapel earthquake, seismicity and aseismic slip progressively accelerated around the
+      epicenter. After Illapel, we identified distinct early-aftershock expansion and afterslip
+      consistent across methods. We also model episodic slow-slip events at the brittle&ndash;ductile
+      transition as occurring within a viscoplastic shear zone, reproducing the observed
+      linear-then-exponential slip evolution and clarifying the physical controls on slow-slip
+      recurrence and duration.
+    </p>
+  </section>
+
+  <section>
+    <p><a class="btn btn-primary" href="publications.html">Browse the full publication list &rarr;</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
