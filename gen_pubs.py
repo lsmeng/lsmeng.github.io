@@ -95,8 +95,10 @@ BADGES = {
     "nature": '<span class="badge badge-nature">Nature Geosci.</span>',
 }
 
-# publication numbers that have a hosted, shareable author preprint/accepted/OA PDF
-PDF_NUMS = {6, 7, 9, 10, 11, 12, 13, 16, 17, 20, 21, 27, 29, 31, 33, 35, 38, 39, 41, 49, 51, 52, 60}
+# publication numbers that have a hosted, shareable PDF:
+#   author preprint/accepted versions + open-access (CC-BY / free-to-read) articles
+PDF_NUMS = {4, 5, 6, 7, 9, 10, 11, 12, 13, 16, 17, 20, 21, 27, 29, 31, 33, 35, 38, 39,
+            41, 48, 49, 51, 52, 59, 60, 61}
 # DOIs recovered from the manuscripts (filled in where the list lacked one)
 DOI_FIX = {
     16: "https://doi.org/10.1002/2015GL067034",
