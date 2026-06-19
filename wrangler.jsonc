@@ -1,0 +1,9 @@
+{
+  // Cloudflare static-site config. Tells "npx wrangler deploy" to serve
+  // this folder as static assets (no server-side code, no build step).
+  "name": "lsmeng-github-io",
+  "compatibility_date": "2025-06-01",
+  "assets": {
+    "directory": "."
+  }
+}
