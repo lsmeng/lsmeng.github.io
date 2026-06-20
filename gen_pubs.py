@@ -101,6 +101,8 @@ PDF_NUMS = {4, 5, 6, 7, 9, 10, 11, 12, 13, 16, 17, 20, 21, 27, 29, 31, 33, 35, 3
             41, 48, 49, 51, 52, 59, 60, 61}
 # Official journal DOIs filled in where the list lacked one (via Crossref, title+year matched).
 DOI_FIX = {
+    1:  "http://www.ysxb.ac.cn/article/id/aps_200701122",       # Acta Petrologica Sinica (no DOI assigned)
+    2:  "http://www.progeophys.cn/article/id/dqwlxjz_685",       # Progress in Geophysics (no DOI assigned)
     9:  "https://doi.org/10.5047/eps.2012.05.010",
     10: "https://doi.org/10.5047/eps.2012.05.011",
     11: "https://doi.org/10.1016/j.epsl.2014.01.036",
@@ -137,7 +139,8 @@ for num, title, authors, venue, year, doi, badge in PUBS:
     doi = doi or DOI_FIX.get(num)
     parts = []
     if doi:
-        parts.append(f'<a href="{doi}" target="_blank" rel="noopener">DOI&nbsp;↗</a>')
+        label = "DOI" if "doi.org" in doi else "Journal"
+        parts.append(f'<a href="{doi}" target="_blank" rel="noopener">{label}&nbsp;↗</a>')
     if num in PDF_NUMS:
         parts.append(f'<a href="pdf/{num}.pdf" target="_blank" rel="noopener">PDF&nbsp;↓</a>')
     else:
