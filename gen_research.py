@@ -296,7 +296,7 @@ for i, t in enumerate(TOPICS):
 cards = []
 for t in TOPICS:
     cards.append(f"""      <a class="card" href="{t['slug']}.html">
-        <img class="card-thumb" src="assets/figures/{t['thumb']}" alt="{t['title']}">
+        <img class="card-thumb" src="assets/topics/{t['slug']}.jpg" alt="{t['title']} illustration">
         <h3>{t['title']}</h3>
         <p>{t['blurb']}</p>
       </a>""")
