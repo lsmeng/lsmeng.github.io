@@ -213,6 +213,7 @@ ul.plain { padding-left: 0; }
 .people .where { color: var(--accent-dark); font-weight: 500; }
 .people .me-links { font-size: 13.5px; margin-top: 3px; }
 .people .me-links a { margin-right: 12px; }
+.people .period { display: block; color: var(--muted); font-size: 13.5px; margin-top: 1px; }
 .people .thesis { display: block; color: var(--muted); font-size: 13.5px; margin-top: 3px; }
 .people .thesis a { font-style: italic; }
 
