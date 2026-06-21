@@ -111,7 +111,10 @@ FREE_PDF = {
     44: "https://www.sciencedirect.com/science/article/am/pii/S0012821X20305264",
     46: "https://e-docs.geo-leo.de/bitstream/11858/9968/1/JGRB_JGRB55501.pdf",
     47: "https://www.science.org/cms/asset/d7090f0d-569e-4a33-ae56-469926278922/science.abn1045.v1.pdf",
+    53: "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2022JB025936",
+    54: "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2022JB025525",
     56: "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2023EA003086",
+    58: "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2025GL115218",
 }
 # Official journal DOIs filled in where the list lacked one (via Crossref, title+year matched).
 DOI_FIX = {
