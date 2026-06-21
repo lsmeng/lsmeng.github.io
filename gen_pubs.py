@@ -97,8 +97,22 @@ BADGES = {
 
 # publication numbers that have a hosted, shareable PDF:
 #   author preprint/accepted versions + open-access (CC-BY / free-to-read) articles
-PDF_NUMS = {4, 5, 6, 7, 9, 10, 11, 12, 13, 16, 17, 20, 21, 27, 29, 31, 33, 35, 38, 39,
-            41, 48, 49, 51, 52, 59, 60, 61}
+PDF_NUMS = {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 20, 21, 27, 29, 31, 33,
+            35, 36, 38, 39, 41, 48, 49, 51, 52, 55, 59, 60, 61}
+
+# Public-access free full text found elsewhere (Semantic Scholar) — linked, not re-hosted
+# (publisher accepted-manuscript / free-to-read pages that block direct download)
+FREE_PDF = {
+    22: "https://agupubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/2017GL072552",
+    23: "https://agupubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/2017GL073254",
+    26: "https://agupubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/2017GL075137",
+    30: "https://www.sciencedirect.com/science/article/am/pii/S0012821X18302668",
+    43: "https://rss.onlinelibrary.wiley.com/doi/am-pdf/10.1029/2020gl087722",
+    44: "https://www.sciencedirect.com/science/article/am/pii/S0012821X20305264",
+    46: "https://e-docs.geo-leo.de/bitstream/11858/9968/1/JGRB_JGRB55501.pdf",
+    47: "https://www.science.org/cms/asset/d7090f0d-569e-4a33-ae56-469926278922/science.abn1045.v1.pdf",
+    56: "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2023EA003086",
+}
 # Official journal DOIs filled in where the list lacked one (via Crossref, title+year matched).
 DOI_FIX = {
     1:  "http://www.ysxb.ac.cn/article/id/aps_200701122",       # Acta Petrologica Sinica (no DOI assigned)
@@ -143,8 +157,10 @@ for num, title, authors, venue, year, doi, badge in PUBS:
         parts.append(f'<a href="{doi}" target="_blank" rel="noopener">{label}&nbsp;↗</a>')
     if num in PDF_NUMS:
         parts.append(f'<a href="pdf/{num}.pdf" target="_blank" rel="noopener">PDF&nbsp;↓</a>')
+    elif num in FREE_PDF:
+        parts.append(f'<a href="{FREE_PDF[num]}" target="_blank" rel="noopener">Free&nbsp;PDF&nbsp;↗</a>')
     else:
-        parts.append('<span class="pdf-na" title="Author preprint not available — see the DOI link for the published version">PDF&nbsp;—</span>')
+        parts.append('<span class="pdf-na" title="No free full text located — see the DOI link for the published version">PDF&nbsp;—</span>')
     link = '<div class="pub-links">' + ' &nbsp;·&nbsp; '.join(parts) + '</div>'
     items.append(f'''      <li class="pub">
         <span class="pub-num">{num}</span>
@@ -189,7 +205,7 @@ HTML = f'''<!DOCTYPE html>
     <p class="pub-controls">
       {len(PUBS)} peer-reviewed publications · 4,700+ citations · h-index 31 (Google Scholar). Names of group members in <span class="me">bold</span>. See also the
       <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar profile</a>.
-      <br><strong>DOI&nbsp;↗</strong> links to the published article; <strong>PDF&nbsp;↓</strong> is a free author preprint/accepted manuscript. <span class="pdf-na">PDF&nbsp;—</span> means no shareable preprint is posted — use the DOI (open-access articles are free there).
+      <br><strong>DOI&nbsp;↗</strong> links to the published article; <strong>PDF&nbsp;↓</strong> is a free author preprint/accepted manuscript hosted here; <strong>Free&nbsp;PDF&nbsp;↗</strong> is a public-access copy found elsewhere. <span class="pdf-na">PDF&nbsp;—</span> means no free full text was located.
     </p>
     <ul class="pub-list">
 {body}
