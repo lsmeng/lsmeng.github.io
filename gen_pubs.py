@@ -4,6 +4,7 @@ import html
 
 # (num, title, authors, venue, year, doi_url_or_None, badge)  badge in {None,'science','nature'}
 PUBS = [
+(66,"Distributed Acoustic Sensing data compression for seismological applications via compressive sensing","Ma, Y., Meng, L. & Lin, Y.-Y.","Geophysical Journal International (accepted)","2026",None,None),
 (65,"Swarm cessation and aftershock drivers following the pressure release of a four-year-long seismic sequence at the Noto Peninsula","Mohanna, S., Meng, L., Vuan, A. & Yu, H.","Earth and Planetary Science Letters, 690, 120113","2026","https://doi.org/10.1016/j.epsl.2026.120113",None),
 (64,"Dual-fault rupture and thermo-mechanical setting of the 2025 Dingri earthquake (southern Tibet)","Zhang, Y., Guo, R., Tang, X., He, H., Meng, L., Li, L., Xu, J. & Sun, H.","Seismological Research Letters","2026","https://doi.org/10.1785/0220250141",None),
 (63,"Multiscale fault complexity and hydrothermal processes drive earthquake swarms in the Tengchong Volcanic Field, Southeastern Tibetan Plateau","Ma, J.-Z., Meng, L., Yin, H., Bai, Y., Li, Z. & Ai, Y.","Tectonophysics, 231080","2026","https://doi.org/10.1016/j.tecto.2026.231080",None),
@@ -78,7 +79,7 @@ GROUP_TOKENS = [
     "Meng, L.", "Mohanna, S.", "Kawamoto, G.", "Ma, J.-Z.",
     "Xu, L.", "Huang, H.", "Bao, H.", "Feng, T.", "Zhang, A.",
     "Xie, Y.", "Zhou, T.", "An, C.", "Sheng, S.", "Lin, J.",
-    "Jia, H.", "Liu, Z.", "Su, E.",
+    "Jia, H.", "Liu, Z.", "Su, E.", "Ma, Y.",
 ]
 
 def authors_html(a):
@@ -98,7 +99,7 @@ BADGES = {
 # publication numbers that have a hosted, shareable PDF:
 #   author preprint/accepted versions + open-access (CC-BY / free-to-read) articles
 PDF_NUMS = {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 20, 21, 27, 29, 31, 33,
-            35, 36, 38, 39, 41, 48, 49, 51, 52, 55, 59, 60, 61}
+            35, 36, 38, 39, 41, 48, 49, 51, 52, 55, 59, 60, 61, 66}
 
 # Public-access free full text found elsewhere (Semantic Scholar) — linked, not re-hosted
 # (publisher accepted-manuscript / free-to-read pages that block direct download)
