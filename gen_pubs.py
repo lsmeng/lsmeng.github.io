@@ -6,7 +6,7 @@ import html
 # Submitted / under review. (title, authors, note, year, links)
 # links: list of (label, href); rendered in order, same style as the numbered list.
 SUBMITTED = [
- ("What fraction of machine-learning detected earthquakes can an expert verify?",
+ ("Can human experts verify machine-learning detected earthquakes?",
   "Meng, L., Huang, H., Ma, J.-Z. & Ma, Y.",
   "Submitted to Science Advances", "2026",
   [("Preprint&nbsp;PDF&nbsp;↓", "pdf/submitted-catalogue-verification.pdf"),
