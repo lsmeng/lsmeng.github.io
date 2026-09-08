@@ -2,6 +2,17 @@
 """Generate publications.html from a structured list. Run: python3 gen_pubs.py"""
 import html
 
+
+# Submitted / under review. (title, authors, note, year, links)
+# links: list of (label, href); rendered in order, same style as the numbered list.
+SUBMITTED = [
+ ("How much of a machine-learning earthquake catalogue can an expert verify?",
+  "Meng, L., Huang, H., Ma, J.-Z. & Ma, Y.",
+  "Submitted", "2026",
+  [("Preprint&nbsp;PDF&nbsp;↓", "pdf/submitted-catalogue-verification.pdf"),
+   ("Data &amp; code&nbsp;↗", "https://doi.org/10.5281/zenodo.22059218")]),
+]
+
 # (num, title, authors, venue, year, doi_url_or_None, badge)  badge in {None,'science','nature'}
 PUBS = [
 (66,"Distributed Acoustic Sensing data compression for seismological applications via compressive sensing","Ma, Y., Meng, L. & Lin, Y.-Y.","Geophysical Journal International (accepted)","2026",None,None),
@@ -176,6 +187,36 @@ for num, title, authors, venue, year, doi, badge in PUBS:
         </div>
       </li>''')
 
+
+sub_items = []
+for title, authors, note, year, links in SUBMITTED:
+    lk = ' &nbsp;·&nbsp; '.join(
+        f'<a href="{href}" target="_blank" rel="noopener">{label}</a>' for label, href in links)
+    sub_items.append(f'''      <li class="pub">
+        <span class="pub-num"></span>
+        <div>
+          <div class="pub-title">{html.escape(title)}</div>
+          <div class="pub-authors">{authors_html(authors)}</div>
+          <div class="pub-venue">{html.escape(note)} <span class="year">({year})</span></div>
+          <div class="pub-links">{lk}</div>
+        </div>
+      </li>''')
+sub_body = "\n".join(sub_items)
+
+SUBMITTED_SECTION = f'''  <section style="border-top:none;">
+    <h2 style="font-size:30px;">Submitted</h2>
+    <p class="pub-controls">
+      Manuscripts under review. Author preprints are posted here; the data and code behind each
+      are archived publicly.
+    </p>
+    <ul class="pub-list">
+{sub_body}
+    </ul>
+  </section>
+
+''' if SUBMITTED else ""
+
+PUB_TOP = "" if SUBMITTED else ' style="border-top:none;"'
 body = "\n".join(items)
 
 HTML = f'''<!DOCTYPE html>
@@ -204,7 +245,7 @@ HTML = f'''<!DOCTYPE html>
 </nav>
 
 <main class="wrap">
-  <section style="border-top:none;">
+{SUBMITTED_SECTION}  <section{PUB_TOP}>
     <h2 style="font-size:30px;">Publications</h2>
     <p class="pub-controls">
       {len(PUBS)} peer-reviewed publications · 4,700+ citations · h-index 31 (Google Scholar). Names of group members in <span class="me">bold</span>. See also the
