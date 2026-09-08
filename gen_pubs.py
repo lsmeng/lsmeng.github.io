@@ -6,9 +6,9 @@ import html
 # Submitted / under review. (title, authors, note, year, links)
 # links: list of (label, href); rendered in order, same style as the numbered list.
 SUBMITTED = [
- ("How much of a machine-learning earthquake catalogue can an expert verify?",
+ ("Expert-verifiable fractions of machine-learning earthquake catalogues are set by the pipeline, not by the earthquakes",
   "Meng, L., Huang, H., Ma, J.-Z. & Ma, Y.",
-  "Submitted", "2026",
+  "Submitted to Science Advances", "2026",
   [("Preprint&nbsp;PDF&nbsp;↓", "pdf/submitted-catalogue-verification.pdf"),
    ("Data &amp; code&nbsp;↗", "https://doi.org/10.5281/zenodo.22059218")]),
 ]
