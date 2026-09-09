@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Math — Lingsen Meng</title>
+<meta name="description" content="AI-assisted mathematical research by Lingsen Meng, with public preprints, manuscripts, code, data, and independently checkable certificates.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Lingsen Meng</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="ai-for-math.html" class="active">AI for Math</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html">Resource</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="math-hero">
+    <p class="eyebrow">AI-assisted research</p>
+    <h1>AI for Math</h1>
+    <p class="math-intro">
+      I use modern AI systems as collaborators in mathematical research: to explore conjectures,
+      search for constructions, organize long case analyses, write verification software, and
+      stress-test proofs. My current projects are in combinatorics, especially permutation patterns
+      and graph labelling. Each item below links to the strongest public record available &mdash;
+      arXiv for preprints, and GitHub or Zenodo for manuscripts, code, data, and certificates.
+    </p>
+    <div class="links">
+      <a class="btn btn-primary" href="#preprints">Public preprints</a>
+      <a class="btn" href="#projects">Manuscripts &amp; projects</a>
+      <a class="btn" href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub profile&nbsp;↗</a>
+    </div>
+  </header>
+
+  <section id="preprints">
+    <h2>Public preprints</h2>
+    <p class="lead">Papers currently available through arXiv. Links to reproducibility materials are included when available.</p>
+
+    <div class="math-list">
+      <article class="math-item">
+        <div class="math-meta"><span class="status status-arxiv">arXiv</span><span>Permutation patterns · 2026</span></div>
+        <h3>Residual structure and growing inversion-monotonicity regions for 1324-avoiding permutations</h3>
+        <p>
+          Studies the inversion distribution of 1324-avoiding permutations. The revised manuscript
+          proves monotonicity through <em>k</em> &le; 2<em>n</em>+6, obtains fixed-defect structure and
+          growing regions, and records the remaining unrestricted conjecture as open.
+        </p>
+        <p class="project-note">The arXiv record may briefly display the v1 title while the submitted revision is processed.</p>
+        <div class="project-links">
+          <a href="https://arxiv.org/abs/2609.06717" target="_blank" rel="noopener">arXiv&nbsp;↗</a>
+          <a href="https://github.com/lsmeng/1324-inversion-monotonicity" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+          <a href="https://doi.org/10.5281/zenodo.22667738" target="_blank" rel="noopener">Zenodo v2.0&nbsp;↗</a>
+        </div>
+      </article>
+
+      <article class="math-item">
+        <div class="math-meta"><span class="status status-arxiv">arXiv</span><span>Graph labelling · 2026</span></div>
+        <h3>Trees of odd order with at most two vertices of degree two are edge-graceful</h3>
+        <p>
+          Proves a new case of Lee's edge-graceful tree conjecture using zero-sum block partitions
+          and Langford sequences, with symbolic checks and an independently re-checked census of
+          2,245,070 trees.
+        </p>
+        <div class="project-links">
+          <a href="https://arxiv.org/abs/2608.23881" target="_blank" rel="noopener">arXiv&nbsp;↗</a>
+          <a href="https://doi.org/10.5281/zenodo.22085671" target="_blank" rel="noopener">Supplement&nbsp;↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Manuscripts and active projects</h2>
+    <p class="lead">Public work that does not yet have an arXiv record is labelled by its present evidence level.</p>
+
+    <div class="math-grid">
+      <article class="math-card">
+        <div class="math-meta"><span class="status status-manuscript">Manuscript</span><span>Permutation patterns</span></div>
+        <h3>The two ends of the inversion spectrum of 1324-avoiding permutations</h3>
+        <p>A companion manuscript on fixed non-inversion defect at the top end and an exact difference identity at the bottom end.</p>
+        <div class="project-links">
+          <a href="https://github.com/lsmeng/1324-inversion-monotonicity" target="_blank" rel="noopener">Paper &amp; code&nbsp;↗</a>
+          <a href="https://doi.org/10.5281/zenodo.22667738" target="_blank" rel="noopener">Archive&nbsp;↗</a>
+        </div>
+      </article>
+
+      <article class="math-card">
+        <div class="math-meta"><span class="status status-project">Public project</span><span>Graph labelling</span></div>
+        <h3>Super edge-magic labellings of spiders with equal legs</h3>
+        <p>A manuscript and self-contained verification suite for constructive and finite results on equal-leg spiders.</p>
+        <div class="project-links">
+          <a href="https://github.com/lsmeng/super-edge-magic-spiders" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+        </div>
+      </article>
+
+      <article class="math-card">
+        <div class="math-meta"><span class="status status-review">Under audit</span><span>Graph labelling</span></div>
+        <h3>Edge-graceful trees with few vertices of degree two</h3>
+        <p>A broader manuscript, construction archive, and independent checker. The public repository records the current proof-review status and open audit boundary.</p>
+        <div class="project-links">
+          <a href="https://github.com/lsmeng/sparse-edge-graceful" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+          <a href="https://doi.org/10.5281/zenodo.22287387" target="_blank" rel="noopener">Zenodo&nbsp;↗</a>
+        </div>
+      </article>
+
+      <article class="math-card">
+        <div class="math-meta"><span class="status status-compute">Computational project</span><span>Combinatorial trees</span></div>
+        <h3>Leech trees and distinct-distance trees</h3>
+        <p>Exact searches, clean-room replications, and public evidence for order-18 Leech trees and related extremal distinct-distance questions.</p>
+        <div class="project-links">
+          <a href="https://github.com/lsmeng/leech-trees" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="practice">
+    <h2>How the work is reported</h2>
+    <div class="practice-grid">
+      <div><strong>Proof</strong><span>Statements supported by a complete mathematical argument.</span></div>
+      <div><strong>Certified computation</strong><span>Finite claims backed by code, hashes, and independent checks.</span></div>
+      <div><strong>Candidate</strong><span>Promising constructions or formulas that still need proof or audit.</span></div>
+      <div><strong>Open question</strong><span>Unresolved claims kept separate from proved results.</span></div>
+    </div>
+    <p class="project-note math-disclosure">
+      AI systems contributed to exploration, coding, checking, and drafting. Mathematical claims are
+      presented according to the evidence actually available, and project repositories preserve the
+      reproducibility and audit record.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
