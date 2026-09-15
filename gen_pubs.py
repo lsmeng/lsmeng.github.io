@@ -8,9 +8,9 @@ import html
 SUBMITTED = [
  ("Can human experts verify machine-learning detected earthquakes?",
   "Meng, L., Huang, H., Ma, J.-Z. & Ma, Y.",
-  "Submitted to Science Advances", "2026",
+  "Submitted to JGR: Solid Earth", "2026",
   [("Preprint&nbsp;PDF&nbsp;↓", "pdf/submitted-catalogue-verification.pdf"),
-   ("Data &amp; code&nbsp;↗", "https://doi.org/10.5281/zenodo.22059218")]),
+   ("Data &amp; code&nbsp;↗", "https://doi.org/10.5281/zenodo.22059219")]),
 ]
 
 # (num, title, authors, venue, year, doi_url_or_None, badge)  badge in {None,'science','nature'}
