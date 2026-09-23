@@ -10,7 +10,7 @@ SUBMITTED = [
   "Meng, L., Huang, H., Ma, J.-Z. & Ma, Y.",
   "Submitted to Communications Earth & Environment", "2026",
   [("Preprint&nbsp;PDF&nbsp;↓", "pdf/submitted-catalogue-verification.pdf"),
-   ("Data &amp; code&nbsp;↗", "https://doi.org/10.5281/zenodo.22059219")]),
+   ("Data &amp; code&nbsp;↗", "https://doi.org/10.5281/zenodo.22059218")]),
 ]
 
 # (num, title, authors, venue, year, doi_url_or_None, badge)  badge in {None,'science','nature'}
