@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TypeSafe Jev calibration audit — Lingsen Meng</title>
+<meta name="description" content="How far the confidence scores of TypeSafe&#x27;s Jev, a commercial AI decision model, can be trusted: calibration, quantisation and a comparison with open classifiers.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Lingsen Meng</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="ai-for-math.html">AI for Math</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html">Resource</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section style="border-top:none;">
+    <p class="breadcrumb"><a href="blog.html">Blog</a> &nbsp;/&nbsp; September 2026</p>
+    <h2 style="font-size:30px;">How far can the confidence scores of a commercial AI decision model be trusted? An audit of TypeSafe&#x27;s Jev</h2>
+    <p>A new kind of AI product is sold to programs rather than to people. The program sends a passage of text together with a closed question (e.g. "Which section does this article belong to?" or "Is this review positive?"), and the model returns an answer, a probability and a confidence score. The claim is that these numbers are calibrated, i.e. that when the model says 90% it is right ~90% of the time, so that software can handle the confident cases automatically and pass the rest to a person.</p>
+    <p>We tested this claim on TypeSafe's Jev (version 1.13.0) with 3,244 questions about 2,372 distinct texts from two public benchmarks, movie-review sentiment (SST-2) and news topics (AG News), and we asked the same questions to two free open-source classifiers and two small OpenAI models. The full paper, with every table and the methods, is available as a preprint (<a href="pdf/preprint-jev-calibration-audit.pdf">PDF</a>), and the code and data are at <a href="https://doi.org/10.5281/zenodo.22935043" target="_blank" rel="noopener">doi.org/10.5281/zenodo.22935043</a>.</p>
+    <h3>1. Calibration of Jev&#x27;s scores</h3>
+    <p>The way you ask changes the answer's calibration. We asked Jev about the same 872 movie reviews in two forms, once as a yes/no question ("Is the sentiment positive?") and once as a choice between two options. The choice form was close to calibrated as returned, whereas the yes/no form was systematically underconfident, and its calibration error was several times larger (0.091 against 0.020), although the model and the sentences were the same in both cases.</p>
+    <p>On the harder task, the middle of the scale is overconfident. On the four-way news task, the answers to which Jev gave a top probability of at most 93% had an average stated confidence of 75%, but they were right only 61% of the time.</p>
+    <p>The scores are coarse. Every probability comes back rounded to two decimals, and 71.6% of the news answers come back at exactly 100%, although only 94.3% of those are right. This matters for automation, because a threshold cannot split a block of identical scores, and on 1,500 news items a threshold on Jev's top probability can take only 53 distinct positions.</p>
+    <h3>2. What it takes to repair them</h3>
+    <p>A single parameter fitted on a few hundred labelled examples from your own data (temperature scaling) removed most of the calibration error, on held-out data, in the two conditions where we measured miscalibration. However, this parameter belongs to one task, one question wording and one model version, so the calibration should be checked again when any of them changes, and refitted only if the check shows it is needed.</p>
+    <p>There is also a well-known tool, conformal prediction, that turns any score into sets of answers with a guaranteed coverage, e.g. "the right answer is in the set 95% of the time". It worked here (the guarantee assumes that new items come from the same distribution as the labelled ones). We note, however, that a 95% guarantee does not mean that the answers it gives as a single label are right 95% of the time, since the guarantee is an average over all items and the items where it commits to one answer are a selected subgroup; on the news task those single answers were wrong 5.93% of the time, not 5%.</p>
+    <h3>3. Comparison with free alternatives</h3>
+    <p>The fairest comparison is with a free open-source classifier that, according to its model card, was trained without supervised examples from these benchmarks. Against that model, Jev was more accurate in every one of the 16 set-ups we tried on both tasks, and our exploratory estimate for the full news test set is that Jev gets about 5.7 more articles right out of every 100 (95% interval 4.7 to 6.7). On sentiment the gap is about 5 points.</p>
+    <p>But there is a second free model from the same family, trained with a few hundred supervised examples from these tasks (training examples, not the test items). Against that one, Jev was less accurate on news (by about 2.3 points), and the two were indistinguishable on sentiment.</p>
+    <h3>4. The effect of the benchmarker&#x27;s choices</h3>
+    <p>Every system has to be told what each label means. When we wrote our own label descriptions, for instance "business, economy, markets, companies" for the business category, the extra words pulled technology news into business, because much of the technology news is about companies, and the open model lost much more from this than Jev did. With our descriptions, Jev appeared to win by 9.67 points, whereas with the descriptions published by the author of the open model the same comparison gave 6.93 points (the two Jev runs were made four days apart). We note that nothing about our descriptions looked unreasonable when we wrote them.</p>
+    <p>And the choice between the two free models, one of which was trained with supervised examples of these tasks, moved the comparison by about 8 points and reversed who wins. Thus, for any "open versus commercial" benchmark, the first two things to check are which open checkpoint was used and whose label descriptions were used.</p>
+    <h3>5. Automatic routing with a promised error rate</h3>
+    <p>A buyer ultimately wants a promise such as "at most 5% errors on the traffic we route automatically". We tested this with a standard three-way split of the labelled data (choose a threshold, test it once, evaluate it). On the news task, Jev never passed at 5% in 2,000 random splits, and the open model trained with examples of these tasks passed in 95 of them. On the easier sentiment task Jev passed in 191. However, these pass rates depend strongly on how the threshold is chosen, and with a different but equally reasonable selection rule some of them rose several-fold. Therefore a low pass rate describes the procedure and the amount of labelled data as much as the model, and we suggest that no system be described as "certifiable" or "not certifiable" without stating both.</p>
+    <h3>Practical suggestions</h3>
+    <ul>
+      <li>Check the returned probabilities on your own task, question wording and decision rule before relying on them, and recalibrate if they fail the check.</li>
+      <li>Keep a few hundred labelled examples from your own data, which pay for the calibration fit and the conformal sets at once.</li>
+      <li>Check again whenever you change the task, the wording of the question, or the model version.</li>
+      <li>A 95% conformal guarantee is an average, and the single answers it commits to can be wrong more often.</li>
+      <li>When comparing against open models, use the open model author's own label descriptions, give the commercial system the same ones, and check what the open model was trained on.</li>
+    </ul>
+    <h3>Limitations</h3>
+    <p>The study covers two English classification tasks and one version of each system, and we did not test other languages, domain-specific data, speed or cost. The comparison with open models is exploratory, and the full-test-set estimate likely carries uncertainty beyond its stated interval, because it rests on analysis choices made on the same data. The code, the per-item predictions and the cached responses are available at <a href="https://doi.org/10.5281/zenodo.22935043" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.22935043</a>.</p>
+  </section>
+  <section>
+    <p style="margin-top:16px;"><a class="btn" href="blog.html">&larr; All posts</a> &nbsp; <a class="btn btn-primary" href="pdf/preprint-jev-calibration-audit.pdf">Read the paper (PDF)</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

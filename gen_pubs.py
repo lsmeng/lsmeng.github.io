@@ -6,6 +6,12 @@ import html
 # Submitted / under review. (title, authors, note, year, links)
 # links: list of (label, href); rendered in order, same style as the numbered list.
 SUBMITTED = [
+ ("How far can a commercial decision model's probabilities be trusted? A calibration audit of Jev against open and general-purpose classifiers",
+  "Meng, L.",
+  "Preprint", "2026",
+  [("Preprint&nbsp;PDF&nbsp;↓", "pdf/preprint-jev-calibration-audit.pdf"),
+   ("Code &amp; data&nbsp;↗", "https://doi.org/10.5281/zenodo.22935043"),
+   ("Blog post", "blog-jev-confidence.html")]),
  ("Can human seismologists verify machine-learning detected earthquakes?",
   "Meng, L., Huang, H., Ma, J.-Z. & Ma, Y.",
   "Submitted to Communications Earth & Environment", "2026",
@@ -204,10 +210,10 @@ for title, authors, note, year, links in SUBMITTED:
 sub_body = "\n".join(sub_items)
 
 SUBMITTED_SECTION = f'''  <section style="border-top:none;">
-    <h2 style="font-size:30px;">Submitted</h2>
+    <h2 style="font-size:30px;">Submitted and preprints</h2>
     <p class="pub-controls">
-      Manuscripts under review. Author preprints are posted here; the data and code behind each
-      are archived publicly.
+      Manuscripts under review and preprints. Author preprints are posted here; the data and code
+      behind each are archived publicly.
     </p>
     <ul class="pub-list">
 {sub_body}
@@ -237,6 +243,8 @@ HTML = f'''<!DOCTYPE html>
       <a href="index.html">Home</a>
       <a href="research.html">Research</a>
       <a href="publications.html" class="active">Publications</a>
+      <a href="ai-for-math.html">AI for Math</a>
+      <a href="blog.html">Blog</a>
       <a href="group.html">Group</a>
       <a href="resource.html">Resource</a>
       <a href="index.html#contact">Contact</a>
