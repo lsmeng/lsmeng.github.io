@@ -27,7 +27,7 @@
 
 <main class="wrap">
   <section style="border-top:none;">
-    <p class="breadcrumb"><a href="blog.html">Blog</a> &nbsp;/&nbsp; September 2026</p>
+    <p class="breadcrumb"><a href="blog.html">Blog</a> &nbsp;/&nbsp; September 2026 &nbsp;·&nbsp; <a href="https://zhuanlan.zhihu.com/p/2086581437927526496" target="_blank" rel="noopener">中文版（知乎）&nbsp;↗</a></p>
     <h2 style="font-size:30px;">How far can the confidence scores of a commercial AI decision model be trusted? An audit of TypeSafe&#x27;s Jev</h2>
     <p>A new kind of AI product is sold to programs rather than to people. The program sends a passage of text together with a closed question (e.g. "Which section does this article belong to?" or "Is this review positive?"), and the model returns an answer, a probability and a confidence score. The claim is that these numbers are calibrated, i.e. that when the model says 90% it is right ~90% of the time, so that software can handle the confident cases automatically and pass the rest to a person.</p>
     <p>We tested this claim on TypeSafe's Jev (version 1.13.0) with 3,244 questions about 2,372 distinct texts from two public benchmarks, movie-review sentiment (SST-2) and news topics (AG News), and we asked the same questions to two free open-source classifiers and two small OpenAI models. The full paper, with every table and the methods, is available as a preprint (<a href="pdf/preprint-jev-calibration-audit.pdf">PDF</a>), and the code and data are at <a href="https://doi.org/10.5281/zenodo.22935043" target="_blank" rel="noopener">doi.org/10.5281/zenodo.22935043</a>.</p>
