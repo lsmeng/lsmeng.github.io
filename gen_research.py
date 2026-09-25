@@ -39,6 +39,7 @@ PAGE = """<!DOCTYPE html>
 </main>
 
 {foot}
+<script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
 """
