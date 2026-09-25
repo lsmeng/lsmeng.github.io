@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liouville sign patterns — Lingsen Meng</title>
+<meta name="description" content="A plain-language account of our proof that every integer outside {2,3,4,5,6,9,10} splits as a + b in all four Liouville sign patterns, unconditionally and with a Lean formalization.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Lingsen Meng</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="ai-for-math.html">AI for Math</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html">Resource</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section style="border-top:none;">
+    <p class="breadcrumb"><a href="blog.html">Blog</a> &nbsp;/&nbsp; September 2026 &nbsp;·&nbsp; <a href="https://zhuanlan.zhihu.com/p/2086829379775116620" target="_blank" rel="noopener">中文版（知乎）&nbsp;↗</a></p>
+    <h2 style="font-size:30px;">Colouring the integers in two colours: a relaxed Goldbach problem, settled for every integer</h2>
+    <p>Goldbach's conjecture says that every even number larger than 2 is a sum of two primes, and it is still open after almost three centuries. A natural relaxation replaces "prime" by a weaker property that primes share with many other numbers, and asks whether the relaxed statement can at least be proved. This post describes one such relaxation, which we have now settled for every integer, with no unproved hypothesis and with a computer-checked proof. The paper is available as a preprint (<a href="https://escholarship.org/uc/item/7945n3rh" target="_blank" rel="noopener">eScholarship</a>, <a href="pdf/Meng_Liouville_sign_patterns.pdf">PDF</a>), and the Lean code is at <a href="https://github.com/lsmeng/liouville-sign-patterns" target="_blank" rel="noopener">github.com/lsmeng/liouville-sign-patterns</a>.</p>
+
+    <h3>1. Two colours</h3>
+    <p>Write a number as a product of primes and count the primes, with repetition, e.g. 12 = 2&times;2&times;3 uses three primes and 6 = 2&times;3 uses two. We colour the number blue if the count is odd and green if it is even. Thus every prime is blue, 1 (which uses no prime) is green, and multiplying by any prime always flips the colour. Mathematicians call this colour the Liouville function, &lambda;(n) = &minus;1 for blue and +1 for green.</p>
+    <figure class="fig">
+      <img src="assets/figures/blog-liouville-colors.png" alt="The numbers 1 to 30 coloured blue or green by the parity of their number of prime factors" style="max-width:480px;">
+      <figcaption>The numbers 1 to 30, blue for an odd number of prime factors and green for an even number.</figcaption>
+    </figure>
+
+    <h3>2. The question</h3>
+    <p>Split N into two positive integers, N = a + b. Each part has a colour, so there are four possible colour patterns: blue + blue, green + green, blue + green and green + blue. The question is whether every N can be split in all four ways. The blue + blue case is the relaxed Goldbach problem: Goldbach asks for two primes, whereas here each part only needs an odd number of prime factors (e.g. 8 = 2&times;2&times;2 counts as blue).</p>
+    <figure class="fig">
+      <img src="assets/figures/blog-liouville-example.png" alt="The four colour patterns for N = 21: 2+19, 6+15, 5+16 and 1+20" style="max-width:480px;">
+      <figcaption>For N = 21 all four patterns occur. The seven exceptions 2, 3, 4, 5, 6, 9 and 10 each miss at least one pattern.</figcaption>
+    </figure>
+
+    <h3>3. What was known</h3>
+    <p>The blue + blue question for even numbers was asked on MathOverflow in 2018, and it is attributed to Shusterman in the literature. In 2024 Alexander Mangerel proved in IMRN that for N &ge; 11 the two parts cannot always have the same colour, nor always different colours, which already gives the mixed patterns. However, this does not tell blue + blue apart from green + green. In a second paper (arXiv:2412.17199) he proved that all four patterns occur, with a lower bound on how often, but only for large N without too many small prime factors, and only assuming the Generalised Riemann Hypothesis. In September 2026 an anonymous repository gave an unconditional proof of the blue + blue case for even N, formalized in Lean.</p>
+    <p>The reason even this relaxed version is hard is known as the parity problem. The main tool for studying primes, sieve methods, cannot distinguish numbers with an odd number of prime factors from numbers with an even number, and this is exactly the distinction the question asks about.</p>
+
+    <h3>4. What we proved</h3>
+    <p>Every integer N &ge; 2 outside {2, 3, 4, 5, 6, 9, 10} can be split as a + b in each of the four colour patterns, with no hypothesis, and each of the seven exceptions really misses a pattern. In addition, we obtained a short new proof of Mangerel's IMRN theorem, and a more general statement: for any completely multiplicative colouring f with f(2) = f(3) = f(5) = &minus;1, a prime p can miss a pattern only if f agrees with the Legendre symbol (the quadratic-residue pattern mod p) on the numbers below p/2. This condition cannot be removed, e.g. colouring by the Legendre symbol mod 43 really makes 43 miss both blue + blue and green + green.</p>
+
+    <h3>5. The idea of the proof</h3>
+    <p>The proof is by contradiction, and it is enough to consider a prime p that misses one of the same-colour patterns, say green + green. This gives a single rule, that no a + b = p has both parts green. Together with the fact that multiplying by 2, 3 or 5 flips the colour, the rule propagates like the clues in Minesweeper, and it eventually forces the colouring mod p to be multiplicative, i.e. to coincide with the Legendre symbol. However, the Legendre symbol always colours some small prime green, whereas every prime is blue, which is the contradiction.</p>
+    <p>The odd case was the difficult part. For even N a missing pattern gives two such rules, whereas for odd N it gives only one, and the propagation sometimes runs around a cycle without reaching a point where the colour is known. These "cyclic" primes are rare (21 below two million, e.g. 19, 67, 283 and 1279), and for them the rule for multiplication by 5 is actually needed. With 2 and 3 alone the argument fails, and there are counterexample colourings.</p>
+
+    <h3>6. How we checked it</h3>
+    <p>The main results are formalized in Lean 4 with mathlib, with no unproved steps and no external results, and the axiom audit shows only the three standard axioms of Lean. Thus the correctness of the main theorem does not rest on human reading of the proof. We also checked every N up to 10<sup>7</sup> by computer (the exceptions are exactly the seven listed above), and the proof went through three rounds of independent review. The key research ideas, the direction and which approaches to pursue were my own decisions, while AI tools were used a lot for the detailed arguments, the numerics, the Lean code and cross-checking; the paper includes a statement on the use of AI tools.</p>
+
+    <h3>Limitations</h3>
+    <p>This is not Goldbach's conjecture, since composite parts are allowed, and the relaxation makes the problem much easier. The result is also qualitative only: it proves that each pattern occurs, but gives no lower bound for how many times. Numerically each pattern gets roughly its expected share, but we cannot prove this. Finally, our literature search found no earlier proof of the odd case, although this is not a guarantee, and I would be glad to hear of any earlier reference.</p>
+  </section>
+  <section>
+    <p style="margin-top:16px;"><a class="btn" href="blog.html">&larr; All posts</a> &nbsp; <a class="btn btn-primary" href="https://escholarship.org/uc/item/7945n3rh" target="_blank" rel="noopener">Read the paper&nbsp;↗</a> &nbsp; <a class="btn" href="https://github.com/lsmeng/liouville-sign-patterns" target="_blank" rel="noopener">Lean code&nbsp;↗</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
