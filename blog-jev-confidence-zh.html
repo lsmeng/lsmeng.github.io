@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商业 AI 判断模型给的置信度能信到什么程度：TypeSafe Jev 实测 — Lingsen Meng</title>
+<meta name="description" content="TypeSafe Jev 置信度实测：商业 AI 判断模型返回的概率能信到什么程度（中文科普版）。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Lingsen Meng</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="ai-for-math.html">AI for Math</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html">Resource</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section style="border-top:none;">
+    <p class="breadcrumb"><a href="blog.html">Blog</a> &nbsp;/&nbsp; 2026 年 9 月 &nbsp;·&nbsp; <a href="blog-jev-confidence.html">English</a> &nbsp;·&nbsp; <a href="https://zhuanlan.zhihu.com/p/2086581437927526496" target="_blank" rel="noopener">知乎&nbsp;↗</a></p>
+    <h2 style="font-size:30px;">商业 AI 判断模型给的置信度能信到什么程度：TypeSafe Jev 实测</h2>
+    <p>现在有一类 AI 产品是卖给程序用的：程序把一段文字和一个封闭式问题发过去（比如"这篇新闻属于哪个版块""这条影评是不是正面的"），模型返回一个答案、一个概率和一个置信度。厂商的说法是这些数字是校准过的，也就是模型说 90% 的时候大约 90% 是对的，这样程序就可以把有把握的自动处理，没把握的交给人。</p>
+    <p>我们拿 TypeSafe 公司的 Jev 实测了一下这个说法（版本 1.13.0）。用的是两套公开题库，影评情感（SST-2）和新闻分类（AG News），一共 3,244 次提问，涉及 2,372 段不同的文本。同样的题我们也交给了两个免费的开源分类器和两个 OpenAI 的小模型做对比。完整论文见文末链接（<a href="pdf/preprint-jev-calibration-audit.pdf">PDF</a>）。</p>
+    <h3>一、Jev 返回的概率准不准</h3>
+    <p>问法一变，校准就变。同样 872 条影评，我们让 Jev 回答了两遍，一遍问"这条评价是正面的吗"（是/否），一遍让它在"正面/负面"两个选项里选一个。选择题那一版原样就基本是准的，而是非题那一版整体偏保守，校准误差大了好几倍（0.091 对 0.020），尽管模型和句子都一样，只是问法不同。</p>
+    <p>难一点的任务上，中间段整体偏自信。在四选一的新闻分类上，Jev 最高概率不超过 93% 的那些答案，平均自称有 75% 的把握，实际只对了 61%。</p>
+    <p>分数很粗。所有概率都只保留两位小数，新闻题里有 71.6% 的答案直接给了 100%，但这些题实际只对了 94.3%。这对自动化是个限制，因为一大批完全相同的分数，门槛没法从中间切开，所以在 1,500 道新闻题上按 Jev 的最高概率设门槛，一共只有 53 个位置可选。</p>
+    <h3>二、怎么补救</h3>
+    <p>用自己数据里几百条带标准答案的样本拟合一个参数（温度缩放），在我们测到失准的两种情况里，留出数据上大部分校准误差就消掉了。不过这个参数只对应一个任务、一种问法和一个模型版本，所以其中任何一样变了都要先重新检验，检验不过再重新拟合。</p>
+    <p>还有一个现成的工具叫共形预测，可以把任何分数变成"答案集合"，并保证覆盖率，比如"正确答案有 95% 的概率落在集合里"。它在这里是管用的（前提是新来的题和手里带答案的题来自同一分布）。但要注意，95% 的保证并不等于它单独给出的答案有 95% 是对的，因为这个保证是对所有题平均而言的，而只给一个答案的那些题是被挑出来的一部分；在新闻题上，这些单个答案错了 5.93%，而不是 5%。</p>
+    <h3>三、和免费模型比</h3>
+    <p>最公平的对手，是一个免费开源分类器：按它的模型卡，训练时没用这些题库的监督样本。和它比，我们试的 16 种设置里，两个任务上 Jev 每一种都更准。推到整套新闻测试集，我们的探索性估计是每 100 篇新闻 Jev 大约多答对 5.7 篇（95% 区间 4.7 到 6.7）；影评情感上大约多 5 个点。</p>
+    <p>但同一家族还有另一个免费模型，训练时用过这些任务的几百条监督样本（是训练样本，不是测试题本身）。和它比，新闻分类上 Jev 反而差大约 2.3 个点，影评情感上两者分不出高低。</p>
+    <h3>四、出题人的选择对结果的影响</h3>
+    <p>每个系统都要被告知每个类别是什么意思。我们自己写的类别说明里，"商业"那一条写的是"商业、经济、市场、公司"，多出来的"公司"这些词把不少科技新闻拽进了商业类（很多科技新闻讲的就是科技公司），而开源模型受的影响比 Jev 大得多：</p>
+    <ul>
+      <li>用我们写的说明，Jev 看起来领先 9.67 个点；</li>
+      <li>换成开源模型作者自己公布的说明，同样的比较只领先 6.93 个点（两次 Jev 运行相隔四天）。</li>
+    </ul>
+    <p>我们那套说明在写的时候并看不出有什么问题。</p>
+    <p>另外，两个免费模型选哪一个（其中一个训练时用过这些任务的监督样本），会让比较结果挪动大约 8 个点，甚至谁赢谁输都会反过来。所以看"开源对商业"的横评，首先要问两件事：用的是哪个开源版本，类别说明是谁写的。</p>
+    <h3>五、能不能直接交给它自动处理</h3>
+    <p>用户最终需要的是一个承诺，比如"自动处理的那部分，错误率不超过 5%"。我们用标准做法检验了一下：把标注数据分成三份，一份选门槛，一份只检验一次，一份评估，随机切分 2,000 次。</p>
+    <ul>
+      <li>新闻题上，Jev 一次都没通过 5% 这一档；训练时用过这些任务监督样本的那个开源模型通过了 95 次。</li>
+      <li>影评题简单一些，Jev 通过了 191 次。</li>
+    </ul>
+    <p>不过这些通过次数很依赖门槛的选法，换一种同样合理的选法，有些系统的通过次数会翻好几倍。因此通过率低，既反映模型，也反映流程和手里标注数据的多少，说某个系统"能认证"或"不能认证"之前，这两样都需要交代清楚。</p>
+    <h3>几条建议</h3>
+    <ul>
+      <li>先用自己的任务、问法和决策规则检验返回的概率，不准再校准。</li>
+      <li>留几百条自己数据里带标准答案的样本，校准和共形预测都靠它。</li>
+      <li>换了任务、问法或模型版本，都要重新检验。</li>
+      <li>共形预测的 95% 保证是平均意义上的，单个答案的错误率可能更高。</li>
+      <li>和开源模型对比时，用开源模型作者自己的类别说明，商业系统也用同一套，并且查清开源模型训练时用过什么数据。</li>
+    </ul>
+    <h3>局限</h3>
+    <p>我们只测了两个英文分类任务，每个系统一个版本，没有测其他语言、专业领域数据、速度和成本。和开源模型的对比是探索性的：全量外推的那个数是在同一批数据上反复分析之后得到的，实际的不确定性可能比给出的区间更大。代码、逐条预测和接口的原始返回都已公开。</p>
+    <p>论文 PDF、代码和数据：<a href="https://doi.org/10.5281/zenodo.22935043" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.22935043</a></p>
+  </section>
+  <section>
+    <p style="margin-top:16px;"><a class="btn" href="blog.html">&larr; 全部文章</a> &nbsp; <a class="btn btn-primary" href="pdf/preprint-jev-calibration-audit.pdf">论文 PDF</a></p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
