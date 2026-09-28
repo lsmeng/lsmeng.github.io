@@ -1,0 +1,91 @@
+name,date,lat,lon,mw,class,in_bao2022_survey,setting,vr_km_s,paper,doi
+2001 M6.7 El Salvador,2001-02-13,13.7,-88.87,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2001 M7.5 Banda Sea,2001-10-19,-4.09,123.98,7.5,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2001 Mw 7.8 Kunlun,2001-11-14,35.93,90.59,7.8,supershear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2001 M7.1 South Of Australia,2001-12-12,-42.79,124.68,7.1,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2002 M7.5 Irian Jaya Region, Indonesia",2002-10-10,-1.75,134.26,7.5,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2002 M6.8 Central Alaska,2002-10-23,63.55,-148.07,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2002 Mw 7.9 Denali,2002-11-03,63.63,-147.61,7.9,supershear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2003 M6.7 New Ireland Region, P.N.G.",2003-07-15,-3.9,152.27,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2003 M7.3 Southwestern Siberia, Russia",2003-09-27,50.01,87.78,7.3,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2003 M6.8 Southwestern Siberia, Russia",2003-09-27,50.09,87.76,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2003 M6.7 Southwestern Siberia, Russia",2003-10-01,50.16,87.71,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2004 M7.3 Irian Jaya Region, Indonesia",2004-02-07,-4.03,135.09,7.3,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2004 Mw 6.8 Queen Charlotte,2004-06-28,54.82,-134.49,6.8,possible,True,oceanic-continental boundary,3.1–4.6,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2004 M6.9 Solomon Islands,2004-11-09,-11.19,163.66,6.9,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2004 M6.8 North Of Honduras,2004-12-14,18.98,-81.4,6.8,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2004 M8.1 North Of Macquarie Island,2004-12-23,-49.71,161.58,8.1,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2005 M6.8 Bismarck Sea,2005-04-11,-3.47,146.0,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2005 M6.7 Pacific-Antarctic Ridge,2005-05-12,-57.47,-139.06,6.7,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2005 M7.2 Off Coast Of Northern California,2005-06-15,41.45,-125.58,7.2,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2005 M6.7 Off Coast Of Northern California,2005-06-17,40.75,-126.45,6.7,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2005 M7.2 Nicobar Islands, India Region",2005-07-24,7.91,92.15,7.2,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2005 M6.7 Fiji Islands Region,2005-12-13,-15.32,-178.59,6.7,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2006 M7.4 East Of South Sandwich Islands,2006-01-02,-61.01,-21.65,7.4,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2006 M7 Scotia Sea,2006-08-20,-61.02,-34.29,7.0,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2007 M6.9 Pacific-Antarctic Ridge,2007-01-30,-54.92,-146.29,6.9,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2007 M6.8 Solomon Islands,2007-06-28,-7.96,154.62,6.8,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2007 M7 South Of Mariana Islands,2007-09-30,10.54,145.8,7.0,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2008 M6.9 Northern Mid-Atlantic Ridge,2008-02-08,10.73,-41.9,6.9,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2008 M7 East Of South Sandwich Islands,2008-06-30,-58.28,-21.98,7.0,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2009 Mw 7.3 Caribbean (Swan Islands),2009-05-28,16.81,-86.24,7.3,supershear,True,oceanic-continental boundary,5.5–6.3,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2009 M6.9 Gulf Of California,2009-08-03,29.07,-112.91,6.9,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2009 M6.7 Southwestern Ryukyu Isl., Japan",2009-08-17,23.51,123.59,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2010 M6.8 East Of South Sandwich Islands,2010-01-05,-58.46,-14.86,6.8,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2010 M7 Ryukyu Islands, Japan",2010-02-26,25.98,128.51,7.0,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2010 M7.2 Calif.-Baja Calif. Border Region,2010-04-04,32.28,-115.26,7.2,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2010 Mw 6.9 Qinghai (Yushu),2010-04-13,33.19,96.75,6.9,supershear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2010 Mw 7.0 Papua,2010-06-16,-2.2,136.59,7.0,supershear,True,continental,5.0–6.1,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2010 M7 South Island, New Zealand",2010-09-03,-43.36,171.9,7.0,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2010 M6.7 Gulf Of California,2010-10-21,24.79,-109.17,6.7,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2011 M6.8 Myanmar,2011-03-24,20.63,99.92,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2011 M7 Off East Coast Of Honshu, Japan",2011-07-10,38.06,143.3,7.0,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2011 M6.7 Near N Coast Of New Guinea, Png.",2011-07-31,-3.51,144.97,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2011 M6.9 Sikkim, India",2011-09-18,27.8,88.15,6.9,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2012 M7.2 Off W Coast Of Northern Sumatra,2012-01-10,2.43,93.21,7.2,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2012 M6.7 Southeast Of Loyalty Islands,2012-03-03,-22.12,170.39,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2012 Mw 8.6 off-Sumatra (Wharton Basin),2012-04-11,2.24,93.01,8.6,debated,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2012 Mw 8.2 off-Sumatra (Wharton Basin),2012-04-11,0.77,92.43,8.2,debated,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2012 M7 Baja California, Mexico",2012-04-12,28.84,-113.13,7.0,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2012 M6.8 Irian Jaya Region, Indonesia",2012-04-21,-1.69,134.32,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2012 M6.7 Jan Mayen Island Region,2012-08-30,71.45,-11.03,6.7,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2013 Mw 7.5 Queen Charlotte (Craig),2013-01-05,55.23,-134.8,7.5,supershear,True,oceanic-continental boundary,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2013 M7 Santa Cruz Islands,2013-02-06,-10.51,165.82,7.0,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2013 M6.8 Santa Cruz Islands,2013-02-08,-10.87,166.01,6.8,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2013 M7 Santa Cruz Islands,2013-02-08,-10.89,166.15,7.0,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2013 Mw 7.3 South Sandwich Islands,2013-07-15,-61.05,-25.23,7.3,supershear,True,oceanic,4.9–6.2,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2013 M6.9 South Atlantic Ocean,2013-11-25,-53.97,-54.96,6.9,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2014 M6.9 Xizang,2014-02-12,35.88,82.58,6.9,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2014 M6.9 Off Coast Of Northern California,2014-03-10,40.72,-125.09,6.9,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2014 M7.6 Solomon Islands,2014-04-12,-11.26,162.14,7.6,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2014 M6.9 Aegean Sea,2014-05-24,40.28,25.37,6.9,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2014 M6.8 E. Caroline Islands, Micronesia",2014-08-03,0.83,146.11,6.8,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2015 M7.1 Reykjanes Ridge,2015-02-13,52.51,-32.02,7.1,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2015 M7 Solomon Islands,2015-05-22,-11.13,163.59,7.0,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2015 M6.9 Solomon Islands,2015-05-22,-11.16,163.21,6.9,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2015 M6.9 Southern Mid-Atlantic Ridge,2015-06-17,-35.37,-17.81,6.9,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2015 M6.7 Solomon Islands,2015-07-10,-9.35,158.34,6.7,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2015 M6.7 Northwest Of Ryukyu Islands,2015-11-13,31.0,128.87,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2015 Mw 7.2 Tajikistan (Murghab),2015-12-07,38.21,72.78,7.2,debated,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2016 M7.8 Southwest Of Sumatra, Indonesia",2016-03-02,-4.95,94.33,7.8,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2016 M7 Kyushu, Japan",2016-04-15,32.79,130.75,7.0,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2016 M7.2 Southeast Of Loyalty Islands,2016-08-12,-22.48,173.11,7.2,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2016 Mw 7.1 Romanche,2016-08-29,-0.05,-17.83,7.1,supershear,True,oceanic,4.7–6.6,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2017 M6.8 Near Islands, Aleutian Islands",2017-06-02,54.03,170.91,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2017 Mw 7.7 Komandorski,2017-07-17,54.47,168.81,7.7,supershear,True,oceanic-continental boundary,4.5–4.9,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2017 M6.7 Bouvet Island Region,2017-10-10,-54.26,8.61,6.7,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2018 Mw 7.5 Caribbean (Swan Islands),2018-01-10,17.47,-83.52,7.5,supershear,True,oceanic-continental boundary,4.5–5.5,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2018 M7.9 Gulf Of Alaska,2018-01-23,56.05,-149.07,7.9,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2018 M6.8 New Ireland Region, P.N.G.",2018-03-08,-4.39,153.19,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2018 Mw 7.5 Palu,2018-09-28,-0.18,119.84,7.5,supershear,True,continental,4.1–4.1,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2018 M6.7 Vancouver Island, Canada Region",2018-10-22,49.25,-129.48,6.7,subshear,True,oceanic,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2019 M7.5 New Britain Region, P.N.G.",2019-05-14,-4.08,152.57,7.5,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2019 M7.1 Central California,2019-07-06,35.77,-117.6,7.1,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2019 M7.3 Halmahera, Indonesia",2019-07-14,-0.53,128.09,7.3,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2019 M6.8 Mindanao, Philippines",2019-12-15,6.7,125.17,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2020 M6.7 Turkey,2020-01-24,38.39,39.09,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+2020 Mw 7.7 Caribbean (Cayman Trough / Oriente),2020-01-28,19.42,-78.76,7.7,supershear,True,oceanic-continental boundary,4.6–5.6,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
+"2025 Mw 7.8 Mandalay (Myanmar), Sagaing Fault",2025-03-28,21.996,95.926,7.8,supershear,False,continental,4.8–5.0,Xu et al. (2025),10.1126/science.ady6100
+2021 Mw 7.4 Maduo (Tibet),2021-05-21,34.5983,98.2513,7.4,possible,False,continental,2.7–3.0,Xu et al. (2023),10.1029/2022JB025936
+"2023 Mw 7.8 Kahramanmaras (Pazarcik), Turkey",2023-02-06,37.218,37.007,7.8,subshear,False,continental,3.05–3.11,Xu et al. (2023),10.1038/s43247-023-01030-x
+"2023 Mw 7.5 Elbistan (Surgu Fault), Turkey",2023-02-06,38.0106,37.1962,7.5,possible,False,continental,2.0–3.6,Xu et al. (2023),10.1038/s43247-023-01030-x

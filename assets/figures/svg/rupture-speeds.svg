@@ -1,0 +1,267 @@
+<svg role="img" aria-label="Rupture speed ranges of supershear and comparison events" class="mpl" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 378.259687 317.117025" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 317.117025 
+L 378.259687 317.117025 
+L 378.259687 0 
+L 0 0 
+L 0 317.117025 
+z
+" style="fill: none"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 3.6 284.1264 
+L 371.88 284.1264 
+L 371.88 3.6 
+L 3.6 3.6 
+L 3.6 284.1264 
+z
+" style="fill: none"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 175.986383 284.1264 
+L 175.986383 3.6 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--line-2); stroke-opacity: 0.6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m1486f155b1" d="M 0 0 
+L 0 3.5 
+" style="stroke: var(--muted); stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m1486f155b1" x="175.986383" y="284.1264" style="fill: var(--muted); stroke: var(--muted); stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px;  text-anchor: middle; fill: var(--muted)" x="175.986383" y="298.267025" transform="rotate(-0 175.986383 298.267025)">2</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 215.165106 284.1264 
+L 215.165106 3.6 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--line-2); stroke-opacity: 0.6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m1486f155b1" x="215.165106" y="284.1264" style="fill: var(--muted); stroke: var(--muted); stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px;  text-anchor: middle; fill: var(--muted)" x="215.165106" y="298.267025" transform="rotate(-0 215.165106 298.267025)">3</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 254.34383 284.1264 
+L 254.34383 3.6 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--line-2); stroke-opacity: 0.6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m1486f155b1" x="254.34383" y="284.1264" style="fill: var(--muted); stroke: var(--muted); stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px;  text-anchor: middle; fill: var(--muted)" x="254.34383" y="298.267025" transform="rotate(-0 254.34383 298.267025)">4</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 293.522553 284.1264 
+L 293.522553 3.6 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--line-2); stroke-opacity: 0.6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m1486f155b1" x="293.522553" y="284.1264" style="fill: var(--muted); stroke: var(--muted); stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px;  text-anchor: middle; fill: var(--muted)" x="293.522553" y="298.267025" transform="rotate(-0 293.522553 298.267025)">5</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 332.701277 284.1264 
+L 332.701277 3.6 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--line-2); stroke-opacity: 0.6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m1486f155b1" x="332.701277" y="284.1264" style="fill: var(--muted); stroke: var(--muted); stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px;  text-anchor: middle; fill: var(--muted)" x="332.701277" y="298.267025" transform="rotate(-0 332.701277 298.267025)">6</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 371.88 284.1264 
+L 371.88 3.6 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--line-2); stroke-opacity: 0.6; stroke-width: 0.6; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m1486f155b1" x="371.88" y="284.1264" style="fill: var(--muted); stroke: var(--muted); stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 10px;  text-anchor: middle; fill: var(--muted)" x="371.88" y="298.267025" transform="rotate(-0 371.88 298.267025)">7</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 10px;  text-anchor: middle; fill: var(--ink)" x="187.74" y="311.546713" transform="rotate(-0 187.74 311.546713)">Rupture speed (km/s)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="patch_3">
+    <path d="M 172.068511 284.1264 
+L 371.88 284.1264 
+" style="fill: none; stroke: var(--line-2); stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_13">
+    <path d="M 313.111915 18.254364 
+L 344.454894 18.254364 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="20.656942" transform="rotate(-0 5.558936 20.656942)">Caribbean (Swan Islands) (2009)</text>
+   </g>
+   <g id="line2d_14">
+    <path d="M 281.768936 39.18917 
+L 356.208511 39.18917 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="41.591748" transform="rotate(-0 5.558936 41.591748)">Romanche (2016)</text>
+   </g>
+   <g id="line2d_15">
+    <path d="M 289.604681 60.123976 
+L 340.537021 60.123976 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="62.526554" transform="rotate(-0 5.558936 62.526554)">South Sandwich Islands (2013)</text>
+   </g>
+   <g id="line2d_16">
+    <path d="M 293.522553 81.058782 
+L 336.619149 81.058782 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="83.46136" transform="rotate(-0 5.558936 83.46136)">Papua (2010)</text>
+   </g>
+   <g id="line2d_17">
+    <path d="M 277.851064 101.993588 
+L 317.029787 101.993588 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="104.342026" transform="rotate(-0 5.558936 104.342026)">Caribbean (Cayman Trough / Oriente) (2020)</text>
+   </g>
+   <g id="line2d_18">
+    <path d="M 273.933191 122.928394 
+L 313.111915 122.928394 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="125.330972" transform="rotate(-0 5.558936 125.330972)">Caribbean (Swan Islands) (2018)</text>
+   </g>
+   <g id="line2d_19">
+    <path d="M 285.686809 143.8632 
+L 293.522553 143.8632 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="146.211638" transform="rotate(-0 5.558936 146.211638)">Mandalay (Myanmar), Sagaing Fault (2025)</text>
+   </g>
+   <g id="line2d_20">
+    <path d="M 273.933191 164.798006 
+L 289.604681 164.798006 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="167.200584" transform="rotate(-0 5.558936 167.200584)">Komandorski (2017)</text>
+   </g>
+   <g id="line2d_21">
+    <defs>
+     <path id="med91245dd8" d="M 0 2.75 
+C 0.729309 2.75 1.428845 2.460243 1.944544 1.944544 
+C 2.460243 1.428845 2.75 0.729309 2.75 0 
+C 2.75 -0.729309 2.460243 -1.428845 1.944544 -1.944544 
+C 1.428845 -2.460243 0.729309 -2.75 0 -2.75 
+C -0.729309 -2.75 -1.428845 -2.460243 -1.944544 -1.944544 
+C -2.460243 -1.428845 -2.75 -0.729309 -2.75 0 
+C -2.75 0.729309 -2.460243 1.428845 -1.944544 1.944544 
+C -1.428845 2.460243 -0.729309 2.75 0 2.75 
+z
+" style="stroke: var(--accent)"/>
+    </defs>
+    <g clip-path="url(#p7eae470229)">
+     <use xlink:href="#med91245dd8" x="258.261702" y="185.732812" style="fill: var(--accent); stroke: var(--accent)"/>
+    </g>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="188.13539" transform="rotate(-0 5.558936 188.13539)">Palu (2018)</text>
+   </g>
+   <g id="line2d_22">
+    <path d="M 219.082979 206.667618 
+L 277.851064 206.667618 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--viz-muted); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="209.070196" transform="rotate(-0 5.558936 209.070196)">Queen Charlotte (2004)</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 8px;  text-anchor: start; fill: var(--muted)" x="280.985362" y="208.735743" transform="rotate(-0 280.985362 208.735743)">possible</text>
+   </g>
+   <g id="line2d_23">
+    <path d="M 217.124043 227.602424 
+L 219.474766 227.602424 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--viz-muted); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="229.960002" transform="rotate(-0 5.558936 229.960002)">Kahramanmaras (Pazarcik), Turkey (2023)</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 8px;  text-anchor: start; fill: var(--muted)" x="222.609064" y="229.670549" transform="rotate(-0 222.609064 229.670549)">subshear</text>
+   </g>
+   <g id="line2d_24">
+    <path d="M 203.411489 248.53723 
+L 215.165106 248.53723 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--viz-muted); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="250.939808" transform="rotate(-0 5.558936 250.939808)">Maduo (Tibet) (2021)</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 8px;  text-anchor: start; fill: var(--muted)" x="218.299404" y="250.605355" transform="rotate(-0 218.299404 250.605355)">possible</text>
+   </g>
+   <g id="line2d_25">
+    <path d="M 175.986383 269.472036 
+L 238.67234 269.472036 
+" clip-path="url(#p7eae470229)" style="fill: none; stroke: var(--viz-muted); stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9px;  text-anchor: start; fill: var(--ink)" x="5.558936" y="271.820473" transform="rotate(-0 5.558936 271.820473)">Elbistan (Surgu Fault), Turkey (2023)</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 8px;  text-anchor: start; fill: var(--muted)" x="241.806638" y="271.540161" transform="rotate(-0 241.806638 271.540161)">possible</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p7eae470229">
+   <rect x="3.6" y="3.6" width="368.28" height="280.5264"/>
+  </clipPath>
+ </defs>
+</svg>

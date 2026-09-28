@@ -1,0 +1,92 @@
+/* Site-wide behaviour: theme toggle, compact mobile menu, footer year,
+   e-mail assembly, and lazy initialisation of interactive figures.
+
+   Interactive figures are declared in HTML as
+     <div class="viz-stage" data-viz="globe" data-src="assets/data/..."></div>
+   and the module assets/js/viz/<name>.js is imported only when the element
+   scrolls near the viewport. Each module exports `default async function
+   (el, ctx)`, where ctx = { reducedMotion, theme(), onTheme(cb), visible(cb) }. */
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  var BASE = (document.currentScript && document.currentScript.src) || location.href;
+
+  /* ---- theme ---- */
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function theme() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return mq && mq.matches ? 'dark' : 'light';
+  }
+  var themeListeners = [];
+  function fireTheme() { var t = theme(); themeListeners.forEach(function (cb) { try { cb(t); } catch (e) { console.error(e); } }); }
+  if (mq && mq.addEventListener) mq.addEventListener('change', fireTheme);
+  document.querySelectorAll('.theme-toggle').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var next = theme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      fireTheme();
+    });
+  });
+
+  /* ---- mobile menu ---- */
+  var header = document.querySelector('.site-header');
+  var toggle = document.querySelector('.nav-toggle');
+  if (header && toggle) {
+    toggle.addEventListener('click', function () {
+      var open = !header.classList.contains('open');
+      header.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    header.querySelectorAll('.nav-links a').forEach(function (a) {
+      a.addEventListener('click', function () { header.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('open')) { header.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (header.classList.contains('open') && !header.contains(e.target)) { header.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+    });
+  }
+
+  /* ---- footer year, e-mail (never written in plain text in the HTML) ---- */
+  var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
+  var mail = 'mailto:' + 'lsmeng' + '@' + 'g.ucla.edu';
+  document.querySelectorAll('[data-mail]').forEach(function (a) { a.href = mail; });
+
+  /* ---- lazy interactive figures ---- */
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function makeCtx(el) {
+    var visCbs = [];
+    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) { visCbs.forEach(function (cb) { cb(en.isIntersecting); }); });
+    }) : null;
+    if (io) io.observe(el);
+    return {
+      reducedMotion: reduced,
+      theme: theme,
+      onTheme: function (cb) { themeListeners.push(cb); },
+      visible: function (cb) { visCbs.push(cb); if (!io) cb(true); },
+      css: function (name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
+    };
+  }
+  function boot(el) {
+    if (el.__booted) return; el.__booted = true;
+    var name = el.getAttribute('data-viz');
+    var url = new URL('viz/' + name + '.js', BASE).href;
+    import(url).then(function (mod) { return mod.default(el, makeCtx(el)); }).catch(function (err) {
+      console.error('viz ' + name + ' failed', err);
+      var p = document.createElement('p'); p.className = 'viz-fallback';
+      p.textContent = 'This interactive figure could not be loaded (' + (err && err.message ? err.message : err) + ').';
+      el.appendChild(p);
+    });
+  }
+  var vizEls = document.querySelectorAll('[data-viz]');
+  if ('IntersectionObserver' in window) {
+    var lazy = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) { if (en.isIntersecting) { lazy.unobserve(en.target); boot(en.target); } });
+    }, { rootMargin: '300px 0px' });
+    vizEls.forEach(function (el) { lazy.observe(el); });
+  } else { vizEls.forEach(boot); }
+})();

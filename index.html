@@ -4,90 +4,159 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lingsen Meng — Seismology @ UCLA</title>
-<meta name="description" content="Lingsen Meng is a Professor of Geophysics at UCLA studying earthquake physics, fault mechanics, rupture dynamics, and seismic & tsunami hazards.">
+<meta name="description" content="Lingsen Meng is a Professor of Geophysics at UCLA studying earthquake rupture physics, supershear earthquakes, seismic back-projection, finite-fault inversion, tsunami, and AI for geoscience.">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- /site:head -->
 </head>
 <body>
 
-<nav class="nav">
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
   <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Lingsen Meng</a>
-    <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
       <a href="research.html">Research</a>
       <a href="publications.html">Publications</a>
       <a href="ai-for-math.html">AI for Math</a>
       <a href="blog.html">Blog</a>
       <a href="group.html">Group</a>
-      <a href="resource.html">Resource</a>
-      <a href="#contact">Contact</a>
+      <a href="resource.html">Resources</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
     </div>
   </div>
-</nav>
+</header>
+<!-- /site:nav -->
 
-<main class="wrap">
+<main class="wrap" id="main">
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-grid">
-      <div>
-        <img class="photo" src="assets/profilephoto2.jpg" alt="Lingsen Meng">
+  <section class="hero">
+    <div>
+      <div class="hero-id">
+        <picture>
+          <source srcset="assets/profile-420.jpg 420w, assets/profile-720.jpg 720w" sizes="104px">
+          <img class="photo" src="assets/profile-420.jpg" alt="Lingsen Meng" width="104" height="124">
+        </picture>
+        <div>
+          <h1>Lingsen Meng</h1>
+          <p class="title">Professor of Geophysics</p>
+          <p class="affil">Earth, Planetary and Space Sciences, UCLA</p>
+        </div>
       </div>
-      <div>
-        <h1>Lingsen Meng</h1>
-        <p class="title">Professor of Geophysics</p>
-        <p class="affil">Dept. of Earth, Planetary and Space Sciences (EPSS), UCLA</p>
-        <p class="bio">
-          I am a seismologist interested in <strong>earthquake source imaging</strong>,
-          <strong>rupture dynamics</strong>, and <strong>seismic &amp; tsunami hazards</strong>. My research
-          integrates seismic observations, source imaging, numerical simulations, and emerging
-          AI techniques to understand how earthquakes nucleate and rupture &mdash; and to build
-          the next generation of earthquake and tsunami early-warning systems.
-        </p>
-        <div class="links">
-          <a class="btn btn-primary" href="publications.html">Publications</a>
-          <a class="btn" href="ai-for-math.html">AI for Math</a>
-          <a class="btn" href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
-          <a class="btn" href="assets/LingsenMENG_CV_Vitae2026.pdf" target="_blank" rel="noopener">CV (PDF)</a>
-          <a class="btn" id="heroEmail" href="#contact">Email</a>
-          <a class="btn" href="https://epss.ucla.edu/lingsen-meng/" target="_blank" rel="noopener">UCLA EPSS</a>
-        </div>
-        <div class="metrics">
-          <div class="metric"><div class="num">4,700+</div><div class="lab">Citations</div></div>
-          <div class="metric"><div class="num">31</div><div class="lab">h-index</div></div>
-          <div class="metric"><div class="num">65</div><div class="lab">Publications</div></div>
-        </div>
+      <p class="bio">
+        I am a seismologist. Our group studies how earthquakes start, propagate and stop, with
+        seismic array imaging (back-projection), joint seismic and geodetic finite-fault inversion,
+        and numerical modelling. Recent work includes a global survey of supershear earthquakes,
+        the 2023 Türkiye, 2024 Noto and 2025 Mandalay earthquakes, tsunami source inversion, and
+        methods for checking machine-learning earthquake catalogues.
+      </p>
+      <div class="links">
+        <a class="btn btn-primary" href="research.html">Research</a>
+        <a class="btn" href="publications.html"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-doc"></use></svg>Publications</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-scholar"></use></svg>Scholar</a>
+        <a class="btn" href="assets/LingsenMENG_CV_Vitae2026.pdf" target="_blank" rel="noopener">CV</a>
+        <a class="btn" data-mail href="#contact"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-mail"></use></svg>Email</a>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="num">66</div><div class="lab">Publications</div></div>
+        <div class="metric"><div class="num">4,700+</div><div class="lab">Citations</div></div>
+        <div class="metric"><div class="num">31</div><div class="lab">h-index</div></div>
       </div>
     </div>
-  </header>
 
-  <!-- NEWS -->
+    <figure class="globe-wrap" style="margin:0">
+      <div class="globe" data-viz="globe" data-src="assets/data/supershear_globe.json" data-csv="assets/data/supershear_globe.csv" data-lon="105" data-lat="14"></div>
+      <div class="globe-legend">
+        <span class="lg"><i class="ss"></i>Supershear</span>
+        <span class="lg"><i class="other"></i>Disputed or possible</span>
+        <span class="lg"><i class="sub"></i>No supershear found</span>
+      </div>
+      <figcaption class="fig" style="margin:8px 0 0">
+        <span class="small muted">Large shallow strike-slip earthquakes, 2000&ndash;2020, from our global survey of rupture speed
+        (<a href="https://doi.org/10.1038/s41561-022-01055-5" target="_blank" rel="noopener">Bao et al., 2022, <em>Nature Geoscience</em></a>),
+        with later events from group papers (e.g. 2025 Mandalay). Drag to rotate; hover or tap a marker.
+        <a href="assets/data/supershear_globe.csv" download>Data (CSV)</a> &middot; <a href="assets/data/supershear_globe.json" download>JSON</a>.</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="research">
+    <div class="section-head">
+      <h2>Research</h2>
+      <a class="more" href="research.html">All topics <svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg></a>
+    </div>
+    <div class="topic-grid">
+      <a class="topic" href="rupture.html">
+        <svg class="t-icon" aria-hidden="true"><use href="assets/icons.svg#i-rupture"></use></svg><span class="t-num">01</span>
+        <h3>Rupture physics &amp; supershear</h3>
+        <p>How fast ruptures run, and why some outrun the shear waves: Palu, Mandalay and a global census.</p>
+      </a>
+      <a class="topic" href="back-projection.html">
+        <svg class="t-icon" aria-hidden="true"><use href="assets/icons.svg#i-bp"></use></svg><span class="t-num">02</span>
+        <h3>Back-projection imaging</h3>
+        <p>Tracking high-frequency radiation with seismic arrays: MUSIC, slowness calibration, 3-D and PKIKP back-projection.</p>
+      </a>
+      <a class="topic" href="finite-fault.html">
+        <svg class="t-icon" aria-hidden="true"><use href="assets/icons.svg#i-ffi"></use></svg><span class="t-num">03</span>
+        <h3>Finite-fault &amp; joint inversion</h3>
+        <p>Slip on multi-segment faults from seismic, GNSS and InSAR data: Maduo, Türkiye, Noto, Mandalay.</p>
+      </a>
+      <a class="topic" href="tsunami.html">
+        <svg class="t-icon" aria-hidden="true"><use href="assets/icons.svg#i-tsunami"></use></svg><span class="t-num">04</span>
+        <h3>Tsunami</h3>
+        <p>Rapid source characterisation by back-projection, time-reversal and adjoint inversion, and fast surrogates.</p>
+      </a>
+      <a class="topic" href="swarms.html">
+        <svg class="t-icon" aria-hidden="true"><use href="assets/icons.svg#i-swarm"></use></svg><span class="t-num">05</span>
+        <h3>Swarms, slow slip &amp; fibre sensing</h3>
+        <p>Fluid-driven swarms, foreshocks and afterslip, and distributed acoustic sensing (DAS).</p>
+      </a>
+      <a class="topic" href="ai-geoscience.html">
+        <svg class="t-icon" aria-hidden="true"><use href="assets/icons.svg#i-ai"></use></svg><span class="t-num">06</span>
+        <h3>AI for geoscience</h3>
+        <p>Phase picking, verifying machine-learning catalogues, and agent-based seismological workflows.</p>
+      </a>
+    </div>
+  </section>
+
   <section id="news">
     <h2>News</h2>
     <ul class="news-list">
       <li>
         <span class="news-date">Jul 2026</span>
-        <span>New paper accepted in <em>Geophysical Journal International</em>: distributed acoustic sensing (DAS) data compression for seismology via compressive sensing (<strong>Ma</strong>, Meng &amp; Lin).</span>
+        <span>New paper accepted in <em>Geophysical Journal International</em>: compressing distributed acoustic sensing (DAS) data for seismology with compressive sensing (<strong>Ma</strong>, Meng &amp; Lin).</span>
       </li>
       <li>
         <span class="news-date">Jun 2026</span>
-        <span>Congratulations to <strong>Saeed Mohanna</strong> on completing his PhD!</span>
+        <span>Congratulations to <strong>Saeed Mohanna</strong> on completing his PhD.</span>
       </li>
       <li>
         <span class="news-date">May 2026</span>
-        <span>New paper in <em>EPSL</em> on swarm cessation and aftershock drivers following the four-year-long Noto Peninsula seismic sequence (Mohanna et&nbsp;al.).</span>
+        <span>New paper in <em>EPSL</em> on swarm cessation and aftershock drivers after the four-year Noto Peninsula sequence (Mohanna et&nbsp;al.).</span>
       </li>
       <li>
         <span class="news-date">Dec 2025</span>
-        <span>Congratulations to <strong>Liuwei Xu</strong> on completing his PhD!</span>
+        <span>Congratulations to <strong>Liuwei Xu</strong> on completing his PhD.</span>
       </li>
       <li>
         <span class="news-date">Oct 2025</span>
-        <span>Our study of the 2025 Mw&nbsp;7.7 Mandalay earthquake &mdash; bimaterial effect and favorable energy ratio enabling supershear rupture &mdash; published in <em>Science</em> (Xu, Meng et&nbsp;al.).</span>
+        <span>Our study of the 2025 Mandalay (Myanmar) earthquake, a ~450&nbsp;km supershear rupture enabled by a bimaterial effect and a favourable energy ratio, published in <em>Science</em> (Xu, Meng et&nbsp;al.).</span>
       </li>
       <li>
         <span class="news-date">Jul 2025</span>
-        <span><strong>Promoted to Professor of Geophysics</strong> at UCLA (effective July&nbsp;1,&nbsp;2025).</span>
+        <span>Promoted to Professor of Geophysics at UCLA.</span>
       </li>
       <li>
         <span class="news-date">Aug 2024</span>
@@ -95,125 +164,91 @@
       </li>
       <li>
         <span class="news-date">Oct 2023</span>
-        <span>Rupture of the 2023 Mw&nbsp;7.8 Kahramanmaraş (Türkiye) earthquake in a millennia supercycle, published in <em>Communications Earth &amp; Environment</em>.</span>
+        <span>The overall-subshear, multi-segment rupture of the 2023 Mw&nbsp;7.8 Kahramanmaraş (Türkiye) earthquake, published in <em>Communications Earth &amp; Environment</em>.</span>
       </li>
     </ul>
   </section>
 
-  <!-- RESEARCH HIGHLIGHTS -->
-  <section id="research">
-    <h2>Research</h2>
-    <p class="lead" style="margin-bottom:22px;">
-      We study how earthquakes start, grow, and stop &mdash; and turn that understanding into
-      faster, more reliable hazard monitoring. A few of our core directions:
-    </p>
-    <div class="cards">
-      <a class="card" href="rupture.html">
-        <div class="tag">💥</div>
-        <h3>Rupture dynamics &amp; supershear earthquakes</h3>
-        <p>Imaging how ruptures propagate, branch, and reach supershear speeds in events from Sumatra and Palu to Türkiye and Mandalay.</p>
-      </a>
-      <a class="card" href="source-imaging.html">
-        <div class="tag">🔺</div>
-        <h3>Seismic array source imaging</h3>
-        <p>Back-projection and MUSIC high-resolution imaging methods, with slowness calibration and 3D extensions.</p>
-      </a>
-      <a class="card" href="tsunami.html">
-        <div class="tag">🌊</div>
-        <h3>Tsunami prediction &amp; early warning</h3>
-        <p>Array back-projection and adjoint full-waveform inversion for rapid tsunami source characterization.</p>
-      </a>
-      <a class="card" href="eew.html">
-        <div class="tag">🚨</div>
-        <h3>Earthquake early warning</h3>
-        <p>Small-scale seismic arrays that track rupture growth and directivity in real time.</p>
-      </a>
-      <a class="card" href="swarms.html">
-        <div class="tag">♨️</div>
-        <h3>Swarms &amp; fluid-driven seismicity</h3>
-        <p>Multiscale fault complexity and hydrothermal processes driving earthquake swarms (Noto, Tengchong).</p>
-      </a>
-      <a class="card" href="slow-slip.html">
-        <div class="tag">🐌</div>
-        <h3>Slow slip &amp; fault mechanics</h3>
-        <p>Pre-, post-, and independent slow-slip phenomena and their role in earthquake nucleation.</p>
-      </a>
-    </div>
-    <p style="margin-top:22px;"><a class="btn" href="research.html">Explore research topics →</a></p>
-  </section>
-
-  <!-- SELECTED PUBLICATIONS -->
   <section id="selected">
-    <h2>Selected Publications</h2>
+    <div class="section-head">
+      <h2>Selected publications</h2>
+      <a class="more" href="publications.html">All 66 publications <svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg></a>
+    </div>
     <ul class="pub-list">
       <li class="pub">
-        <span class="pub-num"></span>
+        <span class="pub-num">2025</span>
         <div>
-          <div class="pub-title">Bimaterial effect and favorable energy ratio enabled supershear rupture in the 2025 Mandalay earthquake <span class="badge badge-science">Science</span></div>
-          <div class="pub-authors"><span class="me">Xu, L., Meng, L.</span>, Yunjun, Z., et al.</div>
-          <div class="pub-venue">Science <span class="year">2025</span></div>
+          <div class="pub-title"><a href="https://doi.org/10.1126/science.ady6100" target="_blank" rel="noopener">Bimaterial effect and favorable energy ratio enabled supershear rupture in the 2025 Mandalay earthquake</a> <span class="badge badge-science">Science</span></div>
+          <div class="pub-authors"><span class="me">Xu, L.</span>, <span class="me">Meng, L.</span>, Yunjun, Z., et al.</div>
+          <div class="pub-venue">Science 390, 476&ndash;481</div>
         </div>
       </li>
       <li class="pub">
-        <span class="pub-num"></span>
+        <span class="pub-num">2024</span>
         <div>
-          <div class="pub-title">Dual-initiation ruptures in the 2024 Noto earthquake encircling a fault asperity at a swarm edge <span class="badge badge-science">Science</span></div>
-          <div class="pub-authors">Xu, L., Ji, C., <span class="me">Meng, L.</span>, Ampuero, J.P., et al.</div>
-          <div class="pub-venue">Science <span class="year">2024</span></div>
+          <div class="pub-title"><a href="https://doi.org/10.1126/science.adp0493" target="_blank" rel="noopener">Dual-initiation ruptures in the 2024 Noto earthquake encircling a fault asperity at a swarm edge</a> <span class="badge badge-science">Science</span></div>
+          <div class="pub-authors"><span class="me">Xu, L.</span>, Ji, C., <span class="me">Meng, L.</span>, Ampuero, J.-P., et al.</div>
+          <div class="pub-venue">Science 385, 871&ndash;876</div>
         </div>
       </li>
       <li class="pub">
-        <span class="pub-num"></span>
+        <span class="pub-num">2022</span>
         <div>
-          <div class="pub-title">Global frequency of oceanic and continental supershear earthquakes <span class="badge badge-nature">Nature Geosci.</span></div>
-          <div class="pub-authors">Bao, H., Xu, L., <span class="me">Meng, L.</span>, Ampuero, J.-P., et al.</div>
-          <div class="pub-venue">Nature Geoscience <span class="year">2022</span></div>
+          <div class="pub-title"><a href="https://doi.org/10.1038/s41561-022-01055-5" target="_blank" rel="noopener">Global frequency of oceanic and continental supershear earthquakes</a> <span class="badge badge-nature">Nature Geosci.</span></div>
+          <div class="pub-authors"><span class="me">Bao, H.</span>, <span class="me">Xu, L.</span>, <span class="me">Meng, L.</span>, Ampuero, J.-P., et al.</div>
+          <div class="pub-venue">Nature Geoscience 15, 942&ndash;949</div>
         </div>
       </li>
       <li class="pub">
-        <span class="pub-num"></span>
+        <span class="pub-num">2019</span>
         <div>
-          <div class="pub-title">Early and persistent supershear rupture of the 2018 magnitude 7.5 Palu earthquake <span class="badge badge-nature">Nature Geosci.</span></div>
-          <div class="pub-authors">Bao, H., Ampuero, J-P., <span class="me">Meng, L.</span>, et al.</div>
-          <div class="pub-venue">Nature Geoscience <span class="year">2019</span></div>
+          <div class="pub-title"><a href="https://doi.org/10.1038/s41561-018-0297-z" target="_blank" rel="noopener">Early and persistent supershear rupture of the 2018 magnitude 7.5 Palu earthquake</a> <span class="badge badge-nature">Nature Geosci.</span></div>
+          <div class="pub-authors"><span class="me">Bao, H.</span>, Ampuero, J.-P., <span class="me">Meng, L.</span>, et al.</div>
+          <div class="pub-venue">Nature Geoscience 12, 200&ndash;205</div>
         </div>
       </li>
       <li class="pub">
-        <span class="pub-num"></span>
+        <span class="pub-num">2012</span>
         <div>
-          <div class="pub-title">Earthquake in a maze: compressional rupture branching during the 2012 Mw 8.6 Sumatra earthquake <span class="badge badge-science">Science</span></div>
+          <div class="pub-title"><a href="https://doi.org/10.1126/science.1224030" target="_blank" rel="noopener">Earthquake in a maze: compressional rupture branching during the 2012 Mw 8.6 Sumatra earthquake</a> <span class="badge badge-science">Science</span></div>
           <div class="pub-authors"><span class="me">Meng, L.</span>, Ampuero, J.-P., Stock, J., et al.</div>
-          <div class="pub-venue">Science <span class="year">2012</span></div>
+          <div class="pub-venue">Science 337, 724&ndash;726</div>
         </div>
       </li>
     </ul>
-    <p style="margin-top:18px;"><a class="btn" href="publications.html">See all 65 publications →</a></p>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <h2>Contact</h2>
     <div class="contact-grid">
-      <div class="k">Email</div><div><a id="emailImgLink" href="#"><img class="email-img" src="assets/email.png" alt="email address"></a></div>
+      <div class="k">Email</div><div><a data-mail href="#"><img class="email-img" src="assets/email.png" alt="email address (image)"></a></div>
       <div class="k">Phone</div><div>+1 310 825 1885</div>
-      <div class="k">Office</div><div>Dept. of Earth, Planetary and Space Sciences, UCLA, Los Angeles, CA</div>
-      <div class="k">Scholar</div><div><a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar profile</a></div>
+      <div class="k">Office</div><div>Department of Earth, Planetary and Space Sciences, UCLA, Los Angeles, CA 90095</div>
+      <div class="k">Profiles</div><div><a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a> &middot; <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a> &middot; <a href="https://epss.ucla.edu/lingsen-meng/" target="_blank" rel="noopener">UCLA EPSS</a></div>
     </div>
   </section>
 
 </main>
 
-<footer>
-  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
 </footer>
-<script>
-document.getElementById('yr').textContent = new Date().getFullYear();
-// Assemble the email at runtime so the plain address never appears in the HTML source.
-(function(){var m='mailto:'+'lsmeng'+'@'+'g.ucla.edu';
-  var h=document.getElementById('heroEmail'); if(h){h.href=m;}
-  var e=document.getElementById('emailImgLink'); if(e){e.href=m;}
-})();
-</script>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
 <script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
