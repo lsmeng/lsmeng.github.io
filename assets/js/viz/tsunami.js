@@ -42,7 +42,7 @@ export default async function tsunami(el, ctx) {
   function palette() {
     landRGB = parse(ctx.css('--viz-land'));
     const cb = panel.querySelector('.cbar'); if (cb) cb.style.background = cssGradient(x => diverge(2 * x - 1, ctx.theme() === 'dark'));
-    const am = panel.querySelector('[data-amp]'); if (am) am.textContent = scale.toFixed(1);
+    panel.querySelectorAll('[data-amp]').forEach(am => { am.textContent = scale.toFixed(1); });
   }
   let tMin = 0; // current time in minutes
   const tEnd = times[NF - 1];

@@ -106,6 +106,7 @@ export default async function supershear(el, ctx) {
     g.fillText('hypocentre', x0 - 26, y0 + 24);
     g.fillText('rupture front', Math.min(w - 90, xf - 30), y0 + 24);
     // legend
+    g.fillStyle = bg; g.globalAlpha = 0.85; g.fillRect(6, 6, 200, 20); g.globalAlpha = 1;
     g.fillStyle = ctx.css('--muted');
     g.fillText('— S wavefronts   - - P wavefronts', 12, 20);
 

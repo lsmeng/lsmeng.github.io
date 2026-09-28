@@ -88,13 +88,13 @@ export default async function globe(el, ctx) {
   for (const e of events) {
     const ss = e.class === 'supershear';
     const mw = +e.mw || 7;
-    const size = ss ? 0.016 + 0.006 * (mw - 6.7) : 0.010 + 0.003 * (mw - 6.7);
+    const size = ss ? 0.021 + 0.008 * (mw - 6.7) : 0.012 + 0.004 * (mw - 6.7);
     const p = toXYZ(e.lat, e.lon, 1.002);
     const g = new THREE.Group();
     g.position.copy(p); g.lookAt(p.clone().multiplyScalar(2));
     const maybe = e.class === 'debated' || e.class === 'possible';
     if (maybe) {
-      const m = new THREE.Mesh(ring, matSS); m.scale.setScalar(0.017 + 0.004 * (mw - 6.7)); g.add(m);
+      const m = new THREE.Mesh(ring, matSS); m.scale.setScalar(0.022 + 0.006 * (mw - 6.7)); g.add(m);
     } else {
       const m = new THREE.Mesh(disc, ss ? matSS : matOther); m.scale.setScalar(size); g.add(m);
     }
@@ -150,7 +150,7 @@ export default async function globe(el, ctx) {
     const cls = { supershear: '<span class="t-ss">Supershear</span>', debated: '<span class="t-ss">Supershear reported, disputed</span>', possible: '<span class="t-ss">Possibly supershear (not resolved)</span>', subshear: 'No supershear found' }[e.class] || '';
     const vr = e.vr_km_s ? ` · V<sub>r</sub> ≈ ${escapeHTML(e.vr_km_s)} km/s` : '';
     const link = e.doi ? `<a href="https://doi.org/${encodeURI(e.doi)}" target="_blank" rel="noopener">${escapeHTML(e.paper || 'Paper')}</a>` : escapeHTML(e.paper || '');
-    const title = e.name_derived ? `M ${escapeHTML(e.mw)} · ${escapeHTML(e.region || '')}` : escapeHTML(e.name);
+    const title = e.name_derived ? escapeHTML(e.region || 'Earthquake') : escapeHTML(e.name);
     const loc = `${Math.abs(e.lat).toFixed(2)}°${e.lat >= 0 ? 'N' : 'S'}, ${Math.abs(e.lon).toFixed(2)}°${e.lon >= 0 ? 'E' : 'W'}`;
     tip.innerHTML = `<b>${title}</b><span class="t-meta">${escapeHTML(e.date || '')} · M ${escapeHTML(e.mw)} · ${loc}${e.setting ? ' · ' + escapeHTML(e.setting) : ''}</span><br>${cls}${vr}<br>${link}`;
     tip.classList.add('on'); place(x, y);

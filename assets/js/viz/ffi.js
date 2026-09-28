@@ -68,7 +68,13 @@ async function build(el, ctx, url) {
   renderer.domElement.style.touchAction = 'pan-y';
 
   // three coords: x = east, y = up (-depth), z = -north
-  const P = (e, n, z) => new THREE.Vector3(e, -z, -n);
+  // long, narrow faults: exaggerate depth so the slip pattern stays readable (stated in the legend)
+  const eS = S.map(s => s.e), nS = S.map(s => s.n), zS = S.map(s => s.z);
+  const Lh = Math.max(Math.max(...eS) - Math.min(...eS), Math.max(...nS) - Math.min(...nS));
+  const Dz = Math.max(...zS) + 2;
+  const vex = Math.max(1, Math.min(4, Math.round(Lh / (6 * Dz))));
+  const vexEl = panel.querySelector('[data-vex]'); if (vexEl) vexEl.textContent = vex > 1 ? `depth exaggerated ×${vex}` : 'no vertical exaggeration';
+  const P = (e, n, z) => new THREE.Vector3(e, -z * vex, -n);
   const pos = [], col = [], edge = [];
   const faces = [];
   for (const s of S) {
@@ -121,15 +127,14 @@ async function build(el, ctx, url) {
   const north = label('N', span * 0.05); north.position.set(bb.min.x - pad, 0, bb.min.z - pad - span * 0.05); scene.add(north);
   const nArrow = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(bb.min.x - pad, 0, bb.min.z - pad + span * 0.06), new THREE.Vector3(bb.min.x - pad, 0, bb.min.z - pad - span * 0.02)]);
   const nLine = new THREE.Line(nArrow, surfMat); scene.add(nLine);
-  const dlab = label(`${Math.round(bb.max.y - bb.min.y)} km deep`, span * 0.035); dlab.position.set(bb.max.x + pad, bb.min.y, bb.max.z + pad); scene.add(dlab);
   const sclab = label(`grid ${gridStep} km`, span * 0.035); sclab.position.set(bb.max.x + pad, span * 0.03, bb.min.z - pad); scene.add(sclab);
   function label(text, h) {
     const c = document.createElement('canvas'); const g = c.getContext('2d');
     const fs = 44; g.font = `500 ${fs}px sans-serif`; const w = Math.ceil(g.measureText(text).width) + 12;
     c.width = w; c.height = fs + 14;
     const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
-    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false }));
-    sp.scale.set(h * w / c.height, h, 1);
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false, sizeAttenuation: false }));
+    const hs = 0.026; sp.scale.set(hs * w / c.height, hs, 1); void h;
     sp.userData = { c, g, text, fs, tex };
     labels.push(sp);
     return sp;
@@ -148,7 +153,7 @@ async function build(el, ctx, url) {
   for (const s of S) { const w = s.len_km * s.wid_km; cs += Math.sin(s.strike * Math.PI / 180) * w; cc += Math.cos(s.strike * Math.PI / 180) * w; dipSum += s.dip * w; wsum += w; }
   const phi = Math.atan2(cs, cc), meanDip = dipSum / wsum;
   const hE = Math.cos(phi), hN = -Math.sin(phi);          // horizontal dip direction (east, north)
-  const view = new THREE.Vector3(-hE, 0, hN);              // three: x = east, z = -north; footwall side = -dip direction
+  const view = new THREE.Vector3(hE, 0, -hN);              // three: x = east, z = -north; hanging-wall side, facing the plane
   const sE = Math.sin(phi), sN = Math.cos(phi);
   const along = new THREE.Vector3(sE, 0, -sN);
   let Lmax = 0; for (const s of S) { const p = P(s.e, s.n, s.z).sub(ctr); Lmax = Math.max(Lmax, Math.abs(p.dot(along)) + s.len_km / 2); }
@@ -156,7 +161,7 @@ async function build(el, ctx, url) {
     const aspect = Math.max(0.5, camera.aspect || 1.6);
     const fovH = 2 * Math.atan(Math.tan(camera.fov * Math.PI / 360) * aspect);
     const D = Math.max(Lmax / Math.tan(fovH / 2) * 1.12, size.y * 3);
-    const el = (meanDip > 75 ? 30 : 38) * Math.PI / 180;
+    const el = Math.max(24, Math.min(50, 90 - meanDip)) * Math.PI / 180; // close to the plane normal
     camera.position.copy(ctr).addScaledVector(view, D * Math.cos(el)).add(new THREE.Vector3(0, D * Math.sin(el), 0));
     camera.near = D / 50; camera.far = D * 10; camera.updateProjectionMatrix();
     controls.target.copy(ctr); controls.update();
@@ -182,7 +187,7 @@ async function build(el, ctx, url) {
     g.fillText(`×10${sup(ex)} N·m/s`, 4, y1 + 2);
     g.fillText((rMax / 10 ** ex).toFixed(1), 18, y1 + 16);
     for (let s = 0; s <= tEnd; s += niceStep(tEnd / 5)) { g.fillText(s, X(s) - 6, y0 + 15); }
-    g.fillText('time (s)', x1 - 44, y0 + 15);
+    if (w > 520) g.fillText('time (s)', x1 - 44, y0 - 6);
     // filled area up to t
     g.beginPath(); g.moveTo(X(0), y0);
     mrf.t.forEach((tt, i) => { if (tt <= t) g.lineTo(X(tt), Y(mrf.rate[i])); });

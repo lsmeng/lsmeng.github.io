@@ -63,11 +63,12 @@ export default async function bpmap(el, ctx) {
     while (k < f.n - 1 && f.t[k + 1] <= t) k++;
     if (t < f.t[0]) return;
     const N = f.nx * f.ny, d = f.id.data, off = k * N;
+    let fmax = 1; for (let i = 0; i < N; i++) fmax = Math.max(fmax, f.F[off + i]); // normalise each window to its own peak
     const dark = ctx.theme() === 'dark';
     for (let i = 0; i < N; i++) {
-      const v = f.F[off + i] / 255, a = Math.max(0, (v - 0.25) / 0.75);
+      const v = f.F[off + i] / fmax, a = Math.max(0, (v - 0.7) / 0.3);
       const c = viridis(0.25 + 0.75 * v);
-      d[i * 4] = c[0]; d[i * 4 + 1] = c[1]; d[i * 4 + 2] = c[2]; d[i * 4 + 3] = 255 * Math.min(1, a * a * (dark ? 1.1 : 0.95));
+      d[i * 4] = c[0]; d[i * 4 + 1] = c[1]; d[i * 4 + 2] = c[2]; d[i * 4 + 3] = 255 * 0.7 * Math.min(1, a * a);
     }
     f.ig.putImageData(f.id, 0, 0);
     const dl = (f.lon1 - f.lon0) / (f.nx - 1) / 2, dt = (f.lat1 - f.lat0) / (f.ny - 1) / 2;
@@ -110,7 +111,8 @@ export default async function bpmap(el, ctx) {
     drawLand(g, rings, P, bbox, css('--viz-land'), css('--line-2'));
     // graticule labels
     g.strokeStyle = css('--viz-grid'); g.lineWidth = 1; g.font = '11px ' + font; g.fillStyle = css('--muted');
-    const stepDeg = niceStep(bbox[2] - bbox[0]);
+    let stepDeg = niceStep(bbox[2] - bbox[0]);
+    while (P.s * P.k * stepDeg < 56 && stepDeg < 20) stepDeg *= 2; // keep labels at least ~56 px apart
     for (let lo = Math.ceil(bbox[0] / stepDeg) * stepDeg; lo <= bbox[2]; lo += stepDeg) { const x = P.x(lo); g.beginPath(); g.moveTo(x, 0); g.lineTo(x, mapH); g.stroke(); g.fillText(fmtDeg(lo, 'E', 'W'), x + 3, mapH - 6); }
     for (let la = Math.ceil(bbox[1] / stepDeg) * stepDeg; la <= bbox[3]; la += stepDeg) { const y = P.y(la); g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); g.fillText(fmtDeg(la, 'N', 'S'), 4, y - 3); }
     // faults

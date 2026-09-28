@@ -82,6 +82,11 @@ export function dataFooter(panel, files, meta) {
   const foot = panel.querySelector('.viz-foot');
   if (!foot || foot.dataset.filled) return;
   foot.dataset.filled = '1';
+  const tag = panel.querySelector('.viz-tag[data-status]');
+  if (tag && meta) {
+    const st = meta.status || 'published';
+    tag.textContent = st === 'published' ? 'Published data' : st.split(/[(;,]/)[0].trim();
+  }
   const dl = document.createElement('span'); dl.className = 'dl';
   for (const f of files) {
     const a = document.createElement('a'); a.href = f.href; a.setAttribute('download', '');

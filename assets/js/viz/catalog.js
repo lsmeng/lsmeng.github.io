@@ -60,7 +60,7 @@ async function build(el, ctx, url, csvUrl, colorBy) {
     // robust extent: 0.5–99.5 percentiles so a few outliers do not shrink the cloud
     const q = (arr, p) => { const s = arr.slice().sort((a, b) => a - b); return s[Math.floor(p * (s.length - 1))]; };
     const lo = rows.map(r => r[iLon]), la = rows.map(r => r[iLat]);
-    const a = q(lo, 0.005), c = q(lo, 0.995), b = q(la, 0.005), d = q(la, 0.995);
+    const a = q(lo, 0.01), c = q(lo, 0.99), b = q(la, 0.01), d = q(la, 0.99);
     const m = 0.04 * Math.max(c - a, d - b);
     bbox = [a - m, b - m, c + m, d + m];
   }
@@ -132,6 +132,7 @@ async function build(el, ctx, url, csvUrl, colorBy) {
       let vis = true;
       if (iTier >= 0 && tierBoxes.length && on[r[iTier]] === false) vis = false;
       if (hasTime && r[iT] > tCur) vis = false;
+      if (r[iLon] < bbox[0] || r[iLon] > bbox[2] || r[iLat] < bbox[1] || r[iLat] > bbox[3] || r[iZ] > zCap) vis = false;
       size[i] = vis ? base[i] : 0;
     }
   }
@@ -170,7 +171,8 @@ async function build(el, ctx, url, csvUrl, colorBy) {
   const fp = [];
   const box = [[x0, 0, z0], [x1, 0, z0], [x1, 0, z1], [x0, 0, z1]];
   for (let i = 0; i < 4; i++) { const p = box[i], q = box[(i + 1) % 4]; fp.push(...p, ...q, p[0], yb, p[2], q[0], yb, q[2], p[0], 0, p[2], p[0], yb, p[2]); }
-  const zStep = zCap > 80 ? 20 : zCap > 25 ? 10 : 5;
+  const nLab = Math.max(2, Math.min(5, Math.round(10 * zCap / Math.max(x1 - x0, z0 - z1))));
+  const zStep = [5, 10, 20, 25, 50, 100].find(v => zCap / v <= nLab) || 100;
   for (let zz = zStep; zz < zCap; zz += zStep) fp.push(x0, -zz, z0, x1, -zz, z0);
   const fg = new THREE.BufferGeometry(); fg.setAttribute('position', new THREE.Float32BufferAttribute(fp, 3));
   scene.add(new THREE.LineSegments(fg, frameMat));
@@ -180,11 +182,11 @@ async function build(el, ctx, url, csvUrl, colorBy) {
     const c = document.createElement('canvas'), g = c.getContext('2d'); const fs = 40;
     g.font = `500 ${fs}px sans-serif`; c.width = Math.ceil(g.measureText(t).width) + 10; c.height = fs + 12;
     const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
-    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false }));
-    const hgt = span * 0.032; sp.scale.set(hgt * c.width / c.height, hgt, 1); sp.position.set(x, y, z);
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthTest: false, sizeAttenuation: false }));
+    const hgt = 0.024; sp.scale.set(hgt * c.width / c.height, hgt, 1); sp.position.set(x, y, z);
     sp.userData = { c, g, t, fs, tex }; labels.push(sp); scene.add(sp);
   };
-  for (let zz = 0; zz <= zCap; zz += zStep) lab(`${zz} km`, x0 - span * 0.07, -zz, z0);
+  for (let zz = 0; zz <= zCap; zz += zStep) lab(`${zz} km`, x0 - span * 0.035, -zz, z0);
   lab('N', x0, 0, z1 - span * 0.06);
 
   function legend() {
@@ -203,7 +205,7 @@ async function build(el, ctx, url, csvUrl, colorBy) {
     legend();
   }
   controls.target.set(0, yb / 2, 0);
-  camera.position.set(span * 0.5, span * 0.62, span * 1.3);
+  camera.position.set(span * 0.42, span * 0.72, span * 1.22);
   camera.near = span / 100; camera.far = span * 20; camera.updateProjectionMatrix();
   controls.update();
   function resize() { const w = el.clientWidth, h = el.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
