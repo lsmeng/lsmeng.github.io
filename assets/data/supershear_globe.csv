@@ -85,7 +85,7 @@ name,date,lat,lon,mw,class,in_bao2022_survey,setting,vr_km_s,paper,doi
 "2019 M6.8 Mindanao, Philippines",2019-12-15,6.7,125.17,6.8,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
 2020 M6.7 Turkey,2020-01-24,38.39,39.09,6.7,subshear,True,continental,,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
 2020 Mw 7.7 Caribbean (Cayman Trough / Oriente),2020-01-28,19.42,-78.76,7.7,supershear,True,oceanic-continental boundary,4.6–5.6,"Bao et al. (2022), Nat. Geosci.",10.1038/s41561-022-01055-5
-"2025 Mw 7.8 Mandalay (Myanmar), Sagaing Fault",2025-03-28,21.996,95.926,7.8,supershear,False,continental,4.8–5.0,Xu et al. (2025),10.1126/science.ady6100
+"2025 Mw 7.7 Mandalay (Myanmar), Sagaing Fault",2025-03-28,21.996,95.926,7.7,supershear,False,continental,4.8–5.0,Xu et al. (2025),10.1126/science.ady6100
 2021 Mw 7.4 Maduo (Tibet),2021-05-21,34.5983,98.2513,7.4,possible,False,continental,2.7–3.0,Xu et al. (2023),10.1029/2022JB025936
 "2023 Mw 7.8 Kahramanmaras (Pazarcik), Turkey",2023-02-06,37.218,37.007,7.8,subshear,False,continental,3.05–3.11,Xu et al. (2023),10.1038/s43247-023-01030-x
 "2023 Mw 7.5 Elbistan (Surgu Fault), Turkey",2023-02-06,38.0106,37.1962,7.5,possible,False,continental,2.0–3.6,Xu et al. (2023),10.1038/s43247-023-01030-x

@@ -7,12 +7,18 @@
 <meta name="description" content="Seismic array back-projection: how delay-and-stack imaging works, MUSIC, reference windows, slowness calibration (SEBP), 3-D and PKIKP back-projection, with a playback of published radiators.">
 <!-- site:head -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
+<script>(function(){var d=document.documentElement,F='https://cdn.jsdelivr.net/npm/@fontsource',v='a',m=null;
+try{var q=new URLSearchParams(location.search).get('theme');if(/^[abc]$/.test(q||'')){localStorage.setItem('variant',q);}v=localStorage.getItem('variant')||'a';m=localStorage.getItem('theme');}catch(e){}
+if(!/^[abc]$/.test(v))v='a';d.setAttribute('data-variant',v);
+if(m!=='light'&&m!=='dark'){m=v==='b'?'dark':(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}
+d.setAttribute('data-theme',m);
+var fonts={a:['-variable/inter-tight@5/index.css','/ibm-plex-sans@5/400.css','/ibm-plex-sans@5/500.css','/ibm-plex-sans@5/600.css','/ibm-plex-mono@5/400.css'],
+b:['-variable/space-grotesk@5/index.css','-variable/inter@5/index.css','-variable/jetbrains-mono@5/index.css'],
+c:['-variable/instrument-sans@5/index.css','-variable/inter@5/index.css','/ibm-plex-mono@5/400.css']}[v];
+for(var i=0;i<fonts.length;i++){var l=document.createElement('link');l.rel='stylesheet';l.href=F+fonts[i];document.head.appendChild(l);}})();</script>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="light dark">
-<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 <!-- /site:head -->
 </head>
 <body>
@@ -592,7 +598,7 @@ L 67.098437 138.907382
   </clipPath>
  </defs>
 </svg><!-- /svg:music-vs-beam -->
-        <figcaption><b>Synthetic test.</b> Two plane waves arriving 3&deg; apart at a 25-station array of 140&nbsp;km aperture
+        <figcaption><span class="fig-chip">Computed for this page</span><b>Synthetic test.</b> Two plane waves arriving 3&deg; apart at a 25-station array of 140&nbsp;km aperture
         (1&nbsp;Hz, slowness 0.08&nbsp;s/km, added noise). The conventional beam merges them into one peak; the MUSIC
         pseudo-spectrum separates them. Computed for this page with <code>tools/make_figures.py</code>.</figcaption>
       </figure>
@@ -629,15 +635,15 @@ L 67.098437 138.907382
         Chile, 2021 Haiti and 2021 Kermadec earthquakes <span class="cite">(Xu, Meng &amp; Chu, 2025, <em>JGR</em>)</span>.</p>
       </div>
       <figure class="fig">
-        <img src="assets/figures/3d-back-projection-1.png" alt="Map and depth sections of 3-D back-projection radiators of the 2013 Okhotsk deep earthquake" loading="lazy" width="1280" height="966">
-        <figcaption><b>2013 Okhotsk deep earthquake.</b> Radiators from P and pP back-projection in map view (a) and along
+        <img src="assets/figures/3d-back-projection-1.png" data-zoom alt="Map and depth sections of 3-D back-projection radiators of the 2013 Okhotsk deep earthquake" loading="lazy" width="1280" height="966">
+        <figcaption><span class="fig-chip">Original figure · Meng et al. 2014, <em>GRL</em></span><b>2013 Okhotsk deep earthquake.</b> Radiators from P and pP back-projection in map view (a) and along
         two depth sections (b, c), coloured by time. From Meng et al. (2014), <em>GRL</em>.</figcaption>
       </figure>
     </div>
 
     <figure class="fig" style="margin-top:34px">
-      <img src="assets/figures/seismic-array-back-projection-1.jpg" alt="Back-projection of the 2012 off-Sumatra earthquake showing rupture on orthogonal fault branches" loading="lazy" width="1280" height="614">
-      <figcaption><b>2012 M<sub>w</sub>&nbsp;8.6 off-Sumatra earthquake.</b> Back-projection radiators coloured by time reveal rupture on
+      <img src="assets/figures/seismic-array-back-projection-1.jpg" data-zoom alt="Back-projection of the 2012 off-Sumatra earthquake showing rupture on orthogonal fault branches" loading="lazy" width="1280" height="614">
+      <figcaption><span class="fig-chip">Original figure · Meng et al. 2012, <em>Science</em></span><b>2012 M<sub>w</sub>&nbsp;8.6 off-Sumatra earthquake.</b> Back-projection radiators coloured by time reveal rupture on
       four orthogonal fault planes, including branching onto faults under compressional stress and a jump across a
       ~20&nbsp;km offset. From Meng et al. (2012), <em>Science</em>.</figcaption>
     </figure>
@@ -691,7 +697,7 @@ L 67.098437 138.907382
       <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
       <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng <span class="variant-switch" aria-label="Design variant">Design: <a href="?theme=a" data-variant-link="a">A</a> <a href="?theme=b" data-variant-link="b">B</a> <a href="?theme=c" data-variant-link="c">C</a></span></p>
   </div>
 </footer>
 <script src="assets/js/site.js" defer></script>

@@ -16,7 +16,7 @@
    }
    Drag to rotate (one finger horizontally on touch screens). Press play to sweep time:
    subfaults light up at their onset time while the cursor moves along the moment-rate curve. */
-import { THREE_URL, ORBIT_URL, loadJSON, flagStub, dataFooter, hidpiCanvas, loop, slipColor, rgb, cssGradient } from './common.js';
+import { THREE_URL, ORBIT_URL, loadJSON, flagStub, dataFooter, hidpiCanvas, loop, slipColor, rgb, cssGradient, escapeHTML } from './common.js';
 
 export default async function ffi(el, ctx) {
   const panel = el.closest('.viz');
@@ -39,7 +39,7 @@ async function build(el, ctx, url) {
   flagStub(el, data.meta);
   dataFooter(panel, [{ href: url, label: 'JSON' }, { href: url.replace(/\.json$/, '.csv'), label: 'CSV' }], data.meta);
   const info = panel.querySelector('[data-info]');
-  if (info) info.textContent = `${data.meta.event} · model Mw ${(+data.meta.mw).toFixed(2)} · peak slip ${(+data.meta.max_slip_m).toFixed(1)} m`;
+  if (info) { const m0 = +data.meta.m0_nm, ex = Math.floor(Math.log10(m0)); info.innerHTML = `${escapeHTML(data.meta.event)} · model M<sub>0</sub> ${(m0 / 10 ** ex).toFixed(1)}×10<sup>${ex}</sup> N·m · peak slip ${(+data.meta.max_slip_m).toFixed(1)} m`; }
 
   const hypo = data.hypocenter;
   const kx = 111.19 * Math.cos(hypo.lat * Math.PI / 180), ky = 111.19;

@@ -66,7 +66,7 @@ export default async function globe(el, ctx) {
 
   const sphere = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 64), new THREE.MeshBasicMaterial({ map: texture }));
   world.add(sphere);
-  const rimMat = new THREE.MeshBasicMaterial({ color: ctx.css('--line-2'), side: THREE.BackSide });
+  const rimMat = new THREE.MeshBasicMaterial({ color: ctx.css('--globe-rim') || ctx.css('--line-2'), side: THREE.BackSide });
   const rim = new THREE.Mesh(new THREE.SphereGeometry(1.012, 64, 48), rimMat);
   scene.add(rim);
 
@@ -80,8 +80,8 @@ export default async function globe(el, ctx) {
   const markers = [];
   const disc = new THREE.CircleGeometry(1, 32);
   const ring = new THREE.RingGeometry(0.62, 1, 32);
-  const matSS = new THREE.MeshBasicMaterial({ color: ctx.css('--accent'), side: THREE.DoubleSide });
-  const matHalo = new THREE.MeshBasicMaterial({ color: ctx.css('--accent'), transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false });
+  const matSS = new THREE.MeshBasicMaterial({ color: ctx.css('--hl'), side: THREE.DoubleSide });
+  const matHalo = new THREE.MeshBasicMaterial({ color: ctx.css('--hl'), transparent: true, opacity: 0.22, side: THREE.DoubleSide, depthWrite: false });
   const matOther = new THREE.MeshBasicMaterial({ color: ctx.css('--viz-muted'), side: THREE.DoubleSide });
   const hitMat = new THREE.MeshBasicMaterial({ visible: false });
   const hitGeo = new THREE.SphereGeometry(1, 8, 6);
@@ -185,7 +185,7 @@ export default async function globe(el, ctx) {
   function kick() { if (ctx.reducedMotion) render(); }
   ctx.onTheme(() => {
     paintTexture();
-    rimMat.color.set(ctx.css('--line-2')); matSS.color.set(ctx.css('--accent')); matHalo.color.set(ctx.css('--accent')); matOther.color.set(ctx.css('--viz-muted'));
+    rimMat.color.set(ctx.css('--globe-rim') || ctx.css('--line-2')); matSS.color.set(ctx.css('--hl')); matHalo.color.set(ctx.css('--hl')); matOther.color.set(ctx.css('--viz-muted'));
     render();
   });
   resize();

@@ -31,9 +31,28 @@ def status(d):
     return "published" if d.get("published") else "in review (submitted manuscript, not yet peer reviewed)"
 
 
+MANDALAY_MW = 7.7  # magnitude used on the site for the 2025 Mandalay earthquake (user decision, 2026-09-28)
+
+
+def fix_mandalay(obj):
+    """Replace 'Mw 7.8' by 'Mw 7.7' in Mandalay event names/fields, recursively."""
+    if isinstance(obj, dict):
+        return {k: fix_mandalay(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [fix_mandalay(v) for v in obj]
+    if isinstance(obj, str) and "Mandalay" in obj:
+        return obj.replace("Mw 7.8", "Mw 7.7").replace("M7.8", "M7.7")
+    return obj
+
+
 def rd(p):
     with open(os.path.join(SRC, p)) as f:
-        return json.load(f)
+        d = json.load(f)
+    if "mandalay" in p:
+        d = fix_mandalay(d)
+        if isinstance(d.get("mw"), (int, float)) and "ffi" not in p:
+            d["mw"] = MANDALAY_MW
+    return d
 
 
 def wr(p, obj):
@@ -78,6 +97,8 @@ def globe():
     ev = []
     survey = d["events"]
     for e in survey + [x for x in d["other_group_events"] if not x.get("in_bao2022")]:
+        if "Mandalay" in e["name"]:
+            e = dict(e, mag=MANDALAY_MW, name=e["name"].replace("Mw 7.8", "Mw 7.7"))
         vr = e.get("vr_kms")
         if isinstance(vr, list):
             vr = f"{vr[0]}–{vr[1]}" if len(vr) == 2 else str(vr[0])
