@@ -58,16 +58,16 @@
   /* ---- lazy interactive figures ---- */
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function makeCtx(el) {
-    var visCbs = [];
+    var visCbs = [], lastVis = null;
     var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (ents) {
-      ents.forEach(function (en) { visCbs.forEach(function (cb) { cb(en.isIntersecting); }); });
+      ents.forEach(function (en) { lastVis = en.isIntersecting; visCbs.forEach(function (cb) { cb(lastVis); }); });
     }) : null;
     if (io) io.observe(el);
     return {
       reducedMotion: reduced,
       theme: theme,
       onTheme: function (cb) { themeListeners.push(cb); },
-      visible: function (cb) { visCbs.push(cb); if (!io) cb(true); },
+      visible: function (cb) { visCbs.push(cb); if (!io) cb(true); else if (lastVis !== null) cb(lastVis); },
       css: function (name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
     };
   }

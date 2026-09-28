@@ -482,3 +482,9 @@ a.card:hover { text-decoration: none; color: inherit; border-color: var(--line-2
 .viz-info { font-size: 13.5px; color: var(--muted); padding: 8px 18px 0; }
 .ffi-mrf { height: 130px; border-top: 1px solid var(--line); position: relative; }
 .viz-legend .cbar { width: 110px; }
+svg.mpl { width: 100%; height: auto; display: block; }
+svg.mpl text { font-family: var(--sans); }
+.tiers { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 13.5px; color: var(--muted); }
+.viz-controls .tiers label.chk { flex: none; gap: 5px; color: var(--ink-2); }
+.chk input { accent-color: var(--accent); margin: 0; }
+[hidden] { display: none !important; }

@@ -87,7 +87,7 @@ export default async function bpSchematic(el, ctx) {
     g.fillText('array', st[0].x - 14, Math.max(12, st[0].y - 12));
 
     // --- traces ---
-    const lab = 54;
+    const lab = 84;
     const x0 = trR.x + lab, x1 = trR.x + trR.w - 4;
     const rows = NST + 2.6;
     const dy = trR.h / rows;

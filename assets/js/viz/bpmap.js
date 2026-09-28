@@ -46,12 +46,41 @@ export default async function bpmap(el, ctx) {
     if (slider) { slider.max = Math.ceil(tMax); }
     const tmaxEl = panel.querySelector('[data-tmax]'); if (tmaxEl) tmaxEl.textContent = Math.round(tMax) + ' s';
   }
+  let frames = null; // optional beam-power maps: { F, n, t, nx, ny, box, img, ig, id }
+  async function loadFrames(f) {
+    const im = new Image(); im.src = f.png; await im.decode();
+    const cv = document.createElement('canvas'); cv.width = f.nx; cv.height = f.ny * f.n;
+    const cg = cv.getContext('2d', { willReadFrequently: true }); cg.drawImage(im, 0, 0);
+    const px = cg.getImageData(0, 0, f.nx, f.ny * f.n).data;
+    const F = new Uint8Array(f.nx * f.ny * f.n); for (let i = 0; i < F.length; i++) F[i] = px[i * 4];
+    const img = document.createElement('canvas'); img.width = f.nx; img.height = f.ny;
+    const ig = img.getContext('2d');
+    return { ...f, F, img, ig, id: ig.createImageData(f.nx, f.ny) };
+  }
+  function paintFrame(g, P) {
+    if (!frames) return;
+    const f = frames; let k = 0;
+    while (k < f.n - 1 && f.t[k + 1] <= t) k++;
+    if (t < f.t[0]) return;
+    const N = f.nx * f.ny, d = f.id.data, off = k * N;
+    const dark = ctx.theme() === 'dark';
+    for (let i = 0; i < N; i++) {
+      const v = f.F[off + i] / 255, a = Math.max(0, (v - 0.25) / 0.75);
+      const c = viridis(0.25 + 0.75 * v);
+      d[i * 4] = c[0]; d[i * 4 + 1] = c[1]; d[i * 4 + 2] = c[2]; d[i * 4 + 3] = 255 * Math.min(1, a * a * (dark ? 1.1 : 0.95));
+    }
+    f.ig.putImageData(f.id, 0, 0);
+    const dl = (f.lon1 - f.lon0) / (f.nx - 1) / 2, dt = (f.lat1 - f.lat0) / (f.ny - 1) / 2;
+    const x0 = P.x(f.lon0 - dl), x1 = P.x(f.lon1 + dl), y0 = P.y(f.lat1 + dt), y1 = P.y(f.lat0 - dt);
+    g.imageSmoothingEnabled = true; g.drawImage(f.img, x0, y0, x1 - x0, y1 - y0);
+  }
   async function load(url) {
     data = await loadJSON(url);
+    frames = data.frames ? await loadFrames(data.frames) : null;
     el.querySelectorAll('.stub-flag').forEach(n => n.remove());
     flagStub(el, data.meta);
     const foot = panel.querySelector('.viz-foot'); if (foot) { foot.textContent = ''; delete foot.dataset.filled; }
-    dataFooter(panel, [{ href: url, label: 'JSON' }].concat(el.dataset.csv ? [{ href: el.dataset.csv, label: 'CSV (all events)' }] : []), data.meta);
+    dataFooter(panel, [{ href: url, label: 'JSON' }].concat(data.frames ? [{ href: data.frames.png, label: 'Beam-power frames (PNG)' }] : []).concat(el.dataset.csv ? [{ href: el.dataset.csv, label: 'CSV (all events)' }] : []), data.meta);
     if (arSel) {
       const names = data.arrays ? Object.keys(data.arrays).filter(a => data.arrays[a].length > 10) : [];
       arSel.innerHTML = names.map(a => `<option value="${a}">${a} array</option>`).join('');
@@ -90,8 +119,9 @@ export default async function bpmap(el, ctx) {
       for (const f of data.faults) { g.beginPath(); f.forEach(([lo, la], i) => (i ? g.lineTo(P.x(lo), P.y(la)) : g.moveTo(P.x(lo), P.y(la)))); g.stroke(); }
       g.globalAlpha = 1;
     }
+    paintFrame(g, P);
     // radiators up to t
-    const rMax = Math.max(4, Math.min(w, h) / 38);
+    const rMax = Math.max(3, Math.min(w, h) / 95);
     for (const r of R) {
       if (r.t > t) break;
       const p = (r.power == null ? 1 : r.power) / pMax;
@@ -117,7 +147,7 @@ export default async function bpmap(el, ctx) {
     g.fillStyle = css('--muted'); g.font = '10.5px ' + font;
     g.fillText('distance from epicentre (km)', inset.x + 6, inset.y + 11);
     g.fillText('0', ix0 - 10, iy0 + 3); g.fillText(Math.round(dMax), inset.x + 4, iy1 + 4);
-    g.fillText('time (s)', ix1 - 40, iy0 + 14); g.fillText(Math.round(tMax), ix1 - 14, iy0 + 14);
+    g.fillText('time (s)', (ix0 + ix1) / 2 - 18, iy0 + 14); g.fillText(Math.round(tMax), ix1 - 14, iy0 + 14);
     g.strokeStyle = css('--line-2'); g.beginPath(); g.moveTo(ix0, iy1); g.lineTo(ix0, iy0); g.lineTo(ix1, iy0); g.stroke();
     for (const r of R) {
       if (r.t > t) break;

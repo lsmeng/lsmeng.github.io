@@ -71,6 +71,32 @@
       <span class="cite">(Meng, Huang, Ma &amp; Ma, submitted; <a href="pdf/submitted-catalogue-verification.pdf" target="_blank" rel="noopener">preprint</a>,
       <a href="https://doi.org/10.5281/zenodo.22059218" target="_blank" rel="noopener">data and code</a>)</span>.</p>
     </div>
+    <figure class="viz">
+      <div class="viz-head"><h3>Machine-learning catalogues coloured by confirmability score</h3><span class="viz-tag">Data released, paper under review</span></div>
+      <div class="viz-controls" style="border-top:0;border-bottom:1px solid var(--line)">
+        <span class="sel"><select data-catalog aria-label="Catalogue">
+          <option value="assets/data/catalog/seisforge_ridgecrest.json" data-color="score">2019 Ridgecrest, California</option>
+          <option value="assets/data/catalog/seisforge_japan_forearc.json" data-color="score">NE Japan forearc, 2016&ndash;2017</option>
+          <option value="assets/data/catalog/seisforge_iquique.json" data-color="score">2014 Iquique, northern Chile</option>
+          <option value="assets/data/catalog/seisforge_amatrice.json" data-color="score">2016 Amatrice&ndash;Norcia, Italy</option>
+          <option value="assets/data/catalog/seisforge_hawaii_kilauea.json" data-color="score">2018 K&#299;lauea, Hawai&#699;i</option>
+          <option value="assets/data/catalog/seisforge_toc2me.json" data-color="score">ToC2ME induced seismicity, Alberta</option>
+        </select></span>
+        <span class="sel"><select data-color aria-label="Colour by"><option value="score">Colour by score</option><option value="depth">Colour by depth</option><option value="time">Colour by time</option></select></span>
+        <span class="tiers" data-tiers>Show thirds:
+          <label class="chk"><input type="checkbox" data-tier="T" checked> top</label>
+          <label class="chk"><input type="checkbox" data-tier="M" checked> middle</label>
+          <label class="chk"><input type="checkbox" data-tier="B" checked> bottom</label>
+        </span>
+      </div>
+      <div class="viz-stage r-std" data-viz="catalog"></div>
+      <div class="viz-legend" data-legend></div>
+      <figcaption class="viz-foot"></figcaption>
+    </figure>
+    <p class="cite">SeisForge catalogues and scores from the released data, <a href="https://doi.org/10.5281/zenodo.22288706" target="_blank" rel="noopener">doi:10.5281/zenodo.22288706</a>; the paper is under review.
+    The score ranks events; it is not a calibrated probability. The thirds are score terciles within each catalogue and, unlike the maps in the preprint,
+    are not matched in magnitude or depth. Large catalogues are shown as a random subset of 25,000 events. Try Ridgecrest with only the top or only the bottom third.</p>
+
     <figure class="fig">
       <img src="assets/figures/ml-catalogue-double-seismic-zone.png" alt="Depth section of the NE Japan forearc catalogue coloured by confirmability score, and the distribution of distance below the plate interface for high- and low-scored events" loading="lazy" width="1600" height="655">
       <figcaption><b>Low-scored events blur a real structure.</b> (a) Depth section of a machine-learning catalogue of the NE Japan

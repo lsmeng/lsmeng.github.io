@@ -142,11 +142,26 @@ async function build(el, ctx, url) {
     }
   }
 
-  // camera: oblique view from the south-east-above
-  const dist = span * 1.75;
+  // camera: look at the fault broadside, from the footwall side and ~28° above the horizon,
+  // far enough that the whole along-strike length fits the view
+  let cs = 0, cc = 0, dipSum = 0, wsum = 0;
+  for (const s of S) { const w = s.len_km * s.wid_km; cs += Math.sin(s.strike * Math.PI / 180) * w; cc += Math.cos(s.strike * Math.PI / 180) * w; dipSum += s.dip * w; wsum += w; }
+  const phi = Math.atan2(cs, cc), meanDip = dipSum / wsum;
+  const hE = Math.cos(phi), hN = -Math.sin(phi);          // horizontal dip direction (east, north)
+  const view = new THREE.Vector3(-hE, 0, hN);              // three: x = east, z = -north; footwall side = -dip direction
+  const sE = Math.sin(phi), sN = Math.cos(phi);
+  const along = new THREE.Vector3(sE, 0, -sN);
+  let Lmax = 0; for (const s of S) { const p = P(s.e, s.n, s.z).sub(ctr); Lmax = Math.max(Lmax, Math.abs(p.dot(along)) + s.len_km / 2); }
+  function placeCamera() {
+    const aspect = Math.max(0.5, camera.aspect || 1.6);
+    const fovH = 2 * Math.atan(Math.tan(camera.fov * Math.PI / 360) * aspect);
+    const D = Math.max(Lmax / Math.tan(fovH / 2) * 1.12, size.y * 3);
+    const el = (meanDip > 75 ? 30 : 38) * Math.PI / 180;
+    camera.position.copy(ctr).addScaledVector(view, D * Math.cos(el)).add(new THREE.Vector3(0, D * Math.sin(el), 0));
+    camera.near = D / 50; camera.far = D * 10; camera.updateProjectionMatrix();
+    controls.target.copy(ctr); controls.update();
+  }
   controls.target.copy(ctr);
-  camera.position.set(ctr.x + dist * 0.35, ctr.y + dist * 0.55, ctr.z + dist * 0.8);
-  controls.update();
 
   // ---------- moment-rate panel ----------
   let t = hasT ? (ctx.reducedMotion ? tEnd : 0) : tEnd;
@@ -214,9 +229,11 @@ async function build(el, ctx, url) {
   if (playBtn) playBtn.addEventListener('click', onPlay);
   setBtn();
 
+  let placed = false;
   function resize() {
     const w = stage.clientWidth, h = stage.clientHeight;
     renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    if (!placed && w > 0) { placeCamera(); placed = true; }
   }
   const ro = new ResizeObserver(resize); ro.observe(stage);
   resize();

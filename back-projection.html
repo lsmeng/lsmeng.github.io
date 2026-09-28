@@ -87,6 +87,7 @@
       <div class="viz-controls" style="border-top:0;border-bottom:1px solid var(--line)">
         <span class="sel"><select data-event aria-label="Earthquake">
           <option value="assets/data/bp/mandalay_2025.json">2025 Mandalay (Myanmar)</option>
+          <option value="assets/data/bp/palu_2018.json">2018 Palu (single-array MUSIC, demo data)</option>
           <option value="assets/data/bp/noto_2024.json">2024 Noto (Japan)</option>
           <option value="assets/data/bp/turkey_m78_2023.json">2023 Kahramanmaraş Mw 7.8</option>
           <option value="assets/data/bp/turkey_m75_2023.json">2023 Elbistan Mw 7.5</option>
@@ -105,6 +106,9 @@
     </figure>
     <p class="cite">Sources: Mandalay, Xu et al. (2025) <em>Science</em>, data doi:10.5281/zenodo.17113746; Noto, Xu et al. (2024) <em>Science</em>, doi:10.5281/zenodo.12786109;
     Türkiye, Xu et al. (2023) <em>Commun. Earth Environ.</em>, doi:10.5281/zenodo.10040732 (CH = Chinese array); Maduo, Xu et al. (2023) <em>JGR</em>, doi:10.5281/zenodo.7761908.
+    Palu: single-array MUSIC back-projection of the Australian-array data shipped with the public
+    <a href="https://github.com/lsmeng/MUSICBP" target="_blank" rel="noopener">MUSICBP</a> code, with the beam-power map of each 10&nbsp;s window;
+    consistent with <a href="https://doi.org/10.1038/s41561-018-0297-z" target="_blank" rel="noopener">Bao et al. (2019)</a>, whose figure uses multi-array SEBP; windows with normalised power below 0.34 are hidden.
     The Venezuela result belongs to a submitted manuscript and has not been peer reviewed. Coastlines: Natural Earth.</p>
   </section>
 

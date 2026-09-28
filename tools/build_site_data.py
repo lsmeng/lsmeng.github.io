@@ -131,6 +131,29 @@ def bp():
     wr("bp/index.json", {"events": index})
 
 
+def palu_demo():
+    """Single-array MUSIC BP of Palu 2018 from the public MUSICBP demo data (with pseudo-spectrum frames)."""
+    from PIL import Image
+    d = rd("bp/palu_2018_musicdemo.json")
+    keep = [i for i, p in enumerate(d["peak_power"]) if p >= 0.34]  # low-power windows (e.g. 27-30 s) jump north: noise
+    rad = [{"t": d["t"][i], "lat": d["peak_lat"][i], "lon": d["peak_lon"][i], "power": d["peak_power"][i]} for i in keep]
+    fr = np.array(d["frames_uint8"], dtype=np.uint8).reshape(len(d["t"]), len(d["grid_lat"]), len(d["grid_lon"]))
+    nt, ny, nx = fr.shape
+    sheet = fr[:, ::-1, :].reshape(nt * ny, nx) if d["grid_lat"][0] < d["grid_lat"][-1] else fr.reshape(nt * ny, nx)
+    Image.fromarray(sheet, mode="L").save(os.path.join(OUT, "bp", "palu_2018_frames.png"), optimize=True)
+    glat, glon = d["grid_lat"], d["grid_lon"]
+    out = {"meta": {"event": d["event"], "date": "2018-09-28", "mw": 7.5, "method": d["method"],
+                    "citation": "Single-array MUSIC back-projection (Australian array, public MUSICBP demo data), consistent with Bao et al. (2019), Nature Geoscience 12, 200-205, whose figure uses multi-array SEBP.",
+                    "doi": "10.1038/s41561-018-0297-z", "status": "demo reprocessing of public tutorial data (not the paper figure data)",
+                    "notes": f"1 s window step, {d['window_s']} s windows, {d['band_hz'][0]}-{d['band_hz'][1]} Hz. Windows with normalised peak power < 0.34 are hidden.", "stub": False},
+           "hypocenter": {"lat": d["epicenter"]["lat"], "lon": d["epicenter"]["lon"]},
+           "arrays": {"AU": rad},
+           "frames": {"png": "assets/data/bp/palu_2018_frames.png", "n": nt, "t": d["t"], "nx": nx, "ny": ny,
+                      "lon0": min(glon), "lon1": max(glon), "lat0": min(glat), "lat1": max(glat),
+                      "row_order": "north to south", "decode": "normalised MUSIC pseudo-spectrum = v/255"}}
+    wr("bp/palu_2018.json", out)
+
+
 # ------------------------------------------------------------------ FFI
 def ffi():
     index = []
@@ -167,15 +190,72 @@ def ffi():
 def catalog():
     d = rd("catalog/hawaii_points.json")
     n = d["n"]
-    rows = [[round(d["lon"][i], 4), round(d["lat"][i], 4), round(d["depth_km"][i], 2), d["mag"][i]] for i in range(n)]
+    from datetime import datetime
+    ts = [datetime.fromisoformat(x) for x in d["time_utc"]]
+    t0 = min(ts)
+    rows = [[round(d["lon"][i], 4), round(d["lat"][i], 4), round(d["depth_km"][i], 2), d["mag"][i], round((ts[i] - t0).total_seconds() / 86400, 3)] for i in range(n)]
     out = {"meta": {"title": "Relocated catalogue, 2026 South Kona (Hawaii) sequence and Pahala swarm",
                     "method": d["description"], "citation": "Meng group, preliminary relocations; manuscript in preparation (2026), not peer reviewed.", "status": "preliminary",
                     "doi": None, "status": d.get("status"), "mainshock": d.get("mainshock"), "stub": False,
                     "notes": "Magnitude is the network ML used as a proxy. " + d["fields"]},
-           "columns": ["lon", "lat", "depth_km", "mag"], "rows": rows}
+           "columns": ["lon", "lat", "depth_km", "mag", "t_days"], "rows": rows}
+    out["meta"]["t0_utc"] = t0.isoformat() + "Z"
+    out["meta"]["zmax"] = 50
     wr("catalog/hawaii_points.json", out)
     wcsv("catalog/hawaii_points.csv", ["lon", "lat", "depth_km", "mag", "time_utc"],
-         [r + [d["time_utc"][i]] for i, r in enumerate(rows)])
+         [r[:4] + [d["time_utc"][i]] for i, r in enumerate(rows)])
+
+
+# Point-cloud catalogues. Not exported on purpose (column meaning awaiting confirmation):
+# mendocino_ma2026, mendocino_mohanna_growclust, ferndale_mohanna_growclust.
+SEISFORGE = [("ridgecrest", "2019 Ridgecrest, California"), ("japan_forearc", "NE Japan forearc, 2016–2017"),
+             ("iquique", "2014 Iquique, northern Chile"), ("amatrice", "2016 Amatrice–Norcia, central Italy"),
+             ("hawaii_kilauea", "2018 Kīlauea, Hawaiʻi"), ("toc2me", "ToC2ME induced seismicity, Alberta")]
+
+
+def cat_rows(d, extra=()):
+    n = d["n"]
+    rows = []
+    for i in range(n):
+        m = d["mag"][i]
+        r = [round(d["lon"][i], 3), round(d["lat"][i], 3), round(d["depth_km"][i], 1), None if m is None else round(m, 1),
+             round(d["t_s"][i] / 86400.0, 3)]
+        for k in extra:
+            v = d[k][i]
+            r.append(round(v, 2) if isinstance(v, float) else v)
+        rows.append(r)
+    z = np.array([r[2] for r in rows])
+    return rows, float(np.ceil(np.percentile(z, 99.5) / 5) * 5)
+
+
+def catalogs():
+    index = []
+    for key, label in SEISFORGE:
+        d = rd(f"catalog/seisforge_{key}.json")
+        rows, zmax = cat_rows(d, ("score", "tier"))
+        sc = np.array([r[5] for r in rows], dtype=float)
+        out = {"meta": {"title": label + " — machine-learning catalogue with confirmability score",
+                        "citation": "Meng, L., Huang, H., Ma, J.-Z. & Ma, Y. (2026), data and code for the preprint \"Can human seismologists verify machine-learning detected earthquakes?\" (under review).",
+                        "doi": None, "data_doi": "10.5281/zenodo.22288706", "status": "data released; paper under review",
+                        "t0_utc": d["t0_utc"], "n_source": d["n_source"], "zmax": zmax,
+                        "notes": "Score = released confirmability score, a ranking, not a calibrated probability. Tiers T/M/B = thirds by score within this catalogue, not matched in magnitude or depth. " + (d.get("downsampling") or ""),
+                        "stub": False},
+               "columns": ["lon", "lat", "depth_km", "mag", "t_days", "score", "tier"], "rows": rows,
+               "score": {"label": "confirmability score", "min": float(np.percentile(sc, 2)), "max": float(np.percentile(sc, 98))}}
+        wr(f"catalog/seisforge_{key}.json", out)
+        index.append((f"assets/data/catalog/seisforge_{key}.json", label, d["n"], d["n_source"]))
+    for key, label, cite_status in [("noto_swarm_mohanna2026", "Noto Peninsula swarm and 2024 aftershocks", "published"),
+                                    ("turkey2023_mohanna_tm", "2023 Türkiye–Syria sequence (template matching)", "data on Zenodo, paper in preparation")]:
+        d = rd(f"catalog/{key}.json")
+        rows, zmax = cat_rows(d)
+        t, doi = cite(d.get("citation"))
+        data_doi = None if cite_status == "published" else doi
+        out = {"meta": {"title": label, "citation": t, "doi": doi if cite_status == "published" else None, "data_doi": data_doi,
+                        "status": cite_status, "t0_utc": d["t0_utc"], "n_source": d["n_source"], "zmax": zmax,
+                        "notes": (d.get("format") or "") + ". " + (d.get("downsampling") or ""), "stub": False},
+               "columns": ["lon", "lat", "depth_km", "mag", "t_days"], "rows": rows}
+        wr(f"catalog/{key}.json", out)
+    wr("catalog/index.json", {"seisforge": [{"file": f, "name": l, "n": n, "n_source": ns} for f, l, n, ns in index]})
 
 
 # ------------------------------------------------------------------ tsunami
@@ -213,4 +293,4 @@ def tsunami():
 
 
 if __name__ == "__main__":
-    globe(); bp(); ffi(); catalog(); tsunami()
+    globe(); bp(); palu_demo(); ffi(); catalog(); catalogs(); tsunami()

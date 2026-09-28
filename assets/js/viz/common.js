@@ -29,17 +29,17 @@ export function hidpiCanvas(el, draw) {
   el.appendChild(c);
   const g = c.getContext('2d');
   let w = 0, h = 0, dpr = 1;
-  function fit() {
+  function fit(noDraw) {
     const r = el.getBoundingClientRect();
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = Math.max(10, Math.round(r.width)); h = Math.max(10, Math.round(r.height));
     c.width = w * dpr; c.height = h * dpr;
     c.style.width = w + 'px'; c.style.height = h + 'px';
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (draw) draw(g, w, h);
+    if (draw && noDraw !== true) draw(g, w, h);
   }
-  new ResizeObserver(fit).observe(el);
-  fit();
+  new ResizeObserver(() => fit()).observe(el);
+  fit(true); // size now; the observer's first callback (async) does the first draw
   return { canvas: c, ctx: g, size: () => ({ w, h, dpr }), refit: fit };
 }
 

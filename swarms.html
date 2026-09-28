@@ -52,7 +52,7 @@
       how the seismicity moves in space and time.
     </p>
     <nav class="onpage" aria-label="On this page"><span>On this page</span>
-      <a href="#swarms">Swarms</a><a href="#hawaii">Hawaii catalogue</a><a href="#slow-slip">Slow slip</a><a href="#das">Fibre sensing</a><a href="#papers">Key papers</a>
+      <a href="#swarms">Swarms</a><a href="#catalogues">Catalogues in 3-D</a><a href="#slow-slip">Slow slip</a><a href="#das">Fibre sensing</a><a href="#papers">Key papers</a>
     </nav>
   </section>
 
@@ -81,20 +81,35 @@
     </div>
   </section>
 
-  <section id="hawaii">
+  <section id="catalogues">
     <div class="prose">
-      <h2>A relocated catalogue in three dimensions: Hawai&#699;i 2026</h2>
-      <p>The 2026 M<sub>w</sub>&nbsp;5.9 South Kona earthquake occurred while a swarm was active beneath P&#257;hala. We built a catalogue
-      of both sequences from continuous data with a machine-learning workflow (PhaseNet picking, REAL association, HYPOINVERSE
-      location, and hypoDD relocation with catalogue and cross-correlation differential times). Drag to rotate; colour is depth.</p>
+      <h2>Relocated catalogues in three dimensions</h2>
+      <p>Dense catalogues show the structures that the swarms and aftershocks light up. The Noto catalogue combines template
+      matching with GrowClust relocation; the Türkiye catalogue covers eight months of the 2023 sequence; the Hawai&#699;i catalogue
+      of the 2026 M<sub>w</sub>&nbsp;5.9 South Kona earthquake and the concurrent P&#257;hala swarm was built from continuous data with a
+      machine-learning workflow (PhaseNet, REAL, HYPOINVERSE, hypoDD). Drag to rotate; press play to see the events appear in time order.</p>
     </div>
-    <figure class="viz">
-      <div class="viz-head"><h3>South Kona sequence and P&#257;hala swarm, 23 Apr &ndash; 10 Jun 2026</h3><span class="viz-tag">Preliminary</span></div>
-      <div class="viz-stage r-std" data-viz="catalog" data-src="assets/data/catalog/hawaii_points.json" data-csv="assets/data/catalog/hawaii_points.csv" data-zmax="50"></div>
-      <div class="viz-legend"><span data-n></span> events &middot; depth 0 <span class="cbar"></span> <span data-zmax></span> &middot; point size &prop; magnitude &middot; coastline at sea level &middot; no vertical exaggeration</div>
+    <figure class="viz" id="hawaii">
+      <div class="viz-head"><h3>Relocated seismicity</h3><span class="viz-tag">Catalogues</span></div>
+      <div class="viz-controls" style="border-top:0;border-bottom:1px solid var(--line)">
+        <span class="sel"><select data-catalog aria-label="Catalogue">
+          <option value="assets/data/catalog/noto_swarm_mohanna2026.json">Noto Peninsula swarm and 2024 aftershocks (published)</option>
+          <option value="assets/data/catalog/turkey2023_mohanna_tm.json">2023 Türkiye&ndash;Syria sequence (data on Zenodo, paper in preparation)</option>
+          <option value="assets/data/catalog/hawaii_points.json" data-csv="assets/data/catalog/hawaii_points.csv">Hawai&#699;i 2026: South Kona and P&#257;hala (preliminary)</option>
+        </select></span>
+        <span class="sel"><select data-color aria-label="Colour by"><option value="depth">Colour by depth</option><option value="time">Colour by time</option></select></span>
+      </div>
+      <div class="viz-stage r-std" data-viz="catalog"></div>
+      <div class="viz-legend" data-legend></div>
+      <div class="viz-controls" data-timewrap>
+        <button class="btn" type="button" data-play>Play in time</button>
+        <label>Time <input type="range" data-time min="0" max="1" step="0.01" value="1" aria-label="Show events up to this time"><output data-time></output></label>
+      </div>
       <figcaption class="viz-foot"></figcaption>
     </figure>
-    <p class="cite">Preliminary relocations from a manuscript in preparation; not peer reviewed. Magnitudes are network M<sub>L</sub> used as a proxy.</p>
+    <p class="cite">Noto: Mohanna et al. (2026) <em>EPSL</em>, Supplementary File 1 (random subset of 25,000 of 138,889 events).
+    Türkiye: Mohanna et al., eight-month template-matching catalogue, data <a href="https://doi.org/10.5281/zenodo.18504095" target="_blank" rel="noopener">doi:10.5281/zenodo.18504095</a>, paper in preparation (random subset of 25,000 of 229,651).
+    Hawai&#699;i: preliminary relocations, manuscript in preparation, not peer reviewed; magnitudes are network M<sub>L</sub>.</p>
   </section>
 
   <section id="slow-slip">
