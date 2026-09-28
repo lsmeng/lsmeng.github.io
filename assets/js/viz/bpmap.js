@@ -32,15 +32,24 @@ export default async function bpmap(el, ctx) {
     hypo = data.hypocenter || { lat: R[0].lat, lon: R[0].lon };
     tMax = Math.max(...R.map(r => r.t));
     pMax = Math.max(...R.map(r => (r.power == null ? 1 : r.power)));
-    // bbox from all arrays so switching arrays keeps the frame
-    const all = data.arrays ? Object.values(data.arrays).flat() : R;
+    // frame fitted to this array's radiators (robust 3–97 % extent) plus the epicentre, 25 % padding
     bbox = data.bbox;
     if (!bbox) {
-      const lons = all.map(r => r.lon).concat(hypo.lon), lats = all.map(r => r.lat).concat(hypo.lat);
-      const a = Math.min(...lons), b = Math.min(...lats), c = Math.max(...lons), d = Math.max(...lats);
-      const m = Math.max(0.35, 0.2 * Math.max(c - a, d - b));
-      bbox = [a - m, b - m, c + m, d + m];
+      const q = (arr, p) => { const v = arr.slice().sort((x, y) => x - y); return v[Math.round(p * (v.length - 1))]; };
+      const lons = R.map(r => r.lon), lats = R.map(r => r.lat);
+      let a = Math.min(q(lons, 0.03), hypo.lon), c = Math.max(q(lons, 0.97), hypo.lon);
+      let b = Math.min(q(lats, 0.03), hypo.lat), d = Math.max(q(lats, 0.97), hypo.lat);
+      if (data.faults) for (const f of data.faults) for (const [lo, la] of f) { a = Math.min(a, lo); c = Math.max(c, lo); b = Math.min(b, la); d = Math.max(d, la); }
+      const k = Math.cos((b + d) / 2 * Math.PI / 180);
+      const span = Math.max((c - a) * k, d - b, 0.3);
+      const m = 0.25 * span;
+      bbox = [a - m / k, b - m, c + m / k, d + m];
     }
+    // stage shape follows the rupture: taller for north–south ruptures, within limits
+    const kk = Math.cos((bbox[1] + bbox[3]) / 2 * Math.PI / 180);
+    const ratio = (bbox[2] - bbox[0]) * kk / (bbox[3] - bbox[1]);
+    const wide = el.clientWidth > 560;
+    el.style.aspectRatio = String(wide ? Math.max(1.4, Math.min(1.9, ratio)) : Math.max(0.75, Math.min(1.25, ratio * 1.1)));
     R.forEach(r => { r.d = hav(hypo, r); });
     dMax = Math.max(...R.map(r => r.d), 1);
     if (slider) { slider.max = Math.ceil(tMax); }
@@ -96,7 +105,7 @@ export default async function bpmap(el, ctx) {
   const cbar = panel.querySelector('.cbar');
   if (cbar) cbar.style.background = cssGradient(viridis);
   slider.step = 0.5;
-  let t = ctx.reducedMotion ? tMax : 0, playing = !ctx.reducedMotion;
+  let t = ctx.reducedMotion ? tMax : 0.6 * tMax, playing = !ctx.reducedMotion;
   slider.value = t;
 
   const C = hidpiCanvas(el, () => draw());
@@ -180,7 +189,7 @@ export default async function bpmap(el, ctx) {
     if (t >= tMax) { hold += dt; if (hold > 2.2) { hold = 0; setT(0); } return; }
     setT(Math.min(tMax, t + dt * Math.max(8, tMax / 9)));
   });
-  if (evSel) evSel.addEventListener('change', async () => { await load(evSel.value); setT(ctx.reducedMotion ? tMax : 0); });
+  if (evSel) evSel.addEventListener('change', async () => { await load(evSel.value); setT(ctx.reducedMotion ? tMax : 0.6 * tMax); });
   if (arSel) arSel.addEventListener('change', () => { useArray(arSel.value); setT(Math.min(t, tMax)); });
   ctx.onTheme(draw);
   setT(t);

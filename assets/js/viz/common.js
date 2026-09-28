@@ -52,8 +52,8 @@ export function viridis(t) {
   return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
 }
 /* Slip map: paper -> amber -> vermilion -> deep red-brown (light), used for slip. */
-const SLIP_L = [[246,244,239],[248,221,160],[239,160,90],[196,82,40],[112,30,20]];
-const SLIP_D = [[24,30,38],[88,62,48],[176,96,52],[236,140,72],[252,222,150]];
+const SLIP_L = [[226,216,192],[244,200,128],[232,140,70],[190,72,34],[104,26,18]];
+const SLIP_D = [[52,58,64],[112,76,52],[186,102,54],[238,146,76],[252,224,156]];
 export function slipColor(t, dark) {
   const P = dark ? SLIP_D : SLIP_L;
   t = Math.min(1, Math.max(0, t));
