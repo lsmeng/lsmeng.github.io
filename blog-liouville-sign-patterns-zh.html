@@ -5,30 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>哥德巴赫的"放宽版"：每个整数都能拆出四种颜色组合 — Lingsen Meng</title>
 <meta name="description" content="刘维尔函数四种符号组合：除 2、3、4、5、6、9、10 外每个整数都能拆出四种颜色组合，无条件证明并用 Lean 验证（中文科普版）。">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- /site:head -->
 </head>
 <body>
 
-<nav class="nav">
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
   <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Lingsen Meng</a>
-    <div class="nav-links">
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="research.html">Research</a>
       <a href="publications.html">Publications</a>
       <a href="ai-for-math.html">AI for Math</a>
-      <a href="blog.html" class="active">Blog</a>
+      <a href="blog.html" aria-current="page">Blog</a>
       <a href="group.html">Group</a>
-      <a href="resource.html">Resource</a>
+      <a href="resource.html">Resources</a>
       <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
     </div>
   </div>
-</nav>
+</header>
+<!-- /site:nav -->
 
-<main class="wrap">
-  <section style="border-top:none;">
+<main class="wrap" id="main">
+  <section class="page-head">
     <p class="breadcrumb"><a href="blog.html">Blog</a> &nbsp;/&nbsp; 2026 年 9 月 &nbsp;·&nbsp; <a href="blog-liouville-sign-patterns.html">English</a> &nbsp;·&nbsp; <a href="https://zhuanlan.zhihu.com/p/2086829379775116620" target="_blank" rel="noopener">知乎&nbsp;↗</a></p>
-    <h2 style="font-size:30px;">哥德巴赫的"放宽版"：每个整数都能拆出四种颜色组合（无条件证明 + Lean 验证）</h2>
+    <h1 class="page-title">哥德巴赫的"放宽版"：每个整数都能拆出四种颜色组合（无条件证明 + Lean 验证）</h1>
     <p>先说结论：除了 2、3、4、5、6、9、10 这七个数，每个整数 N 都能写成 N = a + b，并且 (&lambda;(a), &lambda;(b)) 可以取到四种符号组合中的任何一种。这里 &lambda; 是刘维尔函数。证明不依赖任何未证明的猜想，主要结果用 Lean 4 做了形式化验证。</p>
 
     <h3>一、问题是什么</h3>
@@ -83,10 +98,25 @@
   </section>
 </main>
 
-<footer>
-  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
 </footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
 <script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

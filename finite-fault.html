@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finite-Fault &amp; Joint Inversion — Lingsen Meng</title>
+<meta name="description" content="Finite-fault and joint seismic-geodetic slip models of the 2021 Maduo, 2023 Kahramanmaraş, 2024 Noto and 2025 Mandalay earthquakes, with an interactive 3-D slip viewer.">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- /site:head -->
+</head>
+<body>
+
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="research.html" aria-current="page">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="ai-for-math.html">AI for Math</a>
+      <a href="blog.html">Blog</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html">Resources</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /site:nav -->
+
+<main class="wrap" id="main">
+  <section class="topic-hero">
+    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; 03</p>
+    <p class="kicker"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-ffi"></use></svg>Slip models</p>
+    <h1>Finite-fault &amp; joint inversion</h1>
+    <p class="lead">
+      Back-projection shows where high-frequency waves come from; a finite-fault inversion shows how much
+      each part of the fault slipped and when. We invert teleseismic and strong-motion waveforms together
+      with GNSS and InSAR displacements on multi-segment fault models, and use back-projection and
+      surface ruptures to choose the fault geometry and check the timing.
+    </p>
+    <nav class="onpage" aria-label="On this page"><span>On this page</span>
+      <a href="#viewer">3-D slip viewer</a><a href="#events">Recent earthquakes</a><a href="#papers">Key papers</a>
+    </nav>
+  </section>
+
+  <section id="viewer">
+    <div class="prose">
+      <h2>Slip in three dimensions</h2>
+      <p>Each rectangle is one subfault of the published model, coloured by slip. Drag to rotate. Press play to
+      sweep through the rupture: a subfault lights up when the rupture front reaches it, while the cursor moves along
+      the moment-rate function, the rate at which seismic moment is released.</p>
+    </div>
+    <figure class="viz">
+      <div class="viz-head"><h3>Finite-fault slip model</h3><span class="viz-tag">Published data</span></div>
+      <div class="viz-controls" style="border-top:0;border-bottom:1px solid var(--line)">
+        <span class="sel"><select data-event aria-label="Earthquake">
+          <option value="assets/data/ffi/mandalay_2025.json">2025 Mandalay (Myanmar)</option>
+          <option value="assets/data/ffi/noto_2024.json">2024 Noto (Japan)</option>
+          <option value="assets/data/ffi/turkey_m78_2023.json">2023 Kahramanmaraş Mw 7.8</option>
+          <option value="assets/data/ffi/maduo_2021.json">2021 Maduo (Tibet)</option>
+          <option value="assets/data/ffi/venezuela_2026.json">2026 Venezuela (in review)</option>
+        </select></span>
+        <span class="muted small" data-info></span>
+      </div>
+      <div class="viz-stage r-std" data-viz="ffi"></div>
+      <div class="viz-legend">slip <span class="cbar"></span> 0 &ndash; <span data-slipmax></span> &middot; grey = not yet ruptured &middot; dot = hypocentre, ring = epicentre &middot; no vertical exaggeration</div>
+      <div class="ffi-mrf"></div>
+      <div class="viz-controls">
+        <button class="btn" type="button" data-play>Play</button>
+        <label>Time <input type="range" min="0" max="100" value="0" aria-label="Time after origin"><output>0 s</output></label>
+      </div>
+      <figcaption class="viz-foot"></figcaption>
+    </figure>
+    <p class="cite">Models: Mandalay, Xu et al. (2025) <em>Science</em> (data doi:10.5281/zenodo.17113746); Noto, Xu et al. (2024) <em>Science</em> (doi:10.5281/zenodo.12786109);
+    Kahramanmaraş, Xu et al. (2023) <em>Commun. Earth Environ.</em> (doi:10.5281/zenodo.10040732); Maduo, Xu et al. (2023) <em>JGR</em> (doi:10.5281/zenodo.7761908).
+    Moment-rate functions are recomputed from the subfault slip-rate functions of each model. The Venezuela model is from a submitted manuscript and has not been peer reviewed.</p>
+  </section>
+
+  <section id="events">
+    <div class="prose">
+      <h2>Recent earthquakes</h2>
+      <h3>2021 M<sub>w</sub>&nbsp;7.4 Maduo, Tibet</h3>
+      <p>A bilateral rupture on bifurcating faults: about 75&nbsp;km to the west-northwest at ~2.7&nbsp;km/s and about 85&nbsp;km to the
+      east-southeast at ~3&nbsp;km/s, overall below the shear-wave speed, with possible supershear during part of the eastward
+      propagation <span class="cite">(<a href="https://doi.org/10.1029/2022JB025936" target="_blank" rel="noopener">Xu et al., 2023, <em>JGR</em></a>)</span>.</p>
+      <h3>2023 Kahramanmaraş, Türkiye</h3>
+      <p>Seismic, GNSS and radar data combined in finite-fault inversion and back-projection show a rupture that started on
+      the Narlı Fault and then ran both ways along the East Anatolian Fault at overall subshear speed. Large slip on some
+      segments points to a supercycle of at least 900 years; the geometry resembles the San Andreas&ndash;San Jacinto system
+      <span class="cite">(<a href="https://doi.org/10.1038/s43247-023-01030-x" target="_blank" rel="noopener">Xu et al., 2023, <em>Commun. Earth Environ.</em></a>)</span>.</p>
+      <h3>2024 M<sub>w</sub>&nbsp;7.5 Noto, Japan</h3>
+      <p>After four years of swarm activity, the mainshock ruptured with two initiations that encircled a fault asperity at the
+      edge of the swarm <span class="cite">(<a href="https://doi.org/10.1126/science.adp0493" target="_blank" rel="noopener">Xu et al., 2024, <em>Science</em></a>)</span>.
+      Static and adjoint inversions of geodetic and tsunami data place the main slip northeast of the epicentre on a fault
+      dipping about 70&deg; to the northwest <span class="cite">(Mohanna et al., 2025, <em>Earth Planets Space</em>)</span>.</p>
+      <h3>2024 M<sub>w</sub>&nbsp;7.4 Hualien, Taiwan</h3>
+      <p>The rupture unzipped a conjugate fault system <span class="cite">(<a href="https://doi.org/10.1029/2025GL115218" target="_blank" rel="noopener">Xu et al., 2025, <em>GRL</em></a>)</span>.</p>
+      <h3>2025 Mandalay, Myanmar</h3>
+      <p>The joint model uses three fault planes along the Sagaing Fault. The rupture extended about 530&nbsp;km, and its southern
+      branch propagated at supershear speed (see <a href="rupture.html#mandalay">rupture physics</a>).</p>
+    </div>
+  </section>
+
+  <section id="papers">
+    <h2>Key papers</h2>
+    <ul class="pub-list">
+      <li class="pub"><span class="pub-num">2025</span><div><div class="pub-title"><a href="https://doi.org/10.1029/2025GL115218" target="_blank" rel="noopener">Unzipping of the conjugate fault system during the 2024 Mw 7.4 Hualien earthquake</a></div><div class="pub-authors"><span class="me">Xu, L.</span>, <span class="me">Meng, L.</span>, Xu, W., et al.</div><div class="pub-venue">Geophysical Research Letters 52, e2025GL115218</div></div></li>
+      <li class="pub"><span class="pub-num">2024</span><div><div class="pub-title"><a href="https://doi.org/10.1126/science.adp0493" target="_blank" rel="noopener">Dual-initiation ruptures in the 2024 Noto earthquake encircling a fault asperity at a swarm edge</a></div><div class="pub-authors"><span class="me">Xu, L.</span>, Ji, C., <span class="me">Meng, L.</span>, Ampuero, J.-P., et al.</div><div class="pub-venue">Science 385, 871&ndash;876</div></div></li>
+      <li class="pub"><span class="pub-num">2023</span><div><div class="pub-title"><a href="https://doi.org/10.1029/2022JB025936" target="_blank" rel="noopener">Understanding the rupture kinematics and slip model of the 2021 Mw 7.4 Maduo earthquake: a bilateral event on bifurcating faults</a></div><div class="pub-authors"><span class="me">Xu, L.</span>, Yunjun, Z., Ji, C., <span class="me">Meng, L.</span>, et al.</div><div class="pub-venue">JGR: Solid Earth, e2022JB025936</div></div></li>
+      <li class="pub"><span class="pub-num">2023</span><div><div class="pub-title"><a href="https://doi.org/10.1038/s43247-023-01030-x" target="_blank" rel="noopener">The overall-subshear and multi-segment rupture of the 2023 Mw 7.8 Kahramanmaraş, Turkey earthquake in millennia supercycle</a></div><div class="pub-authors"><span class="me">Xu, L.</span>, <span class="me">Mohanna, S.</span>, <span class="me">Meng, L.</span>, et al.</div><div class="pub-venue">Communications Earth &amp; Environment 4, 379</div></div></li>
+      <li class="pub"><span class="pub-num">2018</span><div><div class="pub-title"><a href="https://doi.org/10.1002/2017JB015168" target="_blank" rel="noopener">Transpressional rupture cascade of the 2016 Mw 7.8 Kaikoura earthquake, New Zealand</a></div><div class="pub-authors">Xu, W., Feng, G., <span class="me">Meng, L.</span>, et al.</div><div class="pub-venue">JGR: Solid Earth 123, 2396&ndash;2409</div></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <nav class="prevnext" aria-label="Research topics">
+      <a href="back-projection.html"><small>Previous topic</small><span>&larr; Back-projection imaging</span></a>
+      <a class="nx" href="tsunami.html"><small>Next topic</small><span>Tsunami &rarr;</span></a>
+    </nav>
+  </section>
+</main>
+
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
+<script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

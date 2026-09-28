@@ -3,62 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Earthquake Swarms &amp; Fluid-Driven Seismicity — Lingsen Meng</title>
-<meta name="description" content="Earthquake Swarms & Fluid-Driven Seismicity — research in the Meng seismology group at UCLA.">
+<title>Swarms, Slow Slip &amp; Fibre Sensing — Lingsen Meng</title>
+<meta name="description" content="Earthquake swarms, foreshocks, slow slip and afterslip, and distributed acoustic sensing: Noto, Tengchong, Illapel, Iquique, Ridgecrest, and a 3-D relocated catalogue from Hawaii.">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- /site:head -->
 </head>
 <body>
 
-<nav class="nav">
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
   <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Lingsen Meng</a>
-    <div class="nav-links">
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
-      <a href="research.html" class="active">Research</a>
+      <a href="research.html" aria-current="page">Research</a>
       <a href="publications.html">Publications</a>
       <a href="ai-for-math.html">AI for Math</a>
       <a href="blog.html">Blog</a>
       <a href="group.html">Group</a>
-      <a href="resource.html">Resource</a>
+      <a href="resource.html">Resources</a>
       <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
     </div>
   </div>
-</nav>
+</header>
+<!-- /site:nav -->
 
-<main class="wrap">
-  <section style="border-top:none;">
-    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; Earthquake Swarms & Fluid-Driven Seismicity</p>
-    <h2 style="font-size:30px;">Earthquake Swarms & Fluid-Driven Seismicity</h2>
+<main class="wrap" id="main">
+  <section class="topic-hero">
+    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; 05</p>
+    <p class="kicker"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-swarm"></use></svg>Seismicity</p>
+    <h1>Swarms, slow slip &amp; fibre sensing</h1>
     <p class="lead">
-      Not all seismicity is driven by tectonic loading alone. We study earthquake swarms and
-      fluid-pressure-driven sequences, where migrating fluids and multiscale fault complexity
-      modulate where and when earthquakes occur. Recent work examines the multi-year Noto Peninsula
-      sequence in Japan — including what finally ended the swarm and drove its aftershocks
-      <span class="ref">(Mohanna et al., EPSL 2026)</span> — and the hydrothermally driven swarms of
-      the Tengchong Volcanic Field on the SE Tibetan Plateau
-      <span class="ref">(Ma et al., Tectonophysics 2026)</span>. Machine-learning detection (e.g.,
-      the EdgePhase multi-station phase picker) lets us build the dense catalogs these studies
-      require.
+      Small earthquakes record processes that large ones hide: fluid pressure migrating along faults, slow
+      slip that loads a future rupture, afterslip that drives aftershocks. We build dense catalogues with
+      template matching and machine-learning phase picking, relocate them, and read those processes from
+      how the seismicity moves in space and time.
     </p>
-    <figure class="fig">
-      <img src="assets/figures/swarms-tengchong.jpg" alt="Seismicity of the Tengchong Volcanic Field (SE Tibetan Plate">
-      <figcaption>Seismicity of the Tengchong Volcanic Field (SE Tibetan Plateau): swarms cluster near hot springs and volcanoes along the Sagaing/NCB system, driven by hydrothermal fluids and multiscale fault complexity <span class="ref">(Ma et al., Tectonophysics 2026)</span>.</figcaption>
+    <nav class="onpage" aria-label="On this page"><span>On this page</span>
+      <a href="#swarms">Swarms</a><a href="#hawaii">Hawaii catalogue</a><a href="#slow-slip">Slow slip</a><a href="#das">Fibre sensing</a><a href="#papers">Key papers</a>
+    </nav>
+  </section>
+
+  <section id="swarms">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Fluid-driven swarms</h2>
+        <h3 style="margin-top:0">Noto Peninsula, Japan</h3>
+        <p>A four-year swarm preceded the 2024 M<sub>w</sub>&nbsp;7.5 Noto earthquake. Comparing the pore-pressure evolution of the swarm
+        with Coulomb stress changes from the 2023 M<sub>w</sub>&nbsp;6.3 sequence suggests that high pore pressure played a larger role in
+        triggering the mainshock than elastic stress transfer. After the mainshock the drivers of aftershocks vary in space:
+        static stress changes dominate early in the southwest, migrating afterslip in the southwest and centre, and localised
+        afterslip in the northeast. Swarm cessation in the central zone points to poroelastic rebound after the pressure was
+        released, consistent with cyclic fault valving <span class="cite">(<a href="https://doi.org/10.1016/j.epsl.2026.120113" target="_blank" rel="noopener">Mohanna et al., 2026, <em>EPSL</em></a>)</span>.</p>
+        <h3>Tengchong Volcanic Field, SE Tibetan Plateau</h3>
+        <p>A 12-month dense broadband deployment revealed three swarms on pre-existing faults, including conjugate systems and
+        sharp fault bends rather than only classic stepovers; two lie in previously unstudied areas east and southeast of the
+        volcanic zone. Migration fronts and back fronts follow pore-pressure diffusion, and the swarms show localised stress
+        heterogeneity <span class="cite">(<a href="https://doi.org/10.1016/j.tecto.2026.231080" target="_blank" rel="noopener">Ma et al., 2026, <em>Tectonophysics</em></a>)</span>.</p>
+      </div>
+      <figure class="fig">
+        <img src="assets/figures/swarms-tengchong.jpg" alt="Map of the Tengchong Volcanic Field with stations, hot springs, volcanoes and three earthquake swarms" loading="lazy" width="550" height="425">
+        <figcaption><b>Tengchong Volcanic Field.</b> Stations (blue triangles), hot springs, volcanoes and the three swarms identified in the
+        relocated catalogue. From Ma et al. (2026), <em>Tectonophysics</em>.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="hawaii">
+    <div class="prose">
+      <h2>A relocated catalogue in three dimensions: Hawai&#699;i 2026</h2>
+      <p>The 2026 M<sub>w</sub>&nbsp;5.9 South Kona earthquake occurred while a swarm was active beneath P&#257;hala. We built a catalogue
+      of both sequences from continuous data with a machine-learning workflow (PhaseNet picking, REAL association, HYPOINVERSE
+      location, and hypoDD relocation with catalogue and cross-correlation differential times). Drag to rotate; colour is depth.</p>
+    </div>
+    <figure class="viz">
+      <div class="viz-head"><h3>South Kona sequence and P&#257;hala swarm, 23 Apr &ndash; 10 Jun 2026</h3><span class="viz-tag">Preliminary</span></div>
+      <div class="viz-stage r-std" data-viz="catalog" data-src="assets/data/catalog/hawaii_points.json" data-csv="assets/data/catalog/hawaii_points.csv" data-zmax="50"></div>
+      <div class="viz-legend"><span data-n></span> events &middot; depth 0 <span class="cbar"></span> <span data-zmax></span> &middot; point size &prop; magnitude &middot; coastline at sea level &middot; no vertical exaggeration</div>
+      <figcaption class="viz-foot"></figcaption>
     </figure>
+    <p class="cite">Preliminary relocations from a manuscript in preparation; not peer reviewed. Magnitudes are network M<sub>L</sub> used as a proxy.</p>
+  </section>
+
+  <section id="slow-slip">
+    <div class="prose">
+      <h2>Foreshocks, slow slip and afterslip</h2>
+      <p>Matched-filter detection and repeating earthquakes let us follow aseismic slip before and after large earthquakes.</p>
+      <ul>
+        <li>Repeating earthquakes in the foreshock sequence of the 2014 M<sub>w</sub>&nbsp;8.2 Iquique earthquake migrated toward the
+        mainshock hypocentre, pointing to a large slow-slip event on the megathrust before the mainshock; their recurrence
+        times show different slip behaviour on different segments <span class="cite">(Meng et al., 2015, <em>EPSL</em>)</span>.</li>
+        <li>Before the 2015 M<sub>w</sub>&nbsp;8.4 Illapel earthquake, seismicity and aseismic slip accelerated around the future epicentre
+        <span class="cite">(Huang &amp; Meng, 2018, <em>GRL</em>)</span>; afterwards, early aftershocks expanded together with afterslip
+        <span class="cite">(Huang et al., 2017, <em>EPSL</em>)</span>.</li>
+        <li>Matched filtering recovered missing events before and after the 2015 Gorkha earthquake, including a rise in seismicity
+        rate a few days before the mainshock <span class="cite">(Huang et al., 2016, <em>Tectonophysics</em>)</span>.</li>
+        <li>Foreshocks of the 2019 Ridgecrest earthquakes evolved in space and time before the M&nbsp;7.1 mainshock
+        <span class="cite">(Huang et al., 2020, <em>EPSL</em>)</span>, and the stress field changed during the sequence
+        <span class="cite">(Sheng &amp; Meng, 2020, <em>GRL</em>)</span>.</li>
+        <li>Deep (15&ndash;50&nbsp;km) slow-slip events at convergent margins can be modelled as slip in a viscoplastic shear zone
+        <span class="cite">(Yin, Xie &amp; Meng, 2018, <em>EPSL</em>)</span>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="das">
+    <div class="prose">
+      <h2>Distributed acoustic sensing</h2>
+      <p>DAS turns optical-fibre cables into seismic arrays with a sensor every few metres, and the data volumes are large. A
+      compressive-sensing workflow applied to the Milun Fault (MiDAS) project in Taiwan compresses the data by a factor of at
+      least 15 while the reconstructed earthquake records remain usable by standard algorithms, and runs detection directly on
+      the compressed data. Compared with other compression schemes on eight datasets, it works best for high signal-to-noise,
+      event-oriented applications <span class="cite">(Ma, Meng &amp; Lin, 2026, <em>GJI</em>, accepted)</span>.</p>
+    </div>
+  </section>
+
+  <section id="papers">
+    <h2>Key papers</h2>
+    <ul class="pub-list">
+      <li class="pub"><span class="pub-num">2026</span><div><div class="pub-title"><a href="pdf/66.pdf" target="_blank" rel="noopener">Distributed Acoustic Sensing data compression for seismological applications via compressive sensing</a></div><div class="pub-authors"><span class="me">Ma, Y.</span>, <span class="me">Meng, L.</span> &amp; Lin, Y.-Y.</div><div class="pub-venue">Geophysical Journal International (accepted)</div></div></li>
+      <li class="pub"><span class="pub-num">2026</span><div><div class="pub-title"><a href="https://doi.org/10.1016/j.epsl.2026.120113" target="_blank" rel="noopener">Swarm cessation and aftershock drivers following the pressure release of a four-year-long seismic sequence at the Noto Peninsula</a></div><div class="pub-authors"><span class="me">Mohanna, S.</span>, <span class="me">Meng, L.</span>, Vuan, A. &amp; Yu, H.</div><div class="pub-venue">Earth and Planetary Science Letters 690, 120113</div></div></li>
+      <li class="pub"><span class="pub-num">2026</span><div><div class="pub-title"><a href="https://doi.org/10.1016/j.tecto.2026.231080" target="_blank" rel="noopener">Multiscale fault complexity and hydrothermal processes drive earthquake swarms in the Tengchong Volcanic Field, Southeastern Tibetan Plateau</a></div><div class="pub-authors"><span class="me">Ma, J.-Z.</span>, <span class="me">Meng, L.</span>, Yin, H., et al.</div><div class="pub-venue">Tectonophysics, 231080</div></div></li>
+      <li class="pub"><span class="pub-num">2018</span><div><div class="pub-title"><a href="https://doi.org/10.1029/2018GL077060" target="_blank" rel="noopener">Slow unlocking processes preceding the 2015 Mw 8.4 Illapel, Chile, earthquake</a></div><div class="pub-authors"><span class="me">Huang, H.</span> &amp; <span class="me">Meng, L.</span></div><div class="pub-venue">Geophysical Research Letters 45</div></div></li>
+      <li class="pub"><span class="pub-num">2015</span><div><div class="pub-title"><a href="https://doi.org/10.1016/j.epsl.2014.11.041" target="_blank" rel="noopener">Dual megathrust slip behaviors of the 2014 Iquique earthquake sequence</a></div><div class="pub-authors"><span class="me">Meng, L.</span>, <span class="me">Huang, H.</span>, Bürgmann, R., Ampuero, J.P. &amp; Strader, A.</div><div class="pub-venue">Earth and Planetary Science Letters 411, 177&ndash;187</div></div></li>
+    </ul>
   </section>
 
   <section>
-    <div class="prevnext">
-      <a class="pv" href="tsunami.html">&larr; Tsunami Prediction & Early Warning</a>
-      <a class="nx" href="slow-slip.html">Pre-, Post-, and Independent Slow Slip &rarr;</a>
-    </div>
-    <p style="margin-top:16px;"><a class="btn" href="research.html">&larr; All research topics</a> &nbsp; <a class="btn btn-primary" href="publications.html">Publications &rarr;</a></p>
+    <nav class="prevnext" aria-label="Research topics">
+      <a href="tsunami.html"><small>Previous topic</small><span>&larr; Tsunami</span></a>
+      <a class="nx" href="ai-geoscience.html"><small>Next topic</small><span>AI for geoscience &rarr;</span></a>
+    </nav>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
 </footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
 <script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

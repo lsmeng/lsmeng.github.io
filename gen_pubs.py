@@ -226,27 +226,13 @@ HTML = f'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications — Lingsen Meng</title>
 <meta name="description" content="Complete list of publications by Lingsen Meng, UCLA seismology.">
-<link rel="stylesheet" href="style.css">
+<!-- site:head --><!-- /site:head -->
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Lingsen Meng</a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="research.html">Research</a>
-      <a href="publications.html" class="active">Publications</a>
-      <a href="ai-for-math.html">AI for Math</a>
-      <a href="blog.html">Blog</a>
-      <a href="group.html">Group</a>
-      <a href="resource.html">Resource</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-  </div>
-</nav>
+<!-- site:nav --><!-- /site:nav -->
 
-<main class="wrap">
+<main class="wrap" id="main">
 {SUBMITTED_SECTION}  <section{PUB_TOP}>
     <h2 style="font-size:30px;">Publications</h2>
     <p class="pub-controls">
@@ -260,10 +246,7 @@ HTML = f'''<!DOCTYPE html>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
-</footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<!-- site:foot --><!-- /site:foot -->
 <script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
@@ -271,4 +254,9 @@ HTML = f'''<!DOCTYPE html>
 
 with open("publications.html", "w") as f:
     f.write(HTML)
+# stamp the shared head/nav/footer (tools/site_chrome.py) into the generated page
+import sys, os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "tools"))
+import site_chrome
+site_chrome.apply("publications.html")
 print(f"Wrote publications.html with {len(PUBS)} entries")

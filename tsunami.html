@@ -3,77 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tsunami Prediction &amp; Early Warning — Lingsen Meng</title>
-<meta name="description" content="Tsunami Prediction & Early Warning — research in the Meng seismology group at UCLA.">
+<title>Tsunami — Lingsen Meng</title>
+<meta name="description" content="Tsunami source imaging and warning: back-projection-based warning, time-reversal and adjoint-state inversion, the 2024 Noto landslide source, and a sea-surface animation over real bathymetry.">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- /site:head -->
 </head>
 <body>
 
-<nav class="nav">
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
   <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Lingsen Meng</a>
-    <div class="nav-links">
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
-      <a href="research.html" class="active">Research</a>
+      <a href="research.html" aria-current="page">Research</a>
       <a href="publications.html">Publications</a>
       <a href="ai-for-math.html">AI for Math</a>
       <a href="blog.html">Blog</a>
       <a href="group.html">Group</a>
-      <a href="resource.html">Resource</a>
+      <a href="resource.html">Resources</a>
       <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
     </div>
   </div>
-</nav>
+</header>
+<!-- /site:nav -->
 
-<main class="wrap">
-  <section style="border-top:none;">
-    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; Tsunami Prediction & Early Warning</p>
-    <h2 style="font-size:30px;">Tsunami Prediction & Early Warning</h2>
+<main class="wrap" id="main">
+  <section class="topic-hero">
+    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; 04</p>
+    <p class="kicker"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-tsunami"></use></svg>Tsunami</p>
+    <h1>Tsunami source imaging &amp; warning</h1>
     <p class="lead">
-      A natural extension of array-based EEW is to apply similar processing at larger spatial scale
-      and longer time span for tsunami warning: use real-time back-projection to build a simple
-      source model that feeds a tsunami simulation predicting arrival time and coastal run-up
-      height. We demonstrated this for megathrust events including the 2011 Tohoku-Oki, 2014
-      Iquique, and 2015 Illapel earthquakes <span class="ref">(An &amp; Meng, GRL 2016)</span>,
-      supporting warnings in regions exposed to near-field tsunami hazard.
+      Near a subduction zone the tsunami can reach the coast within tens of minutes, so a warning has to rest
+      on what can be measured in the first few. We work on two questions: how quickly the earthquake source
+      can be characterised from seismic waves, and how accurately the initial sea surface can be recovered
+      from tsunami records without assuming a fault model.
     </p>
-    <figure class="fig">
-      <img src="assets/figures/tsunami-prediction-and-early-warning-1.png" alt="Fast seismic waves reach onshore arrays well before the slow">
-      <figcaption>Fast seismic waves reach onshore arrays well before the slow tsunami wave; real-time back-projection of the rupture feeds a tsunami forecast.</figcaption>
-    </figure>
+    <nav class="onpage" aria-label="On this page"><span>On this page</span>
+      <a href="#warning">Warning from seismic arrays</a><a href="#imaging">Imaging the source</a><a href="#animation">Propagation</a><a href="#papers">Key papers</a>
+    </nav>
+  </section>
 
-    <div class="subsec" id="tri">
-      <h3>Time-reversal imaging of tsunami sources</h3>
-      <p>
-        Traditional tsunami source inversion uses finite-fault slip modeling, which is sensitive to
-        assumed fault parameters and crustal rigidity and is computationally heavy. Time-reversal
-        imaging instead reconstructs the initial sea-surface elevation by back-propagating and
-        constructively interfering the recorded tsunami waveforms
-        <span class="ref">(An &amp; Meng, 2017)</span>. It needs no pre-defined fault parameters,
-        suits events with unknown fault geometry, handles dense meshes efficiently, and can resolve
-        small secondary sources such as submarine landslides or splay-fault ruptures. We validated
-        it on synthetic sources and applied it to the 2014 Iquique and 2015 Illapel events.
-      </p>
-    <figure class="fig">
-      <img src="assets/figures/tsunami-time-reversal-imaging-1.png" alt="Initial water elevation recovered by time-reversal imaging (">
-      <figcaption>Initial water elevation recovered by time-reversal imaging (bottom rows) compared with finite-fault predictions (top), for tsunami events including 2014 Iquique.</figcaption>
-    </figure>
+  <section id="warning">
+    <div class="two-col">
+      <div class="prose">
+        <h2>Warning from seismic arrays</h2>
+        <p>P waves travel at about 8&nbsp;km/s; a tsunami in deep water at a few hundred metres per second. Back-projection
+        of the first minutes of seismic data from coastal arrays gives the extent of the rupture, which feeds a
+        simplified source for tsunami simulation. We demonstrated this for the 2011 Tohoku-Oki, 2014 Iquique and 2015
+        Illapel earthquakes <span class="cite">(An &amp; Meng, 2016, <em>GRL</em>)</span>.</p>
+        <p>With local networks (0.7&ndash;3.5&deg;), merging back-projections from several station groups avoids artefacts
+        from overlapping phases and coda in single-array images. For the 2003 Tokachi-oki and 2011 Tohoku earthquakes,
+        predictions were available 7&nbsp;minutes after origin, with amplitude errors of &minus;2.55 to 3.01&nbsp;m and arrival-time
+        errors of &minus;8.7 to 10.0&nbsp;minutes <span class="cite">(<a href="https://doi.org/10.1029/2019GL085763" target="_blank" rel="noopener">Xie &amp; Meng, 2020, <em>GRL</em></a>)</span>.</p>
+      </div>
+      <figure class="fig" style="margin-top:6px">
+        <svg viewBox="0 0 560 300" role="img" aria-label="Schematic: seismic waves from a megathrust earthquake reach coastal arrays before the tsunami reaches the coast" style="width:100%;height:auto;display:block">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker>
+            <marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--link)"/></marker>
+          </defs>
+          <rect x="0" y="0" width="560" height="300" fill="var(--viz-bg)"/>
+          <!-- ocean -->
+          <path d="M0 96 L330 96 L330 140 C300 150 250 160 200 170 C140 182 70 186 0 188 Z" fill="var(--viz-ocean)" stroke="none"/>
+          <path d="M0 96 C60 96 90 76 120 76 C150 76 170 96 220 96 L330 96" fill="none" stroke="var(--link)" stroke-width="2"/>
+          <!-- land -->
+          <path d="M330 96 C380 86 430 70 560 64 L560 300 L0 300 L0 188 C70 186 140 182 200 170 C250 160 300 150 330 140 Z" fill="var(--viz-land)"/>
+          <!-- plate interface -->
+          <path d="M0 196 C120 200 240 200 330 222 C400 238 480 262 560 290" fill="none" stroke="var(--ink-2)" stroke-width="1.4" stroke-dasharray="6 5"/>
+          <!-- rupture -->
+          <path d="M150 199 L280 206" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
+          <g transform="translate(205 203)"><path d="M0 -10 L3 -3 L10 -3 L4 2 L6 10 L0 5 L-6 10 L-4 2 L-10 -3 L-3 -3 Z" fill="var(--accent)"/></g>
+          <!-- seismic rays -->
+          <path d="M215 200 C300 180 380 130 420 82" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#ah)"/>
+          <path d="M225 204 C330 200 440 150 500 74" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#ah)"/>
+          <!-- arrays -->
+          <g fill="var(--ink)"><path d="M412 74l6-10 6 10z"/><path d="M426 72l6-10 6 10z"/><path d="M440 70l6-10 6 10z"/><path d="M490 66l6-10 6 10z"/><path d="M504 65l6-10 6 10z"/><path d="M518 64l6-10 6 10z"/></g>
+          <!-- tsunami arrow -->
+          <path d="M150 64 L250 64" stroke="var(--link)" stroke-width="1.6" marker-end="url(#ah2)"/>
+          <g font-size="13" fill="var(--ink)">
+            <text x="96" y="52">tsunami, ~0.2 km/s in deep water</text>
+            <text x="352" y="44">coastal seismic arrays</text>
+            <text x="300" y="168" fill="var(--accent-ink)">P waves, ~8 km/s</text>
+            <text x="120" y="228" fill="var(--muted)">megathrust rupture</text>
+          </g>
+        </svg>
+        <figcaption>Why seismic arrays can warn: the seismic waves reach coastal stations minutes before the tsunami reaches the coast. Schematic, not to scale.</figcaption>
+      </figure>
     </div>
+  </section>
+
+  <section id="imaging">
+    <div class="prose">
+      <h2>Imaging the initial sea surface</h2>
+      <p>Finite-fault tsunami inversions depend on the assumed fault geometry and rigidity, and computing Green's functions
+      limits their resolution. Two alternatives avoid the fault model altogether.</p>
+      <h3>Time-reversal imaging</h3>
+      <p>Recorded tsunami waveforms are propagated backwards in time and add up constructively at the source, which gives
+      the initial water elevation directly. It suits events with unknown fault geometry and can resolve small secondary
+      sources; we applied it to the 2015 Illapel tsunami <span class="cite">(An &amp; Meng, 2017, <em>GRL</em>)</span>.</p>
+      <h3>Adjoint-state full-waveform inversion</h3>
+      <p>The adjoint method computes the gradient of the waveform misfit with respect to the whole initial sea surface at
+      the cost of two simulations, which makes dense grids and many stations affordable. It was developed on synthetic
+      sources and the 2014 Iquique tsunami <span class="cite">(Zhou et al., 2019, <em>JGR</em>)</span> and applied to near-field
+      pressure-gauge records for rapid source characterisation <span class="cite">(Xie et al., 2023, <em>Earth Space Sci.</em>)</span>.
+      For the 2024 Noto earthquake, adjoint inversion of tsunami records across the Sea of Japan identified a landslide
+      source in Toyama Bay, the first time a landslide source has been resolved by inverting water-elevation data
+      <span class="cite">(<a href="https://doi.org/10.1186/s40623-025-02197-7" target="_blank" rel="noopener">Mohanna et al., 2025, <em>Earth Planets Space</em></a>)</span>.</p>
+    </div>
+  </section>
+
+  <section id="animation">
+    <div class="prose">
+      <h2>Tsunami propagation over real bathymetry</h2>
+      <p>Warning needs many forward simulations quickly. We are training neural-operator (FNO) surrogates on simulations
+      from our finite-difference solver; the animation below is one of those simulations. Red is sea surface above rest level,
+      blue below.</p>
+    </div>
+    <figure class="viz">
+      <div class="viz-head"><h3>Sea-surface height, Tohoku-like scenario</h3><span class="viz-tag">Scenario simulation</span></div>
+      <div class="viz-stage r-sq" data-viz="tsunami" data-src="assets/data/tsunami/tohoku_scenario.json" data-scale="1.0" style="max-height:640px;aspect-ratio:auto;height:min(92vw,620px)"></div>
+      <div class="viz-legend">sea-surface height <span class="cbar"></span> &minus;<span data-amp></span> to +<span data-amp></span>&nbsp;m (saturated) &middot; shading = water depth</div>
+      <div class="viz-controls">
+        <button class="btn" type="button" data-play>Play</button>
+        <label>Time <input type="range" min="0" max="117" value="0" aria-label="Minutes after origin"><output>0 min</output></label>
+      </div>
+      <figcaption class="viz-foot"></figcaption>
+    </figure>
+    <p class="cite">A 2011-Tohoku-like two-patch thrust source (M<sub>w</sub>&nbsp;8.96), not an inversion of the 2011 event. Linear shallow-water
+    equations solved with the group's finite-difference code on GEBCO 2026 30&Prime; bathymetry, with the coast treated as a reflecting
+    wall (no inundation); the solver was checked against GeoClaw and PCOMCOT. Frames every 3&nbsp;min from 0 to 117&nbsp;min, interpolated for display.
+    Unpublished work in progress.</p>
+  </section>
+
+  <section id="papers">
+    <h2>Key papers</h2>
+    <ul class="pub-list">
+      <li class="pub"><span class="pub-num">2025</span><div><div class="pub-title"><a href="https://doi.org/10.1186/s40623-025-02197-7" target="_blank" rel="noopener">The 2024 Noto earthquake and tsunami: insights from the static and adjoint state inversion methods</a></div><div class="pub-authors"><span class="me">Mohanna, S.</span>, <span class="me">Meng, L.</span>, Ho, T.C., An, C. &amp; <span class="me">Xu, L.</span></div><div class="pub-venue">Earth, Planets and Space 77, 130</div></div></li>
+      <li class="pub"><span class="pub-num">2023</span><div><div class="pub-title"><a href="https://doi.org/10.1029/2023EA003086" target="_blank" rel="noopener">Adjoint inversion of near-field pressure gauge recordings for rapid and accurate tsunami source characterization</a></div><div class="pub-authors"><span class="me">Xie, Y.</span>, <span class="me">Mohanna, S.</span>, <span class="me">Meng, L.</span>, Zhou, T. &amp; Ho, T.C.</div><div class="pub-venue">Earth and Space Science 10, e2023EA003086</div></div></li>
+      <li class="pub"><span class="pub-num">2020</span><div><div class="pub-title"><a href="https://doi.org/10.1029/2019GL085763" target="_blank" rel="noopener">A multi-array back-projection approach for tsunami warning</a></div><div class="pub-authors"><span class="me">Xie, Y.</span> &amp; <span class="me">Meng, L.</span></div><div class="pub-venue">Geophysical Research Letters 47, e2019GL085763</div></div></li>
+      <li class="pub"><span class="pub-num">2019</span><div><div class="pub-title"><a href="https://doi.org/10.1029/2018JB016678" target="_blank" rel="noopener">An adjoint-state full waveform tsunami source inversion method and its application to the 2014 Chile-Iquique tsunami event</a></div><div class="pub-authors"><span class="me">Zhou, T.</span>, <span class="me">Meng, L.</span>, <span class="me">Xie, Y.</span> &amp; Jia, H.</div><div class="pub-venue">Journal of Geophysical Research</div></div></li>
+      <li class="pub"><span class="pub-num">2017</span><div><div class="pub-title"><a href="https://doi.org/10.1002/2016GL071304" target="_blank" rel="noopener">Time reversal imaging of the 2015 Illapel tsunami source</a></div><div class="pub-authors">An, C. &amp; <span class="me">Meng, L.</span></div><div class="pub-venue">Geophysical Research Letters 44, 1732&ndash;1739</div></div></li>
+      <li class="pub"><span class="pub-num">2016</span><div><div class="pub-title"><a href="https://doi.org/10.1002/2016GL068786" target="_blank" rel="noopener">Application of array back-projection to tsunami prediction and early warning</a></div><div class="pub-authors">An, C. &amp; <span class="me">Meng, L.</span></div><div class="pub-venue">Geophysical Research Letters 43, 3677&ndash;3685</div></div></li>
+    </ul>
   </section>
 
   <section>
-    <div class="prevnext">
-      <a class="pv" href="eew.html">&larr; Earthquake Early Warning</a>
-      <a class="nx" href="swarms.html">Earthquake Swarms & Fluid-Driven Seismicity &rarr;</a>
-    </div>
-    <p style="margin-top:16px;"><a class="btn" href="research.html">&larr; All research topics</a> &nbsp; <a class="btn btn-primary" href="publications.html">Publications &rarr;</a></p>
+    <nav class="prevnext" aria-label="Research topics">
+      <a href="finite-fault.html"><small>Previous topic</small><span>&larr; Finite-fault &amp; joint inversion</span></a>
+      <a class="nx" href="swarms.html"><small>Next topic</small><span>Swarms, slow slip &amp; fibre sensing &rarr;</span></a>
+    </nav>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
 </footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
 <script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

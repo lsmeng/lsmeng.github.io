@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Geoscience — Lingsen Meng</title>
+<meta name="description" content="Machine learning in seismology: EdgePhase picking, measuring how many machine-learning detections seismologists can verify, and agent-based seismological workflows.">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- /site:head -->
+</head>
+<body>
+
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="research.html" aria-current="page">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="ai-for-math.html">AI for Math</a>
+      <a href="blog.html">Blog</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html">Resources</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /site:nav -->
+
+<main class="wrap" id="main">
+  <section class="topic-hero">
+    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; 06</p>
+    <p class="kicker"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-ai"></use></svg>Machine learning</p>
+    <h1>AI for geoscience</h1>
+    <p class="lead">
+      Machine-learning pickers now build earthquake catalogues with five to fifty times more events than
+      routine networks, and nobody reviews most of them. Our interest is less in making the models bigger than
+      in knowing what their output is worth: which detections are earthquakes, how that can be measured, and
+      how a whole processing chain can be run so that each step can be checked.
+    </p>
+    <nav class="onpage" aria-label="On this page"><span>On this page</span>
+      <a href="#verify">Verifying ML catalogues</a><a href="#picking">Picking and detection</a><a href="#agents">Agent-based workflows</a><a href="#papers">Key papers</a>
+    </nav>
+  </section>
+
+  <section id="verify">
+    <div class="prose">
+      <h2>Can human seismologists verify machine-learning detections?</h2>
+      <p>In a routine network catalogue every event has been looked at by an analyst. Machine-learning catalogues leave
+      most detections unexamined, but whether they are earthquakes can still be measured, because each one can be checked
+      blind against its own waveforms. Human seismologists returned 4,800 blind verdicts on 1,200 detections from six
+      catalogues and confirmed 60 to 98% of the events they were willing to judge.</p>
+      <p>A score fitted to seven quantities that a catalogue already records reproduces that judgement and transfers to a
+      sequence it was not trained on, so the panel's standard can be applied to millions of events. The score also separates
+      the catalogues geometrically: at Ridgecrest the high-scored events trace the conjugate strike-slip fault network, and
+      beneath northeast Japan they resolve both planes of the double seismic zone where the low-scored events blur them.
+      We suggest releasing machine catalogues in tiers by this score
+      <span class="cite">(Meng, Huang, Ma &amp; Ma, submitted; <a href="pdf/submitted-catalogue-verification.pdf" target="_blank" rel="noopener">preprint</a>,
+      <a href="https://doi.org/10.5281/zenodo.22059218" target="_blank" rel="noopener">data and code</a>)</span>.</p>
+    </div>
+    <figure class="fig">
+      <img src="assets/figures/ml-catalogue-double-seismic-zone.png" alt="Depth section of the NE Japan forearc catalogue coloured by confirmability score, and the distribution of distance below the plate interface for high- and low-scored events" loading="lazy" width="1600" height="655">
+      <figcaption><b>Low-scored events blur a real structure.</b> (a) Depth section of a machine-learning catalogue of the NE Japan
+      forearc (38.4&ndash;39.8&deg;N) coloured by confirmability score, with the Slab2 interface. (b) Distance below the interface for the
+      top and bottom quartiles by score (8,910 events each): both show the upper plane, but the lower plane of the double seismic
+      zone, about 30&nbsp;km below, is distinct only among the high-scored events. From the preprint (Fig. 4), under review.</figcaption>
+    </figure>
+  </section>
+
+  <section id="picking">
+    <div class="prose">
+      <h2>Picking and detection</h2>
+      <p>EdgePhase is a deep-learning phase picker that uses the recordings of several neighbouring stations together to pick
+      P and S arrivals <span class="cite">(Feng, Mohanna &amp; Meng, 2022, <em>G-Cubed</em>)</span>.
+      Combining back-projection with matched-filter detection finds offshore earthquakes that networks miss
+      <span class="cite">(Feng, Meng &amp; Huang, 2020, <em>JGR</em>)</span>. Dense catalogues built this way underlie the swarm and slow-slip studies
+      on the <a href="swarms.html">swarms page</a>, and compressive sensing makes large fibre-optic (DAS) datasets manageable.</p>
+    </div>
+  </section>
+
+  <section id="agents">
+    <div class="prose">
+      <h2>Agent-based seismological workflows</h2>
+      <p>A catalogue from continuous data passes through many stages: downloading, phase picking, association, location,
+      relocation, and quality control, each with parameters that matter. We are building workflows in which AI agents run these
+      standard tools end to end, with every parameter choice and intermediate product written to disk so that a seismologist can
+      audit or rerun any step. The relocated Hawai&#699;i catalogue on the <a href="swarms.html#hawaii">swarms page</a> was built with such a
+      pipeline (PhaseNet, REAL, HYPOINVERSE, hypoDD). The same concern with checkable results runs through our work on
+      <a href="ai-for-math.html">AI-assisted mathematics</a>, where results are checked by computer (for example in Lean) wherever possible.</p>
+    </div>
+  </section>
+
+  <section id="papers">
+    <h2>Key papers</h2>
+    <ul class="pub-list">
+      <li class="pub"><span class="pub-num">2026</span><div><div class="pub-title"><a href="pdf/submitted-catalogue-verification.pdf" target="_blank" rel="noopener">Can human seismologists verify machine-learning detected earthquakes?</a></div><div class="pub-authors"><span class="me">Meng, L.</span>, <span class="me">Huang, H.</span>, <span class="me">Ma, J.-Z.</span> &amp; <span class="me">Ma, Y.</span></div><div class="pub-venue">Submitted (preprint) &middot; <a href="https://doi.org/10.5281/zenodo.22059218" target="_blank" rel="noopener">data &amp; code</a></div></div></li>
+      <li class="pub"><span class="pub-num">2022</span><div><div class="pub-title"><a href="https://doi.org/10.1029/2022GC010453" target="_blank" rel="noopener">EdgePhase: a deep learning model for multi-station seismic phase picking</a></div><div class="pub-authors"><span class="me">Feng, T.</span>, <span class="me">Mohanna, S.</span> &amp; <span class="me">Meng, L.</span></div><div class="pub-venue">Geochemistry, Geophysics, Geosystems, e2022GC010453</div></div></li>
+      <li class="pub"><span class="pub-num">2020</span><div><div class="pub-title"><a href="https://doi.org/10.1029/2020JB019599" target="_blank" rel="noopener">Detecting offshore seismicity: combining backprojection imaging and matched-filter detection</a></div><div class="pub-authors"><span class="me">Feng, T.</span>, <span class="me">Meng, L.</span> &amp; <span class="me">Huang, H.</span></div><div class="pub-venue">JGR: Solid Earth, e2020JB019599</div></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <nav class="prevnext" aria-label="Research topics">
+      <a href="swarms.html"><small>Previous topic</small><span>&larr; Swarms, slow slip &amp; fibre sensing</span></a>
+      <a class="nx" href="ai-for-math.html"><small>Related</small><span>AI for Math &rarr;</span></a>
+    </nav>
+  </section>
+</main>
+
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
+<script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

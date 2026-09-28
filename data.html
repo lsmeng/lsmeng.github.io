@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data &amp; Figures — Lingsen Meng</title>
+<meta name="description" content="Download the data behind the interactive figures on this site: supershear survey, back-projection radiators, finite-fault slip models, tsunami scenario and relocated catalogue, with sources and citations.">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- /site:head -->
+</head>
+<body>
+
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="research.html" aria-current="page">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="ai-for-math.html">AI for Math</a>
+      <a href="blog.html">Blog</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html">Resources</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /site:nav -->
+
+<main class="wrap" id="main">
+  <section class="page-head">
+    <p class="breadcrumb"><a href="research.html">Research</a> &nbsp;/&nbsp; Data</p>
+    <p class="kicker"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-data"></use></svg>Open data</p>
+    <h1 class="page-title">Data behind the figures</h1>
+    <p class="lead">
+      The interactive figures read small JSON files converted from the released data of each paper. The files are
+      listed here with their source. Please cite the original paper and dataset, not this website. Values were copied
+      from tables or released files, never read off figures.
+    </p>
+  </section>
+
+  <section>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead><tr><th>Dataset</th><th>Used in</th><th>Source and citation</th><th>Files</th></tr></thead>
+        <tbody>
+          <tr><td>Large shallow strike-slip earthquakes 2000&ndash;2020 with rupture-speed class (86 events) and four later events</td><td><a href="index.html">Home globe</a>, <a href="rupture.html#census">rupture speeds</a></td>
+            <td>Bao et al. (2022) <em>Nat. Geosci.</em> 15, 942&ndash;949, Tables S2&ndash;S5, <a href="https://doi.org/10.1038/s41561-022-01055-5" target="_blank" rel="noopener">doi:10.1038/s41561-022-01055-5</a>; later events from Xu et al. (2023, 2025). Region names of non-supershear events are Flinn&ndash;Engdahl regions, not from the paper.</td>
+            <td><a href="assets/data/supershear_globe.csv" download>CSV</a> &middot; <a href="assets/data/supershear_globe.json" download>JSON</a></td></tr>
+          <tr><td>Back-projection radiators (SEBP), per array: Mandalay 2025, Noto 2024, Kahramanmaraş and Elbistan 2023, Maduo 2021</td><td><a href="back-projection.html#playback">Back-projection</a></td>
+            <td>Xu et al. (2025) <em>Science</em>, data <a href="https://doi.org/10.5281/zenodo.17113746" target="_blank" rel="noopener">zenodo.17113746</a>; Xu et al. (2024) <em>Science</em>, <a href="https://doi.org/10.5281/zenodo.12786109" target="_blank" rel="noopener">zenodo.12786109</a>; Xu et al. (2023) <em>Commun. Earth Environ.</em>, <a href="https://doi.org/10.5281/zenodo.10040732" target="_blank" rel="noopener">zenodo.10040732</a>; Xu et al. (2023) <em>JGR</em>, <a href="https://doi.org/10.5281/zenodo.7761908" target="_blank" rel="noopener">zenodo.7761908</a>.</td>
+            <td><a href="assets/data/bp/bp_radiators.csv" download>CSV (all)</a> &middot; <a href="assets/data/bp/mandalay_2025.json" download>Mandalay</a> &middot; <a href="assets/data/bp/noto_2024.json" download>Noto</a> &middot; <a href="assets/data/bp/turkey_m78_2023.json" download>Mw 7.8</a> &middot; <a href="assets/data/bp/turkey_m75_2023.json" download>Mw 7.5</a> &middot; <a href="assets/data/bp/maduo_2021.json" download>Maduo</a></td></tr>
+          <tr><td>Finite-fault slip models (subfault slip, rake, rupture time) and recomputed moment-rate functions</td><td><a href="finite-fault.html#viewer">Finite-fault</a></td>
+            <td>Same papers and Zenodo archives as above. Moment-rate functions recomputed as the sum of the subfault slip-rate functions (Ji et al., 2003).</td>
+            <td><a href="assets/data/ffi/mandalay_2025.csv" download>Mandalay</a> &middot; <a href="assets/data/ffi/noto_2024.csv" download>Noto</a> &middot; <a href="assets/data/ffi/turkey_m78_2023.csv" download>Kahramanmaraş</a> &middot; <a href="assets/data/ffi/maduo_2021.csv" download>Maduo</a> (CSV; JSON alongside)</td></tr>
+          <tr><td>2026 Venezuela: back-projection radiators and preferred slip model</td><td>Back-projection, finite-fault</td>
+            <td>Submitted manuscript, not yet peer reviewed. Shown for illustration; values may change.</td>
+            <td><a href="assets/data/bp/venezuela_2026.json" download>BP</a> &middot; <a href="assets/data/ffi/venezuela_2026.csv" download>FFI</a></td></tr>
+          <tr><td>Tsunami sea-surface height, Tohoku-like scenario (40 frames, 3-min steps) and bathymetry</td><td><a href="tsunami.html#animation">Tsunami</a></td>
+            <td>Group finite-difference linear shallow-water solver on GEBCO 2026 bathymetry; scenario source, not an inversion; unpublished (FNO surrogate project).</td>
+            <td><a href="assets/data/tsunami/tohoku_scenario.json" download>JSON</a> &middot; <a href="assets/data/tsunami/tohoku_frames.png" download>frames (PNG)</a></td></tr>
+          <tr><td>Relocated catalogue, 2026 South Kona sequence and Pāhala swarm (3,873 events)</td><td><a href="swarms.html#hawaii">Swarms</a></td>
+            <td>Preliminary hypoDD relocations (PhaseNet, REAL, HYPOINVERSE); manuscript in preparation, not peer reviewed.</td>
+            <td><a href="assets/data/catalog/hawaii_points.csv" download>CSV</a> &middot; <a href="assets/data/catalog/hawaii_points.json" download>JSON</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cite" style="margin-top:18px">Coastlines in the maps and globe are from Natural Earth (public domain) via the <code>world-atlas</code> package.
+    The conversion scripts are in the site repository (<code>tools/build_site_data.py</code>, <code>tools/make_figures.py</code>).</p>
+  </section>
+</main>
+
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
+<script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

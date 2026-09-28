@@ -5,29 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications — Lingsen Meng</title>
 <meta name="description" content="Complete list of publications by Lingsen Meng, UCLA seismology.">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/source-serif-4@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<!-- /site:head -->
 </head>
 <body>
 
-<nav class="nav">
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
   <div class="nav-inner">
-    <a class="nav-brand" href="index.html">Lingsen Meng</a>
-    <div class="nav-links">
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="research.html">Research</a>
-      <a href="publications.html" class="active">Publications</a>
+      <a href="publications.html" aria-current="page">Publications</a>
       <a href="ai-for-math.html">AI for Math</a>
       <a href="blog.html">Blog</a>
       <a href="group.html">Group</a>
-      <a href="resource.html">Resource</a>
+      <a href="resource.html">Resources</a>
       <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
     </div>
   </div>
-</nav>
+</header>
+<!-- /site:nav -->
 
-<main class="wrap">
-  <section style="border-top:none;">
-    <h2 style="font-size:30px;">Submitted</h2>
+<main class="wrap" id="main">
+  <section class="page-head">
+    <h1 class="page-title">Submitted</h1>
     <p class="pub-controls">
       Manuscripts under review. Author preprints are posted here; the data and code behind each
       are archived publicly.
@@ -46,7 +61,7 @@
   </section>
 
   <section>
-    <h2 style="font-size:30px;">Publications</h2>
+    <h2 class="section-title">Publications</h2>
     <p class="pub-controls">
       66 peer-reviewed publications · 4,700+ citations · h-index 31 (Google Scholar). Names of group members in <span class="me">bold</span>. See also the
       <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar profile</a>.
@@ -651,10 +666,25 @@
   </section>
 </main>
 
-<footer>
-  <div class="wrap">© <span id="yr"></span> Lingsen Meng · Department of Earth, Planetary and Space Sciences, UCLA</div>
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
 </footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
 <script data-goatcounter="https://lsmeng.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
