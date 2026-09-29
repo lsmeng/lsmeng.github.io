@@ -35,20 +35,14 @@ RESEARCH_PAGES = {
 }
 
 # Theme is resolved before first paint to avoid a flash of the wrong theme.
-# Design variant (?theme=a|b|c, remembered) and colour mode are resolved before first paint.
-# Variant a = "Ocean", b = "Observatory" (dark by default), c = "Journal monochrome".
-# Each variant loads only its own fonts (Fontsource via jsDelivr).
+# Colour mode (light/dark) is resolved before first paint; fonts: Instrument Sans + Inter (Fontsource via jsDelivr).
 HEAD = """<!-- site:head -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<script>(function(){var d=document.documentElement,F='https://cdn.jsdelivr.net/npm/@fontsource',v='a',m=null;
-try{var q=new URLSearchParams(location.search).get('theme');if(/^[abc]$/.test(q||'')){localStorage.setItem('variant',q);}v=localStorage.getItem('variant')||'a';m=localStorage.getItem('theme');}catch(e){}
-if(!/^[abc]$/.test(v))v='a';d.setAttribute('data-variant',v);
-if(m!=='light'&&m!=='dark'){m=v==='b'?'dark':(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}
-d.setAttribute('data-theme',m);
-var fonts={a:['-variable/inter-tight@5/index.css','/ibm-plex-sans@5/400.css','/ibm-plex-sans@5/500.css','/ibm-plex-sans@5/600.css','/ibm-plex-mono@5/400.css'],
-b:['-variable/space-grotesk@5/index.css','-variable/inter@5/index.css','-variable/jetbrains-mono@5/index.css'],
-c:['-variable/instrument-sans@5/index.css','-variable/inter@5/index.css','/ibm-plex-mono@5/400.css']}[v];
-for(var i=0;i<fonts.length;i++){var l=document.createElement('link');l.rel='stylesheet';l.href=F+fonts[i];document.head.appendChild(l);}})();</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/instrument-sans@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
+<script>(function(){var d=document.documentElement,m=null;try{m=localStorage.getItem('theme');localStorage.removeItem('variant');}catch(e){}
+if(m!=='light'&&m!=='dark'){m=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+d.setAttribute('data-theme',m);})();</script>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="light dark">
@@ -96,7 +90,7 @@ FOOT = """<!-- site:foot -->
       <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
       <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng <span class="variant-switch" aria-label="Design variant">Design: <a href="?theme=a" data-variant-link="a">A</a> <a href="?theme=b" data-variant-link="b">B</a> <a href="?theme=c" data-variant-link="c">C</a></span></p>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
   </div>
 </footer>
 <script src="assets/js/site.js" defer></script>

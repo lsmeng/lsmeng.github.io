@@ -22,14 +22,8 @@
   function fireTheme() { var t = theme(); themeListeners.forEach(function (cb) { try { cb(t); } catch (e) { console.error(e); } }); }
   if (mq && mq.addEventListener) mq.addEventListener('change', function () {
     var stored = null; try { stored = localStorage.getItem('theme'); } catch (e) {}
-    if (stored !== 'light' && stored !== 'dark' && root.getAttribute('data-variant') !== 'b') root.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
+    if (stored !== 'light' && stored !== 'dark') root.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
     fireTheme();
-  });
-  // footer design switcher keeps the current page
-  document.querySelectorAll('[data-variant-link]').forEach(function (a) {
-    var v = a.getAttribute('data-variant-link');
-    a.href = location.pathname + '?theme=' + v + location.hash;
-    if (root.getAttribute('data-variant') === v) a.setAttribute('aria-current', 'true');
   });
   document.querySelectorAll('.theme-toggle').forEach(function (b) {
     b.addEventListener('click', function () {

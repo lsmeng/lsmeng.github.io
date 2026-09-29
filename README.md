@@ -1,7 +1,7 @@
 # Lingsen Meng — Academic Homepage
 
 Static personal website: hand-written HTML, one `style.css`, small ES-module scripts, **no build step**.
-Fonts (per design variant: Inter Tight + IBM Plex Sans, Space Grotesk + Inter + JetBrains Mono, or Instrument Sans + Inter) and libraries (Three.js, topojson-client, Natural Earth coastlines) load from
+Fonts (Instrument Sans + Inter) and libraries (Three.js, topojson-client, Natural Earth coastlines) load from
 cdn.jsdelivr.net, which is reachable from mainland China; every page still works with system fonts.
 
 ## Layout

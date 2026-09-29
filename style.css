@@ -1,97 +1,21 @@
 /* ===========================================================
    Lingsen Meng — academic homepage (2026 redesign)
-   Three design variants, chosen with ?theme=a|b|c (remembered):
-     a  Ocean        cool grey-white, deep navy ink, teal accent, Inter Tight + IBM Plex Sans
-     b  Observatory  dark-first blue-charcoal, white type, electric blue + amber, Space Grotesk + Inter + JetBrains Mono
-     c  Journal      pure white, black type, cobalt accent, Instrument Sans + Inter, thin rules
-   Each has light and dark tokens (html[data-theme]). Without JavaScript the page falls back
-   to variant a following prefers-color-scheme.
+   "Journal monochrome": pure white, black type, one cobalt accent, thin rules,
+   Instrument Sans headings + Inter body (Fontsource via jsDelivr, system fallbacks).
+   Light and dark modes: html[data-theme] set before paint (toggle + prefers-color-scheme);
+   without JavaScript the page follows prefers-color-scheme.
    =========================================================== */
 
 :root {
-  /* shared geometry */
-  --maxw: 1140px; --prose: 700px; --radius: 10px; --btn-radius: 8px; --header-h: 60px;
-  --sans: "IBM Plex Sans", "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+  --maxw: 1140px; --prose: 700px; --radius: 0px; --btn-radius: 0px; --header-h: 60px;
+  --sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
           "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
-  --display: "Inter Tight Variable", "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang SC", Arial, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --num: var(--display);
-  --label-font: var(--sans);
-  --display-weight: 620; --display-track: -0.02em; --h1-weight: 640;
-  --label-case: uppercase; --label-track: .09em; --label-size: 12.5px;
-
-  /* variant a, light */
-  --paper: #f4f6f8; --paper-2: #eaeef2; --paper-3: #dde3e9; --card: #ffffff;
-  --ink: #0b1f3a; --ink-2: #29405c; --muted: #5b6b7e; --faint: #8795a5;
-  --line: #dbe2e9; --line-2: #c5cfd9;
-  --link: #0b6f86; --link-hover: #06485a;
-  --accent: #0e8f9c; --accent-ink: #0a6e79; --accent-soft: #d8eff1;
-  --hl: #0e8f9c; --hl-soft: rgba(14, 143, 156, .22);
-  --btn-bg: #0b1f3a; --btn-fg: #ffffff;
-  --viz-bg: #eef2f5; --viz-grid: rgba(11, 31, 58, .08); --viz-muted: #8d9bab;
-  --viz-land: #d3dae2; --viz-ocean: #e4edf4;
-  --globe-glow: transparent; --globe-rim: #c5cfd9;
-  --shadow: 0 1px 2px rgba(11, 31, 58, .05), 0 8px 26px rgba(11, 31, 58, .07);
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --paper: #07111f; --paper-2: #0c1a2c; --paper-3: #13243a; --card: #0c1a2c;
-    --ink: #e6eef6; --ink-2: #c1cfdd; --muted: #8fa2b6; --faint: #62768c;
-    --line: #172a40; --line-2: #22384f; --link: #5fd0da; --link-hover: #9fe6ec;
-    --accent: #36c2cf; --accent-ink: #62d6e0; --accent-soft: #0d3440; --hl: #3fd0dc; --hl-soft: rgba(63, 208, 220, .25);
-    --btn-bg: #e6eef6; --btn-fg: #07111f;
-    --viz-bg: #0a1626; --viz-grid: rgba(230, 238, 246, .08); --viz-muted: #5e738a; --viz-land: #1b2e44; --viz-ocean: #0b1a2c;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #07111f; --paper-2: #0c1a2c; --paper-3: #13243a; --card: #0c1a2c;
-  --ink: #e6eef6; --ink-2: #c1cfdd; --muted: #8fa2b6; --faint: #62768c;
-  --line: #172a40; --line-2: #22384f; --link: #5fd0da; --link-hover: #9fe6ec;
-  --accent: #36c2cf; --accent-ink: #62d6e0; --accent-soft: #0d3440; --hl: #3fd0dc; --hl-soft: rgba(63, 208, 220, .25);
-  --btn-bg: #e6eef6; --btn-fg: #07111f;
-  --viz-bg: #0a1626; --viz-grid: rgba(230, 238, 246, .08); --viz-muted: #5e738a; --viz-land: #1b2e44; --viz-ocean: #0b1a2c;
-  --globe-rim: #2a4460;
-  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .3);
-  color-scheme: dark;
-}
-
-/* ---- variant b: Observatory (dark by default) ---- */
-:root[data-variant="b"] {
-  --globe-rim: #cdd4e0;
-  --sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
-  --display: "Space Grotesk Variable", "Inter Variable", -apple-system, "Segoe UI", "PingFang SC", Arial, sans-serif;
-  --mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
-  --num: var(--mono); --label-font: var(--mono); --label-track: .06em; --label-size: 12px;
-  --display-weight: 600; --display-track: -0.025em; --h1-weight: 600; --btn-radius: 6px;
-  --paper: #ffffff; --paper-2: #f3f5f9; --paper-3: #e6eaf1; --card: #ffffff;
-  --ink: #0b1220; --ink-2: #2a3548; --muted: #5c6880; --faint: #8b95a8;
-  --line: #e2e6ee; --line-2: #cdd4e0; --link: #1f5eff; --link-hover: #0f3fc0;
-  --accent: #1f5eff; --accent-ink: #1a4fd6; --accent-soft: #e3ebff;
-  --hl: #d98a00; --hl-soft: rgba(217, 138, 0, .24);
-  --btn-bg: #1f5eff; --btn-fg: #ffffff;
-  --viz-bg: #f5f7fb; --viz-grid: rgba(11, 18, 32, .07); --viz-muted: #98a2b5; --viz-land: #dfe4ec; --viz-ocean: #f0f3f8;
-  --globe-glow: rgba(31, 94, 255, .10);
-}
-:root[data-variant="b"][data-theme="dark"] {
-  --paper: #080c14; --paper-2: #0e1420; --paper-3: #161e2d; --card: #0e1420;
-  --ink: #f4f7fb; --ink-2: #cfd7e3; --muted: #8d99ad; --faint: #5f6b80;
-  --line: #1a2232; --line-2: #263144; --link: #6ea8ff; --link-hover: #a8cbff;
-  --accent: #3d8bff; --accent-ink: #7fb2ff; --accent-soft: #10213f;
-  --hl: #ffb938; --hl-soft: rgba(255, 185, 56, .28);
-  --btn-bg: #3d8bff; --btn-fg: #06101f;
-  --viz-bg: #0b111c; --viz-grid: rgba(244, 247, 251, .07); --viz-muted: #4f5d73; --viz-land: #1a2436; --viz-ocean: #0c1320;
-  --globe-glow: rgba(61, 139, 255, .30); --globe-rim: #3d8bff;
-  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 34px rgba(0, 0, 0, .4);
-}
-
-/* ---- variant c: Journal monochrome ---- */
-:root[data-variant="c"] {
-  --sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
   --display: "Instrument Sans Variable", "Inter Variable", "Helvetica Neue", -apple-system, "PingFang SC", Arial, sans-serif;
-  --num: var(--display); --label-font: var(--sans); --label-case: none; --label-track: .08em; --label-size: 12.5px;
-  --display-weight: 600; --display-track: -0.035em; --h1-weight: 650; --radius: 0px; --btn-radius: 0px;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --num: var(--display); --label-font: var(--sans);
+  --display-weight: 600; --display-track: -0.035em; --h1-weight: 650;
+  --label-case: none; --label-track: .08em; --label-size: 12.5px;
+
   --paper: #ffffff; --paper-2: #f5f5f5; --paper-3: #e9e9e9; --card: #ffffff;
   --ink: #000000; --ink-2: #1f1f1f; --muted: #555555; --faint: #8a8a8a;
   --line: #e2e2e2; --line-2: #111111; --link: #1f3fd1; --link-hover: #0d2596;
@@ -100,16 +24,27 @@
   --btn-bg: #000000; --btn-fg: #ffffff;
   --viz-bg: #fafafa; --viz-grid: rgba(0, 0, 0, .07); --viz-muted: #9a9a9a; --viz-land: #e3e3e3; --viz-ocean: #f7f7f7;
   --globe-glow: transparent; --globe-rim: #111111; --shadow: none;
+  color-scheme: light;
 }
-:root[data-variant="c"][data-theme="dark"] {
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --paper: #0b0b0c; --paper-2: #141416; --paper-3: #1d1d20; --card: #0b0b0c;
+    --ink: #f5f5f5; --ink-2: #d6d6d6; --muted: #9a9a9a; --faint: #6b6b6b;
+    --line: #262628; --line-2: #e6e6e6; --link: #8c9dff; --link-hover: #b9c3ff;
+    --accent: #7a8cff; --accent-ink: #9aa8ff; --accent-soft: #171c3a; --hl: #7a8cff; --hl-soft: rgba(122, 140, 255, .26);
+    --btn-bg: #f5f5f5; --btn-fg: #000000;
+    --viz-bg: #101012; --viz-grid: rgba(245, 245, 245, .07); --viz-muted: #666; --viz-land: #242427; --viz-ocean: #121214;
+    --globe-rim: #e6e6e6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
   --paper: #0b0b0c; --paper-2: #141416; --paper-3: #1d1d20; --card: #0b0b0c;
   --ink: #f5f5f5; --ink-2: #d6d6d6; --muted: #9a9a9a; --faint: #6b6b6b;
   --line: #262628; --line-2: #e6e6e6; --link: #8c9dff; --link-hover: #b9c3ff;
-  --accent: #7a8cff; --accent-ink: #9aa8ff; --accent-soft: #171c3a;
-  --hl: #7a8cff; --hl-soft: rgba(122, 140, 255, .26);
+  --accent: #7a8cff; --accent-ink: #9aa8ff; --accent-soft: #171c3a; --hl: #7a8cff; --hl-soft: rgba(122, 140, 255, .26);
   --btn-bg: #f5f5f5; --btn-fg: #000000;
   --viz-bg: #101012; --viz-grid: rgba(245, 245, 245, .07); --viz-muted: #666; --viz-land: #242427; --viz-ocean: #121214;
-  --globe-rim: #e6e6e6;
+  --globe-rim: #e6e6e6; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -536,54 +471,32 @@ svg.mpl text { font-family: var(--sans); }
 .chk input { accent-color: var(--accent); margin: 0; }
 [hidden] { display: none !important; }
 
-/* =========================== variant-specific chrome =========================== */
+/* =========================== journal chrome =========================== */
 .globe { background: radial-gradient(circle at 50% 50%, var(--globe-glow) 0%, var(--globe-glow) 38%, transparent 66%); border-radius: 50%; }
-.variant-switch { margin-left: 14px; color: var(--faint); }
-.variant-switch a { color: var(--muted); padding: 0 2px; }
-.variant-switch a[aria-current] { color: var(--accent); font-weight: 650; text-decoration: underline; }
 
-/* a: Ocean — cool, calm; pill buttons, soft cards */
-:root[data-variant="a"] .btn { border-radius: 999px; }
-:root[data-variant="a"] .site-header { background: color-mix(in srgb, var(--paper) 82%, transparent); }
-:root[data-variant="a"] .topic .t-icon, :root[data-variant="a"] .hub-topic .t-icon { color: var(--accent); }
-
-/* b: Observatory — dark glass header, mono labels and numbers, glowing figures */
-:root[data-variant="b"] .site-header { background: color-mix(in srgb, var(--paper) 78%, transparent); }
-:root[data-variant="b"] .nav-links a { font-size: 14px; }
-:root[data-variant="b"] .nav-links a[aria-current="page"]::after { background: var(--hl); }
-:root[data-variant="b"] .brand-mark { color: var(--hl); }
-:root[data-variant="b"] .metric .lab, :root[data-variant="b"] .news-date, :root[data-variant="b"] .viz-tag,
-:root[data-variant="b"] .onpage span, :root[data-variant="b"] .data-table th, :root[data-variant="b"] .pub-num,
-:root[data-variant="b"] .topic .t-num, :root[data-variant="b"] .viz-controls output { font-family: var(--mono); }
-:root[data-variant="b"] .kicker, :root[data-variant="b"] .eyebrow { color: var(--hl); }
-:root[data-variant="b"] .topic .t-icon, :root[data-variant="b"] .hub-topic .t-icon { color: var(--accent); }
-:root[data-variant="b"][data-theme="dark"] .viz { box-shadow: 0 0 0 1px rgba(61, 139, 255, .06), 0 18px 50px -20px rgba(61, 139, 255, .25); }
-:root[data-variant="b"][data-theme="dark"] .hero { background: radial-gradient(60% 70% at 78% 45%, rgba(61, 139, 255, .10), transparent 70%); }
-:root[data-variant="b"] input[type="range"]::-webkit-slider-thumb { background: var(--hl); box-shadow: 0 0 0 1px var(--hl); }
-
-/* c: Journal monochrome — Swiss grid, thin black rules, square corners, small caps */
-:root[data-variant="c"] .site-header { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--paper); -webkit-backdrop-filter: none; backdrop-filter: none; }
-:root[data-variant="c"] .nav-links a { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; font-weight: 550; color: var(--ink-2); }
-:root[data-variant="c"] .nav-links a:hover { background: transparent; color: var(--accent); }
-:root[data-variant="c"] .nav-links a[aria-current="page"] { color: var(--accent); }
-:root[data-variant="c"] .nav-links a[aria-current="page"]::after { background: var(--accent); height: 3px; bottom: -1px; border-radius: 0; }
-:root[data-variant="c"] .brand { font-weight: 700; letter-spacing: -.02em; }
-:root[data-variant="c"] .brand-mark { color: var(--ink); }
-:root[data-variant="c"] section { border-top-color: var(--ink); }
-:root[data-variant="c"] .kicker, :root[data-variant="c"] .eyebrow, :root[data-variant="c"] .metric .lab, :root[data-variant="c"] .viz-tag,
-:root[data-variant="c"] .onpage span, :root[data-variant="c"] .data-table th, :root[data-variant="c"] .prevnext small {
+/* Swiss grid, thin black rules, square corners, small caps */
+.site-header { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--paper); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.nav-links a { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; font-weight: 550; color: var(--ink-2); }
+.nav-links a:hover { background: transparent; color: var(--accent); }
+.nav-links a[aria-current="page"] { color: var(--accent); }
+.nav-links a[aria-current="page"]::after { background: var(--accent); height: 3px; bottom: -1px; border-radius: 0; }
+.brand { font-weight: 700; letter-spacing: -.02em; }
+.brand-mark { color: var(--ink); }
+section { border-top-color: var(--ink); }
+.kicker, .eyebrow, .metric .lab, .viz-tag,
+.onpage span, .data-table th, .prevnext small {
   font-variant-caps: all-small-caps; text-transform: none; letter-spacing: .08em; font-size: 14px; }
-:root[data-variant="c"] .kicker, :root[data-variant="c"] .eyebrow { color: var(--accent); font-weight: 650; }
-:root[data-variant="c"] h1 { font-size: clamp(38px, 6vw, 64px); }
-:root[data-variant="c"] h2 { font-size: clamp(26px, 3.4vw, 36px); }
-:root[data-variant="c"] .topic-grid { border-radius: 0; border-color: var(--ink); background: var(--ink); }
-:root[data-variant="c"] .topic .t-icon, :root[data-variant="c"] .hub-topic .t-icon { color: var(--accent); }
-:root[data-variant="c"] .viz, :root[data-variant="c"] .card, :root[data-variant="c"] .math-card, :root[data-variant="c"] .prevnext a { border-color: var(--ink); }
-:root[data-variant="c"] .photo { border-radius: 0; }
-:root[data-variant="c"] .metric { border-right-color: var(--ink); }
-:root[data-variant="c"] .metrics { border-top-color: var(--ink); }
-:root[data-variant="c"] .site-footer { background: var(--paper); border-top: 3px solid var(--ink); }
-:root[data-variant="c"] .badge-science, :root[data-variant="c"] .badge-nature { color: var(--accent); border-color: var(--accent); }
+.kicker, .eyebrow { color: var(--accent); font-weight: 650; }
+h1 { font-size: clamp(38px, 6vw, 64px); }
+h2 { font-size: clamp(26px, 3.4vw, 36px); }
+.topic-grid { border-radius: 0; border-color: var(--ink); background: var(--ink); }
+.topic .t-icon, .hub-topic .t-icon { color: var(--accent); }
+.viz, .card, .math-card, .prevnext a { border-color: var(--ink); }
+.photo { border-radius: 0; }
+.metric { border-right-color: var(--ink); }
+.metrics { border-top-color: var(--ink); }
+.site-footer { background: var(--paper); border-top: 3px solid var(--ink); }
+.badge-science, .badge-nature { color: var(--accent); border-color: var(--accent); }
 
 /* ---------- Figure cards (original and redrawn figures share one frame) + lightbox ---------- */
 .fig { border: 1px solid var(--line); background: var(--card); border-radius: var(--radius); padding: 14px 14px 12px; }
@@ -592,7 +505,7 @@ svg.mpl text { font-family: var(--sans); }
 .fig figcaption { margin-top: 12px; }
 .fig-chip { display: inline-block; margin: 0 8px 4px 0; padding: 1px 8px; font-family: var(--label-font); font-size: 11.5px; font-weight: 600; letter-spacing: .03em;
   color: var(--muted); border: 1px solid var(--line-2); border-radius: 999px; font-style: normal; vertical-align: 1px; }
-:root[data-variant="c"] .fig-chip { border-radius: 0; }
+.fig-chip { border-radius: 0; }
 .globe-wrap figcaption.fig, figcaption.fig { border: 0; background: none; padding: 0; }
 img[data-zoom] { cursor: zoom-in; }
 .lightbox { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1500px); max-height: 94vh; overflow: visible; }
