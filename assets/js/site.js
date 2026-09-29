@@ -1,4 +1,4 @@
-/* Site-wide behaviour: theme toggle, compact mobile menu, footer year,
+/* Site-wide behaviour: compact mobile menu, footer year,
    e-mail assembly, and lazy initialisation of interactive figures.
 
    Interactive figures are declared in HTML as
@@ -11,28 +11,10 @@
   var root = document.documentElement;
   var BASE = (document.currentScript && document.currentScript.src) || location.href;
 
-  /* ---- theme ---- */
-  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
-  function theme() {
-    var t = root.getAttribute('data-theme');
-    if (t === 'light' || t === 'dark') return t;
-    return mq && mq.matches ? 'dark' : 'light';
-  }
+  /* ---- theme: the site is light only; modules may still register onTheme callbacks (never fired) ---- */
   var themeListeners = [];
-  function fireTheme() { var t = theme(); themeListeners.forEach(function (cb) { try { cb(t); } catch (e) { console.error(e); } }); }
-  if (mq && mq.addEventListener) mq.addEventListener('change', function () {
-    var stored = null; try { stored = localStorage.getItem('theme'); } catch (e) {}
-    if (stored !== 'light' && stored !== 'dark') root.setAttribute('data-theme', mq.matches ? 'dark' : 'light');
-    fireTheme();
-  });
-  document.querySelectorAll('.theme-toggle').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var next = theme() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-      fireTheme();
-    });
-  });
+  function theme() { return 'light'; }
+  try { localStorage.removeItem('theme'); localStorage.removeItem('variant'); } catch (e) {}
 
   /* ---- mobile menu ---- */
   var header = document.querySelector('.site-header');

@@ -2,8 +2,7 @@
    Lingsen Meng — academic homepage (2026 redesign)
    "Journal monochrome": pure white, black type, one cobalt accent, thin rules,
    Instrument Sans headings + Inter body (Fontsource via jsDelivr, system fallbacks).
-   Light and dark modes: html[data-theme] set before paint (toggle + prefers-color-scheme);
-   without JavaScript the page follows prefers-color-scheme.
+   Light only: the page looks the same whatever the OS colour setting.
    =========================================================== */
 
 :root {
@@ -25,26 +24,6 @@
   --viz-bg: #fafafa; --viz-grid: rgba(0, 0, 0, .07); --viz-muted: #9a9a9a; --viz-land: #e3e3e3; --viz-ocean: #f7f7f7;
   --globe-glow: transparent; --globe-rim: #111111; --shadow: none;
   color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --paper: #0b0b0c; --paper-2: #141416; --paper-3: #1d1d20; --card: #0b0b0c;
-    --ink: #f5f5f5; --ink-2: #d6d6d6; --muted: #9a9a9a; --faint: #6b6b6b;
-    --line: #262628; --line-2: #e6e6e6; --link: #8c9dff; --link-hover: #b9c3ff;
-    --accent: #7a8cff; --accent-ink: #9aa8ff; --accent-soft: #171c3a; --hl: #7a8cff; --hl-soft: rgba(122, 140, 255, .26);
-    --btn-bg: #f5f5f5; --btn-fg: #000000;
-    --viz-bg: #101012; --viz-grid: rgba(245, 245, 245, .07); --viz-muted: #666; --viz-land: #242427; --viz-ocean: #121214;
-    --globe-rim: #e6e6e6; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #0b0b0c; --paper-2: #141416; --paper-3: #1d1d20; --card: #0b0b0c;
-  --ink: #f5f5f5; --ink-2: #d6d6d6; --muted: #9a9a9a; --faint: #6b6b6b;
-  --line: #262628; --line-2: #e6e6e6; --link: #8c9dff; --link-hover: #b9c3ff;
-  --accent: #7a8cff; --accent-ink: #9aa8ff; --accent-soft: #171c3a; --hl: #7a8cff; --hl-soft: rgba(122, 140, 255, .26);
-  --btn-bg: #f5f5f5; --btn-fg: #000000;
-  --viz-bg: #101012; --viz-grid: rgba(245, 245, 245, .07); --viz-muted: #666; --viz-land: #242427; --viz-ocean: #121214;
-  --globe-rim: #e6e6e6; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -96,13 +75,6 @@ p { margin: 0 0 14px; }
 .icon-btn { display: inline-grid; place-items: center; width: 38px; height: 38px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: var(--ink-2); cursor: pointer; padding: 0; }
 .icon-btn:hover { background: var(--paper-2); border-color: var(--line); }
 .icon-btn .ico { width: 20px; height: 20px; }
-.theme-toggle .ico-sun { display: none; }
-:root[data-theme="dark"] .theme-toggle .ico-sun { display: block; }
-:root[data-theme="dark"] .theme-toggle .ico-moon { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .ico-sun { display: block; }
-  :root:not([data-theme="light"]) .theme-toggle .ico-moon { display: none; }
-}
 .nav-toggle { display: none; }
 .nav-toggle .ico-close { display: none; }
 .site-header.open .nav-toggle .ico-close { display: block; }
@@ -249,7 +221,6 @@ a.topic:hover { background: var(--paper-2); text-decoration: none; color: inheri
 .fig.narrow img { max-width: 560px; }
 .fig figcaption { color: var(--muted); font-size: 14px; margin-top: 10px; line-height: 1.55; max-width: 780px; }
 .fig figcaption b { color: var(--ink-2); font-weight: 620; }
-:root[data-theme="dark"] .fig img.on-white { filter: none; }
 
 /* ---------- Interactive figure panel ---------- */
 .viz { margin: 26px 0 8px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--viz-bg); overflow: hidden; }
@@ -379,7 +350,6 @@ a.card:hover { text-decoration: none; color: inherit; border-color: var(--line-2
 .contact-grid { display: grid; grid-template-columns: 120px 1fr; gap: 12px 24px; max-width: 720px; }
 .contact-grid .k { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: .06em; padding-top: 2px; }
 .email-img { height: 22px; width: auto; vertical-align: middle; display: inline-block; }
-:root[data-theme="dark"] .email-img { filter: invert(.9) hue-rotate(180deg); }
 
 /* ---------- Topic prev/next ---------- */
 .prevnext { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -513,3 +483,5 @@ img[data-zoom] { cursor: zoom-in; }
 .lightbox img { display: block; max-width: min(96vw, 1500px); max-height: 82vh; width: auto; height: auto; background: #fff; border-radius: 6px; margin: 0 auto; cursor: zoom-out; }
 .lightbox p { color: #e8ecf2; font-size: 14px; max-width: 900px; margin: 10px auto 0; line-height: 1.5; }
 .lightbox .lb-close { position: absolute; top: -6px; right: -6px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; color: #000; font-size: 20px; cursor: pointer; }
+.viz-controls .sel { min-width: 0; max-width: 100%; }
+.viz-controls .sel select { width: 100%; text-overflow: ellipsis; }

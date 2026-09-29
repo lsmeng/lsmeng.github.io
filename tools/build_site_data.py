@@ -228,7 +228,8 @@ def catalog():
 
 
 # Point-cloud catalogues. Not exported on purpose (column meaning awaiting confirmation):
-# mendocino_ma2026, mendocino_mohanna_growclust, ferndale_mohanna_growclust.
+# mendocino_ma2026 (older Zenodo parse; superseded by mendocino_ma from Ma Jinzhi's own file),
+# mendocino_mohanna_growclust, ferndale_mohanna_growclust.
 SEISFORGE = [("ridgecrest", "2019 Ridgecrest, California"), ("japan_forearc", "NE Japan forearc, 2016–2017"),
              ("iquique", "2014 Iquique, northern Chile"), ("amatrice", "2016 Amatrice–Norcia, central Italy"),
              ("hawaii_kilauea", "2018 Kīlauea, Hawaiʻi"), ("toc2me", "ToC2ME induced seismicity, Alberta")]
@@ -279,6 +280,48 @@ def catalogs():
     wr("catalog/index.json", {"seisforge": [{"file": f, "name": l, "n": n, "n_source": ns} for f, l, n, ns in index]})
 
 
+# Catalogues from Ma Jinzhi (plain text: year month day hour minute second lat lon depth_km mag).
+MA_JINZHI = [
+    ("yn_tengchong.txt", "tengchong_ma2026", 20.0, {
+        "title": "Tengchong Volcanic Field, Yunnan, 2002–2003",
+        "citation": "Ma, J.-Z., Meng, L., Yin, H., et al. (2026). Multiscale fault complexity and hydrothermal processes drive earthquake swarms in the Tengchong Volcanic Field, Southeastern Tibetan Plateau. Tectonophysics, 231080.",
+        "doi": "10.1016/j.tecto.2026.231080", "data_doi": None, "status": "published"}),
+    ("mendocino.txt", "mendocino_ma", 35.0, {
+        "title": "Mendocino Triple Junction catalogue, 2023–2025",
+        "citation": "Ma, J.-Z., Meng, L., et al., relocated catalogue; manuscript under review.",
+        "doi": None, "data_doi": "10.5281/zenodo.19708850", "status": "under review"}),
+    ("xz.txt", "tibet_east_ma", 20.0, {
+        "title": "Eastern Tibet (Xizang) catalogue, 2023–2024",
+        "citation": "Ma Jinzhi and Meng group, relocated catalogue; unpublished (manuscript in preparation).",
+        "doi": None, "data_doi": None, "status": "preliminary"}),
+]
+
+
+def ma_catalogs():
+    from datetime import datetime, timedelta
+    for src, key, zmax, meta in MA_JINZHI:
+        ev = []
+        for line in open(os.path.join(SRC, "_sources", "ma_jinzhi", src)):
+            f = line.split()
+            if len(f) != 10:
+                continue
+            try:
+                y, mo, d, h, mi = (int(float(x)) for x in f[:5])
+                sec, lat, lon, dep, mag = (float(x) for x in f[5:])
+            except ValueError:
+                continue
+            t = datetime(y, mo, d, h, mi) + timedelta(seconds=sec)
+            ev.append((t, lon, lat, dep, mag))
+        ev.sort(key=lambda e: e[0])
+        t0 = ev[0][0]
+        rows = [[round(lon, 5), round(lat, 5), round(dep, 2), round(mag, 2), round((t - t0).total_seconds() / 86400, 4)] for t, lon, lat, dep, mag in ev]
+        m = dict(meta, t0_utc=t0.strftime("%Y-%m-%dT%H:%M:%S.%fZ"), n_source=len(rows), zmax=zmax, stub=False,
+                 notes=f"Provided by Ma Jinzhi (2026-09-29). Columns in source: year month day hour minute second lat lon depth_km mag. All events shown.")
+        wr(f"catalog/{key}.json", {"meta": m, "columns": ["lon", "lat", "depth_km", "mag", "t_days"], "rows": rows})
+        wcsv(f"catalog/{key}.csv", ["lon", "lat", "depth_km", "mag", "time_utc"],
+             [[r[0], r[1], r[2], r[3], e[0].strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]] for r, e in zip(rows, ev)])
+
+
 # ------------------------------------------------------------------ tsunami
 def tsunami():
     from PIL import Image
@@ -314,4 +357,4 @@ def tsunami():
 
 
 if __name__ == "__main__":
-    globe(); bp(); palu_demo(); ffi(); catalog(); catalogs(); tsunami()
+    globe(); bp(); palu_demo(); ffi(); catalog(); catalogs(); ma_catalogs(); tsunami()

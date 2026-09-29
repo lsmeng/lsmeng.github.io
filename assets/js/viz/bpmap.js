@@ -73,7 +73,6 @@ export default async function bpmap(el, ctx) {
     if (t < f.t[0]) return;
     const N = f.nx * f.ny, d = f.id.data, off = k * N;
     let fmax = 1; for (let i = 0; i < N; i++) fmax = Math.max(fmax, f.F[off + i]); // normalise each window to its own peak
-    const dark = ctx.theme() === 'dark';
     for (let i = 0; i < N; i++) {
       const v = f.F[off + i] / fmax, a = Math.max(0, (v - 0.7) / 0.3);
       const c = viridis(0.25 + 0.75 * v);

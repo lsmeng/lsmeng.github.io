@@ -201,12 +201,11 @@ async function build(el, ctx, url) {
   const sup = n => String(n).split('').map(ch => '⁰¹²³⁴⁵⁶⁷⁸⁹'['0123456789'.indexOf(ch)] || ch).join('');
 
   function recolor() {
-    const dark = ctx.theme() === 'dark';
     const idle = new THREE.Color(ctx.css('--paper-3'));
     for (const f of faces) {
       const on = !hasT || f.s.t0 <= t;
       let c;
-      if (on) { const k = slipColor(f.s.slip / slipMax, dark); c = new THREE.Color(k[0] / 255, k[1] / 255, k[2] / 255); c.convertSRGBToLinear(); }
+      if (on) { const k = slipColor(f.s.slip / slipMax); c = new THREE.Color(k[0] / 255, k[1] / 255, k[2] / 255); c.convertSRGBToLinear(); }
       else c = idle;
       for (let i = 0; i < 6; i++) colAttr.setXYZ(f.idx + i, c.r, c.g, c.b);
     }
@@ -217,7 +216,7 @@ async function build(el, ctx, url) {
     edgeMat.color = ink; surfMat.color = new THREE.Color(ctx.css('--muted')); gridMat.color = ink;
     hyp.material.color = new THREE.Color(ctx.css('--accent')); epi.material.color = new THREE.Color(ctx.css('--accent')); dropMat.color = new THREE.Color(ctx.css('--accent'));
     paintLabels(); recolor(); drawMRF();
-    const cb = panel.querySelector('.cbar'); if (cb) cb.style.background = cssGradient(v => slipColor(v, ctx.theme() === 'dark'));
+    const cb = panel.querySelector('.cbar'); if (cb) cb.style.background = cssGradient(v => slipColor(v));
     const mx = panel.querySelector('[data-slipmax]'); if (mx) mx.textContent = slipMax.toFixed(1) + ' m';
   }
 

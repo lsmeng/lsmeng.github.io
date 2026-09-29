@@ -51,22 +51,21 @@ export function viridis(t) {
   const a = VIRIDIS[i], b = VIRIDIS[i + 1];
   return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
 }
-/* Slip map: paper -> amber -> vermilion -> deep red-brown (light), used for slip. */
+/* Sequential slip map: pale sand -> amber -> red -> dark red-brown. */
 const SLIP_L = [[226,216,192],[244,200,128],[232,140,70],[190,72,34],[104,26,18]];
-const SLIP_D = [[52,58,64],[112,76,52],[186,102,54],[238,146,76],[252,224,156]];
-export function slipColor(t, dark) {
-  const P = dark ? SLIP_D : SLIP_L;
+export function slipColor(t) {
+  const P = SLIP_L;
   t = Math.min(1, Math.max(0, t));
   const x = t * (P.length - 1), i = Math.min(P.length - 2, Math.floor(x)), f = x - i;
   const a = P[i], b = P[i + 1];
   return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
 }
 /* Diverging blue-white-red for sea-surface height. v in [-1,1]. */
-export function diverge(v, dark) {
+export function diverge(v) {
   v = Math.max(-1, Math.min(1, v));
-  const mid = dark ? [22, 29, 36] : [246, 244, 239];
-  const hi = dark ? [240, 120, 80] : [180, 50, 25];
-  const lo = dark ? [90, 160, 230] : [30, 80, 150];
+  const mid = [246, 246, 246];
+  const hi = [180, 50, 25];
+  const lo = [30, 80, 150];
   const e = v >= 0 ? hi : lo, f = Math.abs(v);
   return [mid[0] + (e[0] - mid[0]) * f, mid[1] + (e[1] - mid[1]) * f, mid[2] + (e[2] - mid[2]) * f];
 }

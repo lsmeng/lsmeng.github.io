@@ -9,12 +9,9 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/instrument-sans@5/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
-<script>(function(){var d=document.documentElement,m=null;try{m=localStorage.getItem('theme');localStorage.removeItem('variant');}catch(e){}
-if(m!=='light'&&m!=='dark'){m=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
-d.setAttribute('data-theme',m);})();</script>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <!-- /site:head -->
 </head>
 <body>
@@ -35,7 +32,6 @@ d.setAttribute('data-theme',m);})();</script>
       <a href="index.html#contact">Contact</a>
     </nav>
     <div class="nav-tools">
-      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark"><svg class="ico ico-sun" aria-hidden="true"><use href="assets/icons.svg#i-sun"></use></svg><svg class="ico ico-moon" aria-hidden="true"><use href="assets/icons.svg#i-moon"></use></svg></button>
       <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
     </div>
   </div>
@@ -73,7 +69,8 @@ d.setAttribute('data-theme',m);})();</script>
         <p>A 12-month dense broadband deployment revealed three swarms on pre-existing faults, including conjugate systems and
         sharp fault bends rather than only classic stepovers; two lie in previously unstudied areas east and southeast of the
         volcanic zone. Migration fronts and back fronts follow pore-pressure diffusion, and the swarms show localised stress
-        heterogeneity <span class="cite">(<a href="https://doi.org/10.1016/j.tecto.2026.231080" target="_blank" rel="noopener">Ma et al., 2026, <em>Tectonophysics</em></a>)</span>.</p>
+        heterogeneity <span class="cite">(<a href="https://doi.org/10.1016/j.tecto.2026.231080" target="_blank" rel="noopener">Ma et al., 2026, <em>Tectonophysics</em></a>)</span>.
+        The relocated catalogue can be viewed in 3-D <a href="#catalogues">below</a>.</p>
       </div>
       <figure class="fig">
         <img src="assets/figures/swarms-tengchong.jpg" data-zoom alt="Map of the Tengchong Volcanic Field with stations, hot springs, volcanoes and three earthquake swarms" loading="lazy" width="550" height="425">
@@ -87,7 +84,8 @@ d.setAttribute('data-theme',m);})();</script>
     <div class="prose">
       <h2>Relocated catalogues in three dimensions</h2>
       <p>Dense catalogues show the structures that the swarms and aftershocks light up. The Noto catalogue combines template
-      matching with GrowClust relocation; the Türkiye catalogue covers eight months of the 2023 sequence; the Hawai&#699;i catalogue
+      matching with GrowClust relocation; the Türkiye catalogue covers eight months of the 2023 sequence; the Tengchong,
+      Mendocino and eastern Tibet catalogues are relocated catalogues by Ma Jinzhi; the Hawai&#699;i catalogue
       of the 2026 M<sub>w</sub>&nbsp;5.9 South Kona earthquake and the concurrent P&#257;hala swarm was built from continuous data with a
       machine-learning workflow (PhaseNet, REAL, HYPOINVERSE, hypoDD). Drag to rotate; press play to see the events appear in time order.</p>
     </div>
@@ -97,6 +95,9 @@ d.setAttribute('data-theme',m);})();</script>
         <span class="sel"><select data-catalog aria-label="Catalogue">
           <option value="assets/data/catalog/noto_swarm_mohanna2026.json">Noto Peninsula swarm and 2024 aftershocks (published)</option>
           <option value="assets/data/catalog/turkey2023_mohanna_tm.json">2023 Türkiye&ndash;Syria sequence (data on Zenodo, paper in preparation)</option>
+          <option value="assets/data/catalog/tengchong_ma2026.json" data-csv="assets/data/catalog/tengchong_ma2026.csv">Tengchong Volcanic Field, 2002&ndash;2003 (published)</option>
+          <option value="assets/data/catalog/mendocino_ma.json" data-csv="assets/data/catalog/mendocino_ma.csv">Mendocino Triple Junction, 2023&ndash;2025 (under review)</option>
+          <option value="assets/data/catalog/tibet_east_ma.json" data-csv="assets/data/catalog/tibet_east_ma.csv">Eastern Tibet, 2023&ndash;2024 (preliminary)</option>
           <option value="assets/data/catalog/hawaii_points.json" data-csv="assets/data/catalog/hawaii_points.csv">Hawai&#699;i 2026: South Kona and P&#257;hala (preliminary)</option>
         </select></span>
         <span class="sel"><select data-color aria-label="Colour by"><option value="depth">Colour by depth</option><option value="time">Colour by time</option></select></span>
@@ -111,6 +112,9 @@ d.setAttribute('data-theme',m);})();</script>
     </figure>
     <p class="cite">Noto: Mohanna et al. (2026) <em>EPSL</em>, Supplementary File 1 (random subset of 25,000 of 138,889 events).
     Türkiye: Mohanna et al., eight-month template-matching catalogue, data <a href="https://doi.org/10.5281/zenodo.18504095" target="_blank" rel="noopener">doi:10.5281/zenodo.18504095</a>, paper in preparation (random subset of 25,000 of 229,651).
+    Tengchong: Ma et al. (2026) <em>Tectonophysics</em>, <a href="https://doi.org/10.1016/j.tecto.2026.231080" target="_blank" rel="noopener">doi:10.1016/j.tecto.2026.231080</a> (837 events).
+    Mendocino: Ma, Meng et al., manuscript under review, data <a href="https://doi.org/10.5281/zenodo.19708850" target="_blank" rel="noopener">doi:10.5281/zenodo.19708850</a> (7,318 events).
+    Eastern Tibet: Ma et al., preliminary, unpublished (11,559 events).
     Hawai&#699;i: preliminary relocations, manuscript in preparation, not peer reviewed; magnitudes are network M<sub>L</sub>.</p>
   </section>
 

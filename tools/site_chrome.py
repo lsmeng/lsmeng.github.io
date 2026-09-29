@@ -35,17 +35,14 @@ RESEARCH_PAGES = {
 }
 
 # Theme is resolved before first paint to avoid a flash of the wrong theme.
-# Colour mode (light/dark) is resolved before first paint; fonts: Instrument Sans + Inter (Fontsource via jsDelivr).
+# Light theme only (white background); fonts: Instrument Sans + Inter (Fontsource via jsDelivr).
 HEAD = """<!-- site:head -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/instrument-sans@5/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
-<script>(function(){var d=document.documentElement,m=null;try{m=localStorage.getItem('theme');localStorage.removeItem('variant');}catch(e){}
-if(m!=='light'&&m!=='dark'){m=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
-d.setAttribute('data-theme',m);})();</script>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <!-- /site:head -->"""
 
 
@@ -68,7 +65,6 @@ def nav(active):
 {links}
     </nav>
     <div class="nav-tools">
-      <button class="icon-btn theme-toggle" type="button" aria-label="Switch colour theme" title="Switch light / dark">{icon("i-sun", "ico ico-sun")}{icon("i-moon", "ico ico-moon")}</button>
       <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">{icon("i-menu", "ico ico-menu")}{icon("i-close", "ico ico-close")}</button>
     </div>
   </div>

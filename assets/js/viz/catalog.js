@@ -69,6 +69,9 @@ async function build(el, ctx, url, csvUrl, colorBy) {
   let zMax = 0; for (const r of rows) zMax = Math.max(zMax, r[iZ]);
   const zCap = +((data.meta && data.meta.zmax) || el.dataset.zmax || zMax);
   const hasScore = iS >= 0 || iTier >= 0, hasTime = iT >= 0;
+  // wide, shallow catalogues: exaggerate depth so the structure is readable (stated in the legend)
+  const spanKm = Math.max((bbox[2] - bbox[0]) * kx, (bbox[3] - bbox[1]) * ky);
+  const vex = Math.max(1, Math.min(4, Math.round(spanKm / (6 * zCap))));
   let tMin = Infinity, tMaxD = -Infinity;
   if (hasTime) for (const r of rows) { tMin = Math.min(tMin, r[iT]); tMaxD = Math.max(tMaxD, r[iT]); }
   let sMin = Infinity, sMax = -Infinity;
@@ -110,7 +113,7 @@ async function build(el, ctx, url, csvUrl, colorBy) {
   const span0 = Math.max((bbox[2] - bbox[0]) * kx, (bbox[3] - bbox[1]) * ky);
   const psize = n > 15000 ? 0.8 : 1; // dense catalogues: smaller points
   rows.forEach((r, i) => {
-    pos[3 * i] = (r[iLon] - lonc) * kx; pos[3 * i + 1] = -Math.min(r[iZ], zCap); pos[3 * i + 2] = -(r[iLat] - latc) * ky;
+    pos[3 * i] = (r[iLon] - lonc) * kx; pos[3 * i + 1] = -Math.min(r[iZ], zCap) * vex; pos[3 * i + 2] = -(r[iLat] - latc) * ky;
     const m = iM >= 0 && r[iM] != null && isFinite(r[iM]) ? r[iM] : 1;
     base[i] = psize * Math.max(1.3, 1.1 + 0.85 * m);
   });
@@ -167,13 +170,13 @@ async function build(el, ctx, url, csvUrl, colorBy) {
       flush();
     }
   } catch (e) { console.warn('coastlines unavailable', e); }
-  const x0 = X(bbox[0]), x1 = X(bbox[2]), z0 = Z(bbox[1]), z1 = Z(bbox[3]), yb = -zCap;
+  const x0 = X(bbox[0]), x1 = X(bbox[2]), z0 = Z(bbox[1]), z1 = Z(bbox[3]), yb = -zCap * vex;
   const fp = [];
   const box = [[x0, 0, z0], [x1, 0, z0], [x1, 0, z1], [x0, 0, z1]];
   for (let i = 0; i < 4; i++) { const p = box[i], q = box[(i + 1) % 4]; fp.push(...p, ...q, p[0], yb, p[2], q[0], yb, q[2], p[0], 0, p[2], p[0], yb, p[2]); }
-  const nLab = Math.max(2, Math.min(5, Math.round(10 * zCap / Math.max(x1 - x0, z0 - z1))));
+  const nLab = Math.max(2, Math.min(5, Math.round(10 * zCap * vex / Math.max(x1 - x0, z0 - z1))));
   const zStep = [5, 10, 20, 25, 50, 100].find(v => zCap / v <= nLab) || 100;
-  for (let zz = zStep; zz < zCap; zz += zStep) fp.push(x0, -zz, z0, x1, -zz, z0);
+  for (let zz = zStep; zz < zCap; zz += zStep) fp.push(x0, -zz * vex, z0, x1, -zz * vex, z0);
   const fg = new THREE.BufferGeometry(); fg.setAttribute('position', new THREE.Float32BufferAttribute(fp, 3));
   scene.add(new THREE.LineSegments(fg, frameMat));
   const labels = [];
@@ -186,7 +189,7 @@ async function build(el, ctx, url, csvUrl, colorBy) {
     const hgt = 0.024; sp.scale.set(hgt * c.width / c.height, hgt, 1); sp.position.set(x, y, z);
     sp.userData = { c, g, t, fs, tex }; labels.push(sp); scene.add(sp);
   };
-  for (let zz = 0; zz <= zCap; zz += zStep) lab(`${zz} km`, x0 - span * 0.035, -zz, z0);
+  for (let zz = 0; zz <= zCap; zz += zStep) lab(`${zz} km`, x0 - span * 0.035, -zz * vex, z0);
   lab('N', x0, 0, z1 - span * 0.06);
 
   function legend() {
@@ -197,7 +200,7 @@ async function build(el, ctx, url, csvUrl, colorBy) {
     if (colorBy === 'score' && hasScore) key = `${escapeHTML((data.score && data.score.label) || 'score')}: low <span class="cbar" style="background:${cssGradient(ramp)}"></span> high`;
     else if (colorBy === 'time' && hasTime) key = `time: day ${tMin.toFixed(0)} <span class="cbar" style="background:${cssGradient(viridis)}"></span> day ${tMaxD.toFixed(0)}${data.meta && data.meta.t0_utc ? ' after ' + escapeHTML(data.meta.t0_utc.slice(0, 10)) : ''}`;
     else key = `depth 0 <span class="cbar" style="background:${cssGradient(v => viridis(1 - v))}"></span> ${Math.round(zCap)} km`;
-    lg.innerHTML = `${n.toLocaleString('en-US')} events${nsrc} · ${key} · point size ∝ magnitude · no vertical exaggeration`;
+    lg.innerHTML = `${n.toLocaleString('en-US')} events${nsrc} · ${key} · point size ∝ magnitude · ${vex > 1 ? `depth exaggerated ×${vex}` : 'no vertical exaggeration'}`;
   }
   function paint() {
     lineMat.color = new THREE.Color(ctx.css('--ink-2')); frameMat.color = new THREE.Color(ctx.css('--muted'));

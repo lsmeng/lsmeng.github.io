@@ -41,14 +41,13 @@ export default async function tsunami(el, ctx) {
   const parse = s => { const c = document.createElement('canvas').getContext('2d'); c.fillStyle = s; const x = c.fillStyle; if (x[0] === '#') return [1, 3, 5].map(k => parseInt(x.slice(k, k + 2), 16)); return x.match(/\d+/g).slice(0, 3).map(Number); };
   function palette() {
     landRGB = parse(ctx.css('--viz-land'));
-    const cb = panel.querySelector('.cbar'); if (cb) cb.style.background = cssGradient(x => diverge(2 * x - 1, ctx.theme() === 'dark'));
+    const cb = panel.querySelector('.cbar'); if (cb) cb.style.background = cssGradient(x => diverge(2 * x - 1));
     panel.querySelectorAll('[data-amp]').forEach(am => { am.textContent = scale.toFixed(1); });
   }
   let tMin = 0; // current time in minutes
   const tEnd = times[NF - 1];
   function paint() {
-    const dark = ctx.theme() === 'dark';
-    const deep = dark ? [14, 22, 30] : [196, 206, 213], shallow = dark ? [38, 49, 60] : [238, 240, 240];
+    const deep = [196, 206, 213], shallow = [238, 240, 240];
     let k = 0; while (k < NF - 2 && times[k + 1] <= tMin) k++;
     const f = Math.min(1, Math.max(0, (tMin - times[k]) / (times[k + 1] - times[k])));
     const A = k * N, B = (k + 1) * N, d = id.data;
@@ -59,7 +58,7 @@ export default async function tsunami(el, ctx) {
       const b0 = shallow[0] + (deep[0] - shallow[0]) * q, b1 = shallow[1] + (deep[1] - shallow[1]) * q, b2 = shallow[2] + (deep[2] - shallow[2]) * q;
       const e = (frames[A + i] * (1 - f) + frames[B + i] * f) / scale;
       const a = Math.min(1, Math.abs(e) * 1.4);
-      const w = diverge(e, dark);
+      const w = diverge(e);
       d[o] = b0 + (w[0] - b0) * a; d[o + 1] = b1 + (w[1] - b1) * a; d[o + 2] = b2 + (w[2] - b2) * a; d[o + 3] = 255;
     }
     ig.putImageData(id, 0, 0);
