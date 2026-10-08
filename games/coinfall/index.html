@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#171A16">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>金潮 COINFALL · Free Coin-Pusher Demo</title>
+<meta name="description" content="A free 3D coin-pusher roguelike. Aim your coins, time the shutter, build your purse and descend through eight strange floors. No purchases or cash prizes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23121610'/%3E%3Ccircle cx='16' cy='16' r='10' fill='%23C99B47'/%3E%3Crect x='13' y='13' width='6' height='6' fill='%23121610'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/game.css">
+</head>
+<body>
+<div id="app">
+  
+  <canvas id="gl" aria-label="3D coin pusher"></canvas>
+  <div id="bootStatus" role="status"><b>COINFALL</b><p>正在准备机台 / Preparing the cabinet…</p></div>
+  <section id="playAssist" class="hidden" aria-label="Game controls">
+    <div class="assistTop"><output id="assistStatus"></output><button id="assistPause">PAUSE / HELP</button></div>
+    <div class="assistQueue"><button id="assistQueue0"></button><button id="assistQueue1"></button><button id="assistQueue2"></button><button id="assistDiscard">Discard</button></div>
+    <label class="assistAim">◀ <input id="assistAim" type="range" min="-2.2" max="2.2" step="0.05" value="0" aria-label="Aim left or right"> ▶</label>
+    <div class="assistActions"><button id="assistGate">CLOSE GATE</button><button id="assistDrop">DROP</button><button id="assistCash">CASH OUT</button></div>
+  </section>
+
+  
+  <div id="dealerLayer" class="hidden">
+    <img id="dealerImg" alt="">
+    <div id="dealerSpeech"><span id="dealerName"></span><p id="dealerLine"></p></div>
+  </div>
+
+  <div id="murmurLayer"></div>
+  <div id="popLayer"></div>
+
+  
+  <div id="railHint" class="hidden"></div>
+
+  
+  <div id="stageLayer" class="hidden"><div id="stagePanel"></div></div>
+</div>
+<script type="module" src="assets/game.js"></script>
+</body>
+</html>

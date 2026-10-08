@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "game": "COINFALL",
+  "version": "0.1.1",
+  "release_channel": "web-beta",
+  "runtime": "minified-static-web",
+  "source_revision": "4b9665ea70f589f8373f79f79d8660bcdf9627e9",
+  "entrypoint": "index.html",
+  "browser_qa": {
+    "tested_renderer": "canvas2d-fallback; original Rapier physics",
+    "not_verified": [
+      "working WebGL/3D visuals",
+      "physical mobile/touchscreen",
+      "audible listening",
+      "natural full campaign clear"
+    ],
+    "save_note": "Device/origin-local; seeded logical RNG resumes, but physics contacts can diverge after reload"
+  },
+  "files": [
+    {
+      "path": "THIRD-PARTY-LICENSES.txt",
+      "bytes": 1640,
+      "sha256": "ce45002c4144c5742ff5e341af4b8521571afa5cf7bebd6024b0a2c196ab9758"
+    },
+    {
+      "path": "art/dealers/cage_calm.png",
+      "bytes": 783014,
+      "sha256": "61bf43474c6dae46566b9886c971fcfd0220d9bde1dd03e612b9b869a72c933b"
+    },
+    {
+      "path": "art/dealers/cage_gloat.png",
+      "bytes": 769200,
+      "sha256": "141bb8d8eed1047a7c0e22e701d260c20be185b9ee9dc6d0822a6cb140130975"
+    },
+    {
+      "path": "art/dealers/cage_rattled.png",
+      "bytes": 730879,
+      "sha256": "00b7586305e9ca3f1480e7c9d17caa3ca77764519ef0c6f582152f6a7c4f9e94"
+    },
+    {
+      "path": "art/dealers/creditor_calm.png",
+      "bytes": 846235,
+      "sha256": "34bd0f418d99a34941ace1e09dc85d0c5701987f833ab42a9e79f382bb60b37f"
+    },
+    {
+      "path": "art/dealers/creditor_gloat.png",
+      "bytes": 833608,
+      "sha256": "fb3b9d4ec9ba79f70db71be98a47718183f6fb12030241c16ebc16d4ec04b2f8"
+    },
+    {
+      "path": "art/dealers/creditor_rattled.png",
+      "bytes": 820056,
+      "sha256": "98e864dfd578583ef9ba0ac3a6fc2ff99457f80ca08ead2b639cad3a0bad1592"
+    },
+    {
+      "path": "art/dealers/gloves_calm.png",
+      "bytes": 613516,
+      "sha256": "43fc382371b3c85eefe9bf79b4af38cdfe74288c5dfea8101714b21ed350699c"
+    },
+    {
+      "path": "art/dealers/gloves_gloat.png",
+      "bytes": 602878,
+      "sha256": "1d6e3bbe5c968efe90ef88413ff70d78674961dcabb970684c2dd981b64e2d42"
+    },
+    {
+      "path": "art/dealers/gloves_rattled.png",
+      "bytes": 606114,
+      "sha256": "9694dbcbef8017aebe8850b039b834e6acb885e53fde690d1626ac55a636094c"
+    },
+    {
+      "path": "art/dealers/ledger_calm.png",
+      "bytes": 623024,
+      "sha256": "1197401e8e40a4c6a7ac40d8d44178ab87134a91c68729e7e958bb33c1948fcf"
+    },
+    {
+      "path": "art/dealers/ledger_gloat.png",
+      "bytes": 810083,
+      "sha256": "c3d4b02239a7da6d5944758330990d70f06db966368789200be00dae32e5f829"
+    },
+    {
+      "path": "art/dealers/ledger_rattled.png",
+      "bytes": 776232,
+      "sha256": "75f8f2c0635c871d2e17f5843d234f18e5a269436e037ad61eb1a3a8ee3593f7"
+    },
+    {
+      "path": "art/dealers/mire_calm.png",
+      "bytes": 871177,
+      "sha256": "2b28dc8699a09912471420b4b34a2ee9a4d1fb112f83e61310470d92fd34ce52"
+    },
+    {
+      "path": "art/dealers/mire_gloat.png",
+      "bytes": 878596,
+      "sha256": "5f57406ca89fb5780292dfe5de9af07115f7101f8ffde313e7d3348da3b4a7e6"
+    },
+    {
+      "path": "art/dealers/mire_rattled.png",
+      "bytes": 889707,
+      "sha256": "0a21bd8b9a0ca612457fd915abc8793831e5fbbf4ab270bf9aba98c98b16de28"
+    },
+    {
+      "path": "art/dealers/scar_calm.png",
+      "bytes": 715440,
+      "sha256": "43e0eb9847bc81fee9e1e2ebd9a3e0483bdcd31406276d32c8457d42992f03a9"
+    },
+    {
+      "path": "art/dealers/scar_gloat.png",
+      "bytes": 727243,
+      "sha256": "d5dfa724c09af463ad4389a5d3ec96e050a3f788836a39ee2b3127ed2fc8df8b"
+    },
+    {
+      "path": "art/dealers/scar_rattled.png",
+      "bytes": 727605,
+      "sha256": "6549b2e8cca5ae4dae4b523b12c9a0217579d0db2bb8d856cf2a59f1c94198c2"
+    },
+    {
+      "path": "art/dealers/sixer_calm.png",
+      "bytes": 754646,
+      "sha256": "e80890dc3be8a29877050cc6974dabd8258a8e90555002a597fddd6e9a273c8a"
+    },
+    {
+      "path": "art/dealers/sixer_gloat.png",
+      "bytes": 803942,
+      "sha256": "cf55e145b35f00562b86c87793098327f8cacc1c6833805b930f20bf29c0f674"
+    },
+    {
+      "path": "art/dealers/sixer_rattled.png",
+      "bytes": 752262,
+      "sha256": "d3a45aca68edbede6cb132cbf36a9a5355391c6864b6beb35b6beea8dbba2bdb"
+    },
+    {
+      "path": "art/dealers/snake_calm.png",
+      "bytes": 809366,
+      "sha256": "5c49833ddc1ab64997fa2999ad481865ea1471d437f922366a23acbd7ab6d916"
+    },
+    {
+      "path": "art/dealers/snake_gloat.png",
+      "bytes": 845457,
+      "sha256": "1e8b3cc7c320cffd59326c7a08adfb03734674ef79c798a82098b9142d86e0a3"
+    },
+    {
+      "path": "art/dealers/snake_rattled.png",
+      "bytes": 812518,
+      "sha256": "dfe0793767fa967dba04598d94cb9c24795b2921bfbe1a25dc1630c2a7500c05"
+    },
+    {
+      "path": "assets/game.css",
+      "bytes": 23977,
+      "sha256": "50810a6cca3667ce2c023a767f8bc4fa7759425396cfbbba641f2947dbeeb6f3"
+    },
+    {
+      "path": "assets/game.js",
+      "bytes": 2770391,
+      "sha256": "012461b4c1cf6da13a675a610bb4c3060a50760e8bd2a3bb4fe0790acf2051d6"
+    },
+    {
+      "path": "index.html",
+      "bytes": 2164,
+      "sha256": "fa485a598df35e6ccfcc3add110db5dc69d48a556d1be372b203614f9bd7ebff"
+    },
+    {
+      "path": "licenses/Rapier-Apache-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ]
+}
