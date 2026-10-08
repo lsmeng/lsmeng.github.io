@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07090A">
+<meta name="description" content="Build a domino chain, plan its order, and topple a rising cascade. A free strategic roguelike with eight nights, branching chains, and powerful totems.">
+<title>连锁 TOPPLE</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23EDE3D0'/%3E%3Cline x1='6' y1='16' x2='26' y2='16' stroke='%233c2c20' stroke-width='2'/%3E%3Ccircle cx='16' cy='10' r='2.6' fill='%237E1C22'/%3E%3Ccircle cx='11' cy='22' r='2.6' fill='%237E1C22'/%3E%3Ccircle cx='21' cy='22' r='2.6' fill='%237E1C22'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/cinzel-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/eb-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/lxgw-wenkai-gb-screen.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+<div id="storageStatus" class="hidden" role="status"></div>
+<canvas id="gl"></canvas>
+<div id="vignette"></div>
+<div id="hud">
+<div id="anteMark"><span id="anteRoman">I</span><em id="blindName">小关</em></div>
+<div id="scoreBurn">
+<div id="scoreVal">0</div>
+<div id="scoreTarget"></div>
+</div>
+<div id="goldMark"><span id="goldVal">4</span></div>
+</div>
+<aside id="railL">
+<div class="multBox">
+<span class="x">×</span><span id="multVal">1</span>
+<em id="multSub"></em>
+</div>
+<div class="panelHead" id="totemHead"></div>
+<div id="totemCol"></div>
+<div id="omenCard" class="hidden"></div>
+</aside>
+<aside id="railR">
+<div class="panelHead"><span id="railTitle"></span><em id="railHint"></em></div>
+<div id="railList"></div>
+</aside>
+<div id="tray">
+<div id="handRow"></div>
+<div id="actRow">
+<button class="act skipAct hidden" id="actSkip" aria-label="Shortcut"><span class="g">↗</span><b></b><i></i></button>
+<button class="act" id="actUndo"><span class="g">↩</span><b></b><i id="undoN"></i></button>
+<button class="act" id="actSwap"><span class="g">⇄</span><b></b><i id="swapN"></i></button>
+<button class="act primary" id="actTopple"><span class="g">▼</span><b></b></button>
+</div>
+</div>
+<div id="hintLine"></div>
+<div id="dossier" class="hidden"></div>
+<div id="toast" class="hidden"></div>
+<div id="popLayer"></div>
+<div id="resolveBurn" class="hidden">
+<div id="rScore">0</div>
+<div id="rMult">×1</div>
+</div>
+<button id="shopBrowse" class="btn hidden">Browse wares</button>
+<button id="menuBtn" aria-label="Menu" title="Esc">≡</button>
+<div id="overlay" class="hidden"><div id="modal"></div></div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

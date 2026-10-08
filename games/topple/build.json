@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "game": "TOPPLE",
+  "version": "0.2.0-web1",
+  "release_channel": "web-beta",
+  "runtime": "minified-static-web",
+  "source_revision": "d516fa737ed672a5f63b6bd319a42d5737f4cb1f",
+  "entrypoint": "index.html",
+  "browser_qa": {
+    "tested_renderer": "canvas2d-fallback",
+    "webgl_renderer": "retained; not visually verified in release environment",
+    "not_verified": [
+      "working WebGL/3D visuals",
+      "physical touchscreen and gamepad",
+      "audible listening",
+      "natural full 24-blind campaign clear"
+    ]
+  },
+  "files": [
+    {
+      "path": "THIRD-PARTY-LICENSES.txt",
+      "bytes": 1708,
+      "sha256": "ff7e06008e8cac4639e0a25e52734aeb7b9b1720c83f4dc8f71acddbb578c17d"
+    },
+    {
+      "path": "assets/fonts/OFL-Cinzel.txt",
+      "bytes": 4383,
+      "sha256": "f2b3029aba64c378bf0963b62945eee15e564fe4330b934c8f2eb058282b5e83"
+    },
+    {
+      "path": "assets/fonts/OFL-EB-Garamond.txt",
+      "bytes": 4398,
+      "sha256": "0985066662eb755ed3683ae5482a81a9195b49ce3f7e165cc2388b3dbece7dd7"
+    },
+    {
+      "path": "assets/fonts/OFL-LXGW-WenKai-Screen.txt",
+      "bytes": 4455,
+      "sha256": "4d72e3080cdb3be63638bb7197c7caae55b6e4cbe1bab1ded2830bdff0c9b438"
+    },
+    {
+      "path": "assets/fonts/cinzel-latin.woff2",
+      "bytes": 42304,
+      "sha256": "23f7d319300adcc27fac9e38557dcde7dd654fe8b6bb8bde655d4249d16f205a"
+    },
+    {
+      "path": "assets/fonts/eb-garamond-latin.woff2",
+      "bytes": 150896,
+      "sha256": "a9f96a944bb3b87921dc5566af218a7f8d53459a2cb0cb67cbc10b26f507ccae"
+    },
+    {
+      "path": "assets/fonts/lxgw-wenkai-gb-screen.woff2",
+      "bytes": 285012,
+      "sha256": "1107ca37aaffc4a88a2a83c809dc89b0922f35d72def396e6a91d4ebc9c5bd97"
+    },
+    {
+      "path": "css/style.css",
+      "bytes": 33803,
+      "sha256": "4c1bacaf43fc1a68209fa931e530199c8f0df455ca58b925687d260da06e91fd"
+    },
+    {
+      "path": "index.html",
+      "bytes": 2916,
+      "sha256": "007c8c8dcebd93088503987781c6c6587d2b984f7830fb545ccd912194b4bd33"
+    },
+    {
+      "path": "js/main.js",
+      "bytes": 909144,
+      "sha256": "45c5e6140e7972c10e575e3b5d33748f0bbc26a93f91acd7b355ab690fa027ea"
+    }
+  ]
+}
