@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080b12">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'">
+  <title>弃兵 · Pawnsworn</title>
+  <link rel="stylesheet" href="css/style.a6f85c4407dd.min.css">
+</head>
+<body>
+  <noscript>Pawnsworn needs JavaScript to run. 请启用 JavaScript 以运行弃兵。</noscript>
+  <aside id="save-warning" class="save-warning hidden" role="alert"><span id="save-warning-copy"></span><button id="retry-save-btn" type="button">Retry save</button></aside>
+  <main id="app">
+    <div id="title-scene" aria-hidden="true"></div>
+    <section id="title-screen" class="screen title-screen active" aria-label="弃兵主菜单" data-i18n-aria="title.aria">
+      <div class="title-vignette"></div>
+      <div class="title-content">
+        <div class="title-kicker"><i></i><span>A CHESS ROGUELITE</span></div>
+        <h1><span data-i18n="title.brand">弃兵</span><small>PAWNSWORN</small></h1>
+        <p class="title-copy" data-i18n="title.tagline" data-i18n-html="1">看见下一步<br>守住你的王</p>
+        <div class="title-actions">
+          <button id="new-run-btn" class="title-command primary" data-title-focus="king" data-steam-action="confirm"><i>Ⅰ</i><span data-i18n="title.new">开始远征<small>NEW ASCENT</small></span><b>›</b></button>
+          <button id="continue-btn" class="title-command hidden" data-title-focus="board" data-steam-action="confirm"><i>Ⅱ</i><span data-i18n="title.continue">继续征途<small>CONTINUE</small></span><b>›</b></button>
+          <button id="challenge-btn" class="title-command quiet" data-title-focus="king"><i>Ⅲ</i><span data-i18n="title.challenge">王庭挑战<small>DAILY / WEEKLY</small></span><b>›</b></button>
+          <button id="open-codex-btn" class="title-command quiet" data-title-focus="relic"><i>Ⅳ</i><span data-i18n="title.codex">违禁棋谱<small>CODEX</small></span><b>›</b></button>
+          <button id="run-history-btn" class="title-command quiet" data-title-focus="board"><i>Ⅴ</i><span data-i18n="title.history">远征档案<small>RUN HISTORY</small></span><b>›</b></button>
+          <button id="settings-btn" class="title-command quiet" data-title-focus="board"><i>Ⅵ</i><span data-i18n="title.settings">控制设置<small>KEYBOARD / GAMEPAD</small></span><b>›</b></button>
+        </div>
+        <button id="debug-btn" class="title-debug hidden" data-i18n="title.debug">开发者调试 · F2</button>
+      </div>
+      <div class="title-chapter"><span>BLACK COURT</span><strong data-i18n="title.chapter">王庭正在自行推演第 Ⅸ 局</strong></div>
+      <div class="title-footer"><span data-i18n="title.info1">完全信息战术</span><i></i><span data-i18n="title.info2">鼠标与手柄</span><i></i><span data-i18n="title.info3">每局约 20 分钟</span></div>
+    </section>
+
+    <section id="loadout-screen" class="screen loadout-screen" aria-label="选择誓约" data-i18n-aria="loadout.aria">
+      <header class="screen-header ornate">
+        <button class="icon-btn" data-action="title" aria-label="返回" data-i18n-aria="loadout.back">‹</button>
+        <div><span class="eyebrow">BEFORE THE ASCENT</span><h2 data-i18n="loadout.title">缔结誓约</h2></div>
+        <span class="header-rune">Ⅰ</span>
+      </header>
+      <div class="loadout-body">
+        <aside id="guided-start-note" class="guided-start-note hidden">
+          <span><b>推荐首局 · 黑曜棋塔</b><small>先通过一场短训练认识公开意图；其他棋塔与王庭挑战仍可从进阶开局进入。</small></span>
+          <button id="advanced-start-toggle" class="mini-btn" type="button" aria-pressed="false">显示进阶开局</button>
+        </aside>
+        <section class="tower-selection">
+          <div class="section-label" data-i18n="loadout.tower">选择棋塔</div>
+          <div id="tower-list" class="tower-choice-list"></div>
+        </section>
+        <section>
+          <div class="section-label" data-i18n="loadout.kits">开局棋组</div>
+          <div id="kit-list" class="choice-grid kits"></div>
+        </section>
+        <section>
+          <div class="section-label" data-i18n="loadout.rank">段位难度</div>
+          <div id="rank-list" class="rank-list"></div>
+        </section>
+        <div class="oath-summary">
+          <span data-i18n="loadout.summary">本次誓约</span>
+          <strong id="oath-summary">弃兵开局 · 800</strong>
+        </div>
+        <button id="launch-run-btn" class="game-btn primary wide" data-steam-action="confirm"><span data-i18n="loadout.launch">踏入棋塔</span><small>BEGIN ASCENT</small></button>
+      </div>
+    </section>
+
+    <section id="map-screen" class="screen map-screen" aria-label="棋塔地图" data-i18n-aria="map.aria">
+      <header class="run-header">
+        <button class="icon-btn" data-action="title" aria-label="主菜单" data-i18n-aria="map.home">⌂</button>
+        <div class="run-title"><span id="map-rank">800</span><strong id="map-tower-name" data-i18n="map.tower">黑曜棋塔</strong></div>
+        <div class="resource"><span class="coin">◆</span><b id="map-gold">0</b></div>
+      </header>
+      <div class="map-copy">
+        <span class="eyebrow">CHOOSE YOUR PATH</span>
+        <h2 id="map-heading">第 1 阶</h2>
+        <div id="map-omen">每一步都在改写这局棋。</div>
+      </div>
+      <div id="tower-map" class="tower-map"></div>
+      <footer class="map-footer">
+        <div class="roster-strip" id="map-roster"></div>
+        <button id="open-inventory-btn" class="mini-btn"><span data-i18n="map.relics">遗物</span> <b id="map-relic-count">0</b></button>
+      </footer>
+    </section>
+
+    <section id="battle-screen" class="screen battle-screen" aria-label="战斗" data-i18n-aria="battle.aria">
+      <header class="battle-header">
+        <button class="icon-btn" id="battle-menu-btn" aria-label="菜单" data-i18n-aria="battle.menu" data-steam-action="menu">☰</button>
+        <div class="battle-title"><span id="battle-room-type">战斗</span><strong id="battle-room-name">无名残局</strong></div>
+        <div class="resource"><span class="coin">◆</span><b id="battle-gold">0</b></div>
+      </header>
+
+      <div class="turn-banner">
+        <span id="turn-kicker">YOUR MOVE</span>
+        <strong id="turn-title">规划回合</strong>
+        <span id="turn-count">回合 1</span>
+      </div>
+
+      <div id="battle-contract" class="battle-contract" aria-live="polite">
+        <span>✦</span><div><small>OPTIONAL CONTRACT</small><strong id="contract-title">战术契约</strong></div>
+        <p id="contract-copy">完成一次反制行动</p><b id="contract-progress">0 / 1 · +2◆</b><button id="contract-action" class="hidden" type="button" aria-keyshortcuts="F" data-steam-action="decree">指定所选棋 · F / RB</button>
+      </div>
+      <div id="training-mission" class="training-mission hidden" aria-live="polite"></div>
+
+      <div id="board-wrap">
+        <div class="board-atmosphere"></div>
+        <div id="danger-toast" class="danger-toast hidden" role="status" aria-live="assertive"></div>
+        <aside id="piece-inspector" class="piece-inspector hidden" aria-live="polite"></aside>
+        <div class="camera-controls" aria-label="镜头控制" data-i18n-aria="battle.camera">
+          <em class="camera-gesture-hint" data-i18n="battle.gesture">拖拽旋转 · 滚轮缩放</em>
+          <button id="camera-reset-btn" title="恢复默认镜头并保存（R）" data-i18n-title="battle.resetTitle"><span>↺</span><small data-i18n="battle.reset">复位</small></button>
+          <button id="camera-tactical-btn" title="切换战术俯视（C）" data-i18n-title="battle.tacticalTitle"><span>⌗</span><small data-i18n="battle.tactical">俯视</small></button>
+        </div>
+      </div>
+
+      <div id="input-hint" class="input-hint" aria-live="polite"><span data-steam-action="up">方向键 / 左摇杆：移动焦点</span><i></i><span data-steam-action="confirm">确认：选择或落子</span><i></i><span data-steam-action="end">E / Y：结算回合</span></div>
+
+      <aside id="intent-tray" class="intent-tray"></aside>
+
+      <div id="coach-strip" class="coach-strip hidden">
+        <span class="coach-glyph">♙</span>
+        <p id="coach-copy"></p>
+        <button id="coach-close" aria-label="关闭提示" data-i18n-aria="battle.closeCoach">×</button>
+      </div>
+
+      <aside id="codex-trial-panel" class="codex-trial-panel hidden" aria-live="polite">
+        <span class="codex-trial-art"><img id="codex-trial-art" alt=""><i>TACTICS LAB</i></span>
+        <div class="codex-trial-copy"><small id="codex-trial-index">POSITION 01 / 24</small><h2 id="codex-trial-title">试招</h2><strong id="codex-trial-enemy">敌棋</strong><p id="codex-trial-objective"></p><em id="codex-trial-status">选择己方棋子，完成应对。</em></div>
+        <div class="codex-trial-controls">
+          <button id="codex-trial-reset" type="button"><span>↺</span><small data-i18n="trial.reset">重置</small></button>
+          <button id="codex-trial-next" type="button"><span>›</span><small data-i18n="trial.next">下一题</small></button>
+          <button id="codex-trial-exit" type="button"><span>×</span><small data-i18n="trial.exit">返回图鉴</small></button>
+        </div>
+      </aside>
+
+      <footer class="battle-dock">
+        <div id="selection-card" class="selection-card" aria-live="polite" aria-atomic="true" data-selected="false">
+          <span class="piece-medallion">♔</span>
+          <div><small>未选中 · 选择己方棋</small><strong>观察敌方意图</strong></div>
+        </div>
+        <div class="battle-actions">
+          <button id="undo-btn" class="dock-btn" disabled data-steam-action="undo"><span>↶</span><small data-i18n="battle.undo">撤销</small></button>
+          <button id="scroll-btn" class="dock-btn" data-steam-action="freeze"><span>⌛</span><small><span data-i18n="battle.freeze">冻结</span> <b id="scroll-count">0</b></small></button>
+          <button id="end-turn-btn" class="end-turn" data-steam-action="end"><span data-i18n="battle.resolve">执行回合</span><small>RESOLVE</small></button>
+        </div>
+      </footer>
+    </section>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-shade"></div>
+      <div id="modal-card" class="modal-card"></div>
+    </div>
+
+    <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+    <button id="global-debug-btn" class="global-debug-btn hidden" aria-label="打开自由选关调试台">
+      <span>DEBUG</span><small>自由选关 · F2</small>
+    </button>
+  </main>
+  <script src="lib/three.min.js"></script>
+  <script src="js/game.d20589c168a2.min.js"></script>
+</body>
+</html>

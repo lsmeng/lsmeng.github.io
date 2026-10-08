@@ -1,0 +1,435 @@
+{
+  "schema_version": 1,
+  "game": "PAWNSWORN",
+  "version": "pawnsworn-browser-2026.10.08-rc1",
+  "release_channel": "web-beta",
+  "runtime": "minified-static-web",
+  "source_runtime_sha256": "34bf5fd6db3cc54ffdf1dd6ec3f11d8fe8f5febf5229ecae231417e33d550733",
+  "bundle": "d20589c168a2",
+  "rules_fingerprint": "1cba074a",
+  "entrypoint": "index.html",
+  "browser_qa": {
+    "tested_renderer": "2D tactical fallback",
+    "full_nine_tier_run": "completed against identical game rules before final presentation fixes",
+    "not_verified": [
+      "original WebGL/3D visuals",
+      "390px or physical touchscreen",
+      "gamepad",
+      "audio output quality",
+      "human enjoyment or balance study"
+    ],
+    "save_note": "Browser-local and origin-specific"
+  },
+  "files": [
+    {
+      "path": "THIRD_PARTY_NOTICES.txt",
+      "bytes": 1208,
+      "sha256": "8d721eb9ce46d1d5982bf92524d5fe207f1552b7e37c4f50515ecce903c3e113"
+    },
+    {
+      "path": "assets/battle-cathedral.webp",
+      "bytes": 177234,
+      "sha256": "73ee6bdb1697e496b96cce081fd8b58bacbd56f2b33d81e4a3568e3a0d805361"
+    },
+    {
+      "path": "assets/enemies/runtime/anchor-rook.webp",
+      "bytes": 91182,
+      "sha256": "6addd3d8ab42d0dc83b68248e7f8c6f4d64c64d44796c1eb15fb569cc2cc8a15"
+    },
+    {
+      "path": "assets/enemies/runtime/berserker.webp",
+      "bytes": 51440,
+      "sha256": "61ce2ab6e09ed2719668f6b5791f99522db3c5e4dd5f6049083dd02b833fb65a"
+    },
+    {
+      "path": "assets/enemies/runtime/bomb.webp",
+      "bytes": 54348,
+      "sha256": "96b1d635d4df546a7314236e7c0435f8882e9c8a6440db6f65451f77660eb7d9"
+    },
+    {
+      "path": "assets/enemies/runtime/brass-chronarch.webp",
+      "bytes": 115500,
+      "sha256": "b6109d7a40aeee769236847ce564faa547894c9d5b990bb0731b26096a21a5ef"
+    },
+    {
+      "path": "assets/enemies/runtime/bulwark.webp",
+      "bytes": 58370,
+      "sha256": "5823651575c281453f354e3729a5c5665a82e90c95757403e1073772d70069b5"
+    },
+    {
+      "path": "assets/enemies/runtime/cinder-votive.webp",
+      "bytes": 74724,
+      "sha256": "088d9b776e61e24bb73d0e917a53e8ec667fd568cba8656b23b858639bb1c0f2"
+    },
+    {
+      "path": "assets/enemies/runtime/forked-pursuer.webp",
+      "bytes": 92076,
+      "sha256": "3746481159101af4e882839a4c668012ba6ebb776820c507f13e0ba949038297"
+    },
+    {
+      "path": "assets/enemies/runtime/gate-rook.webp",
+      "bytes": 100142,
+      "sha256": "4793bcbfbaf39370ba19d939139f186d6ebbba58fff509b417d2b82278812885"
+    },
+    {
+      "path": "assets/enemies/runtime/ghost-knight.webp",
+      "bytes": 46726,
+      "sha256": "357a7f456e7cfdb8c3f7c5fbcca96b0c2fc8513477252d7738d71446f3b6c510"
+    },
+    {
+      "path": "assets/enemies/runtime/grapnel-knight.webp",
+      "bytes": 88566,
+      "sha256": "4a9a22ea1b2fecac387bd25cfa38eb139be8266cb2cb72cfcb641ff2ebf113db"
+    },
+    {
+      "path": "assets/enemies/runtime/hunter-knight.webp",
+      "bytes": 39608,
+      "sha256": "bdac720c696311a0c04de547e1b162f6f73e47130816edf8aa7db277f2a90b78"
+    },
+    {
+      "path": "assets/enemies/runtime/levy-bishop.webp",
+      "bytes": 86686,
+      "sha256": "2473a8b6347678c7b2d23ba51165c4dee1d8d55e244069fea6a199bd3b98e8a6"
+    },
+    {
+      "path": "assets/enemies/runtime/mirror-bishop.webp",
+      "bytes": 61994,
+      "sha256": "6a2b6bb02a0feab5ee7df65f9d4e41bfd4edf1fef16528b19681968cb21f52ae"
+    },
+    {
+      "path": "assets/enemies/runtime/moon-regent.webp",
+      "bytes": 109584,
+      "sha256": "5d24119a94531224aaf14b3b044fa848d2d746e008c1941399c5a902e8b6d230"
+    },
+    {
+      "path": "assets/enemies/runtime/mourning-bishop.webp",
+      "bytes": 81666,
+      "sha256": "cc07a87d27a7445ba406f5751f9100036c37028a6049bbfd5a553aa6ea5990ea"
+    },
+    {
+      "path": "assets/enemies/runtime/oath-pawn.webp",
+      "bytes": 72314,
+      "sha256": "402f544d0523f8d0eda856a8ef9e6df216d4957043afe5d3b51457db88810e3e"
+    },
+    {
+      "path": "assets/enemies/runtime/pawn.webp",
+      "bytes": 37236,
+      "sha256": "136d94c25866226eb583cd06c0efffb81a6ccf3a1da53591ca5d734de521434e"
+    },
+    {
+      "path": "assets/enemies/runtime/priest.webp",
+      "bytes": 56324,
+      "sha256": "573ce9a7e23d21d565ca5f5e0def8869b1ea468c1aa5109319b7c70ce08fc7e8"
+    },
+    {
+      "path": "assets/enemies/runtime/rift-rook.webp",
+      "bytes": 71430,
+      "sha256": "1b6697ee2decacb9f0b9a87abbcef300a32e501f70ad8033417cf80f918108af"
+    },
+    {
+      "path": "assets/enemies/runtime/royal-guard.webp",
+      "bytes": 47722,
+      "sha256": "3e859f40f47590b252b299da7abb786b02f494de0e19e92beaa8386b08f03eb2"
+    },
+    {
+      "path": "assets/enemies/runtime/sentinel.webp",
+      "bytes": 35914,
+      "sha256": "22658018c1ec85e9b9b915bee4780272f4ae8725cd509db4f14364ec841e5520"
+    },
+    {
+      "path": "assets/enemies/runtime/shadow-queen.webp",
+      "bytes": 33194,
+      "sha256": "ea90c1a518afd3b31b09e5b45904853414adebb4e3b3a24c58f53ace27f45d84"
+    },
+    {
+      "path": "assets/enemies/runtime/statue-bishop.webp",
+      "bytes": 56358,
+      "sha256": "9f4a7fd8d32222dc25fcf1cc07ffbb5fb14d114cb6c4608de4f53d2ed51944d7"
+    },
+    {
+      "path": "assets/enemies/runtime/storm-queen.webp",
+      "bytes": 81714,
+      "sha256": "8ec4b188ee86f7b7c33774059ff7d17c95bf9a4622f97bc90fdf39bfffe0965c"
+    },
+    {
+      "path": "assets/loadout/runtime/kit-chapel.webp",
+      "bytes": 59236,
+      "sha256": "21a86df4e9237c51dbe91e62ccd2f7f8724a76a96c0188a6ed51d28e29051371"
+    },
+    {
+      "path": "assets/loadout/runtime/kit-knights.webp",
+      "bytes": 74058,
+      "sha256": "bd04225b47b168fff99b33b61d603943a420cde5dc875299783af437d1ca2fc1"
+    },
+    {
+      "path": "assets/loadout/runtime/kit-pawns.webp",
+      "bytes": 42864,
+      "sha256": "46aaa1371fbcc1bc0fe600f0b69fb46cc045ef52d8450dcbfeec42358000be79"
+    },
+    {
+      "path": "assets/loadout/runtime/rank-1000.webp",
+      "bytes": 59852,
+      "sha256": "32fc40ff9ad3536bee1de4d77eec62ea7d93d3aeac47f6d5448cb9738fd796c0"
+    },
+    {
+      "path": "assets/loadout/runtime/rank-1200.webp",
+      "bytes": 63570,
+      "sha256": "b12ec26f48eec1d827f40d7b19b14a2c1cfae777803c08b4f9c4241cf4264864"
+    },
+    {
+      "path": "assets/loadout/runtime/rank-800.webp",
+      "bytes": 33736,
+      "sha256": "0bbc0cb1ae84f03241fd3a342a77d84c073ca73de916ba6b3be32c708ba911b8"
+    },
+    {
+      "path": "assets/materials/black-slate/runtime/black-slate-basecolor.webp",
+      "bytes": 317494,
+      "sha256": "5a9efd5a95e376fd90f97dce6f7d11bb9899bfac9a4271a13550cfa85740ccf1"
+    },
+    {
+      "path": "assets/materials/black-slate/runtime/black-slate-normal.webp",
+      "bytes": 125046,
+      "sha256": "6a61599625086467477f9cdcb4cdd23d33ccd928f224f7ad5c48e15e77e10fa3"
+    },
+    {
+      "path": "assets/materials/black-slate/runtime/black-slate-roughness.webp",
+      "bytes": 65108,
+      "sha256": "55ed81abea2feb1da0af5ce058aa3976c8df81cfec426e1a7394cbe8fa94c130"
+    },
+    {
+      "path": "assets/relics/runtime/bishop-light.webp",
+      "bytes": 25666,
+      "sha256": "eb5a9c478a28ccff8345806e2756aca3566b42d0405a02764d1e719e8a0d5032"
+    },
+    {
+      "path": "assets/relics/runtime/black-glass.webp",
+      "bytes": 43746,
+      "sha256": "0c2fa3d2a7e99e774b03ecae8c525092351646a0929830fe70f68ab8cdb97ed5"
+    },
+    {
+      "path": "assets/relics/runtime/blood-tax.webp",
+      "bytes": 29230,
+      "sha256": "8a8d913faaa2fc0c569fdda446f0a4d52190b2187f4d05c5abcbb44cc532da48"
+    },
+    {
+      "path": "assets/relics/runtime/castle-protocol.webp",
+      "bytes": 31118,
+      "sha256": "5866573f7b76e812cf1e1331502c2e76969a84feb2ec294b0488eec50f4e91b9"
+    },
+    {
+      "path": "assets/relics/runtime/cinder-crown.webp",
+      "bytes": 52610,
+      "sha256": "f5d54034524834fa259b039b488d3fe8dcde47bf4523c287a4b954e24fec569a"
+    },
+    {
+      "path": "assets/relics/runtime/countergambit.webp",
+      "bytes": 35976,
+      "sha256": "b3b5073922318adbc6d8b894504a66e86f26f725b0482fe7faea56e3a1415786"
+    },
+    {
+      "path": "assets/relics/runtime/crowned-ambition.webp",
+      "bytes": 33332,
+      "sha256": "a97be702309d07e9dc41a88b07e70ea77ec05b64c8f07670c87c52d96838dfc7"
+    },
+    {
+      "path": "assets/relics/runtime/execution-bell.webp",
+      "bytes": 28104,
+      "sha256": "507055031592da372f80d45f3643114c9e5f1f9fdb48533f2d2ee7a0d57abd27"
+    },
+    {
+      "path": "assets/relics/runtime/forked-bridle.webp",
+      "bytes": 42310,
+      "sha256": "f438c75c14c8450d60e27e792147c2901313890ac4879dd3bea1585eb4a152ef"
+    },
+    {
+      "path": "assets/relics/runtime/forward-march.webp",
+      "bytes": 17084,
+      "sha256": "0dfd63149d37daf1fe9589f53780d4769f45a64d7ba75605a125dc6b66a69621"
+    },
+    {
+      "path": "assets/relics/runtime/grave-ledger.webp",
+      "bytes": 51550,
+      "sha256": "863eee6729ae50ad5d2ae1bbed38360955d228c1b2d613efef448d2f1bb1cbc3"
+    },
+    {
+      "path": "assets/relics/runtime/hourglass.webp",
+      "bytes": 41938,
+      "sha256": "387ad5543044f7cb4cb8092cf6c1a5df847edb19eb274647426b56d118625fde"
+    },
+    {
+      "path": "assets/relics/runtime/hunters-mark.webp",
+      "bytes": 28188,
+      "sha256": "7d2343352d06c0314a8f4c4989510c9effab6171e9f35158d86362fd20886338"
+    },
+    {
+      "path": "assets/relics/runtime/iron-procession.webp",
+      "bytes": 50032,
+      "sha256": "9a66180c9a63e609621b713366d414c17e7aef0fbeee9a19573d9a7249a9ef3c"
+    },
+    {
+      "path": "assets/relics/runtime/knight-oath.webp",
+      "bytes": 26044,
+      "sha256": "3c8682df3141e213290039a7234b37e3450716f0116938cc8e8f48d2add1a7d4"
+    },
+    {
+      "path": "assets/relics/runtime/last-step-spur.webp",
+      "bytes": 30124,
+      "sha256": "a58fb09fcfcfa36dfdfc8f7149d7cd54592e97f83f353ff6c6b4f3880b5dfd94"
+    },
+    {
+      "path": "assets/relics/runtime/martyr-candle.webp",
+      "bytes": 30880,
+      "sha256": "d7f51ab866cb1f8388bf7b2458359651948a19cecee93ae2843262be9ce05ba2"
+    },
+    {
+      "path": "assets/relics/runtime/merchant-seal.webp",
+      "bytes": 32678,
+      "sha256": "e9e92435e01047a511a569c66d0cfb383da326cbaca1d4ab47e92fb6367b468a"
+    },
+    {
+      "path": "assets/relics/runtime/pawn-gambit.webp",
+      "bytes": 28850,
+      "sha256": "7d73373f5232514b5f4e2a3ae63b541e5a21670d65e52efe1ffcca2fb36aef00"
+    },
+    {
+      "path": "assets/relics/runtime/phalanx-pennon.webp",
+      "bytes": 44968,
+      "sha256": "f49f72e79463aa8054dfc06047ca7932c67f2d177fd755488d7c5b39404bb0f7"
+    },
+    {
+      "path": "assets/relics/runtime/pilgrim-censer.webp",
+      "bytes": 42418,
+      "sha256": "f2ca2809a388bcfc24de325792fdf99406590c96f6cc75261e8b0e1f422a6ed6"
+    },
+    {
+      "path": "assets/relics/runtime/queen-edict.webp",
+      "bytes": 33836,
+      "sha256": "a84c8d0c7dce331a0222bd0717281dc2e47018f5ad309d49c731536683f137ab"
+    },
+    {
+      "path": "assets/relics/runtime/queen-mirror.webp",
+      "bytes": 30540,
+      "sha256": "f393fd4bf8f44a2c6a0f51d7df01d7a69d69205532200f4a83056d86135ab93b"
+    },
+    {
+      "path": "assets/relics/runtime/rook-bastion.webp",
+      "bytes": 32578,
+      "sha256": "782f1772acb15a44d1c7bb13a0a9ee03ccf0729934a6c4adff318bd19889cde0"
+    },
+    {
+      "path": "assets/relics/runtime/rook-garrison.webp",
+      "bytes": 41326,
+      "sha256": "fe17e0c7d3454e289556b6f721e1f38a3b78215813dd203b606791308b6b324e"
+    },
+    {
+      "path": "assets/relics/runtime/royal-aegis.webp",
+      "bytes": 43690,
+      "sha256": "2cc6d1fbbb2bd501dd232176cc2eb45eac4af9a3069c989270644342cc7c6120"
+    },
+    {
+      "path": "assets/relics/runtime/royal-reserve.webp",
+      "bytes": 48418,
+      "sha256": "26e86b44005fecd141cc8763d6c1967d357f9d5ee0baaac2d575f57a18d03aa4"
+    },
+    {
+      "path": "assets/relics/runtime/veteran-banner.webp",
+      "bytes": 28462,
+      "sha256": "aec7fa185c5cc6751873256c70e0f8f2204dab60118d222fbe8a8e005023e18d"
+    },
+    {
+      "path": "assets/relics/runtime/wax-army.webp",
+      "bytes": 34310,
+      "sha256": "8e1ce03aabaa09446e351abc0009d91e9d940c346717cf602701f6ad5be27af9"
+    },
+    {
+      "path": "assets/relics/runtime/winged-spur.webp",
+      "bytes": 23006,
+      "sha256": "a190c15994747207020e9252a47d0ce419c635019fe1bbcc6c578b4241120858"
+    },
+    {
+      "path": "assets/results/runtime/defeat-wide.webp",
+      "bytes": 108926,
+      "sha256": "a7101d310e7d997607404b3b26104399a3a9c8f16922d40c694789f74a1cdc8b"
+    },
+    {
+      "path": "assets/results/runtime/defeat.webp",
+      "bytes": 80402,
+      "sha256": "3c50b0c2d80f4c91844942ce979a817bfc96610407535c6ab7d991c39f615c26"
+    },
+    {
+      "path": "assets/results/runtime/victory-wide.webp",
+      "bytes": 118202,
+      "sha256": "54b4151898d82ace86715bbf2f0b508e78af766b08f5dfc23158a63f5d071aa6"
+    },
+    {
+      "path": "assets/results/runtime/victory.webp",
+      "bytes": 87194,
+      "sha256": "0f654e1c89169288be948860cd5992f67968eb68f2db87a2cbe7d7f4faf765b2"
+    },
+    {
+      "path": "assets/shop/runtime/freeze-scroll.webp",
+      "bytes": 47370,
+      "sha256": "87eca5aa99166f80e18ba42c575a1697034db96475003bd457eba2af612a5fcf"
+    },
+    {
+      "path": "assets/shop/runtime/promotion-forge.webp",
+      "bytes": 45200,
+      "sha256": "2ccfd56df0108083ddc73614d8409d35c0d7905a6547f731308403e5c950d218"
+    },
+    {
+      "path": "assets/shop/runtime/promotion-queen.webp",
+      "bytes": 42656,
+      "sha256": "4526a697a88e3ec74f509513857d3329747b1670dd1387d02aa75968ad166d55"
+    },
+    {
+      "path": "assets/shop/runtime/recruit-bishop.webp",
+      "bytes": 46104,
+      "sha256": "7483f2917279c5e4594f014754cfe7396de3c06fe5d62ca9a7e05a3e970828a7"
+    },
+    {
+      "path": "assets/shop/runtime/recruit-knight.webp",
+      "bytes": 54726,
+      "sha256": "56f98dc821fff1145472357e9345c8223915ee96eac1c49a806c231d814856c9"
+    },
+    {
+      "path": "assets/shop/runtime/recruit-pawn.webp",
+      "bytes": 45194,
+      "sha256": "93c838f377b83db8ab8923f1842b9a394a7d05ab37a54686cd91882f9bc0b673"
+    },
+    {
+      "path": "assets/shop/runtime/recruit-rook.webp",
+      "bytes": 42526,
+      "sha256": "987f910cd0e9e2401299f0e824fc19f476791163a39c1f4162274c6b2570b071"
+    },
+    {
+      "path": "assets/title-sanctum.webp",
+      "bytes": 101920,
+      "sha256": "8549dedbff336deadbcf6d38409190810a397f60df2693af4f8e28488502c2bf"
+    },
+    {
+      "path": "assets/tower-ascent.webp",
+      "bytes": 154662,
+      "sha256": "057e39d0adc8f645ff802a12a6c9d65e87f116b21e6be7adaa148b50cc7bbf8d"
+    },
+    {
+      "path": "css/style.a6f85c4407dd.min.css",
+      "bytes": 308995,
+      "sha256": "a6f85c4407ddd7e29db8945db00f536e8e4dbc8dde1f9d9488cddf063cf7750b"
+    },
+    {
+      "path": "index.html",
+      "bytes": 11166,
+      "sha256": "c446eb3c36e752a80a44710351aa7fd980dc3664bcf0737793ee365f717bb645"
+    },
+    {
+      "path": "js/game.d20589c168a2.min.js",
+      "bytes": 799937,
+      "sha256": "d20589c168a2c6d9a9bab2408f41f87d49dff7a2dcdc77f1de0eb043586ff033"
+    },
+    {
+      "path": "lib/three.min.js",
+      "bytes": 607784,
+      "sha256": "f34446bf875b5fb0dcd93819ffe1d9e182d46634ee855f5d904c6c4ac7cdbc95"
+    }
+  ]
+}
