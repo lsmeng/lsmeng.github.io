@@ -24,6 +24,7 @@ MENU = [
     ("publications", "publications.html", "Publications"),
     ("ai-for-math", "ai-for-math.html", "AI for Math"),
     ("blog", "blog.html", "Blog"),
+    ("games", 'https://meng-games.ling2-jin.chatgpt.site', "Games"),
     ("group", "group.html", "Group"),
     ("resource", "resource.html", "Resources"),
     ("contact", "index.html#contact", "Contact"),
