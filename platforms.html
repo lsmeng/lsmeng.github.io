@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platforms — Lingsen Meng</title>
+<meta name="description" content="Research web platforms from the Meng group: SeisForge (uncertainty and quality control for seismological parameters: machine-learning detection, focal mechanisms) and a community tsunami fast-model service.">
+<!-- site:head -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/instrument-sans@5/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5/index.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light">
+<!-- /site:head -->
+</head>
+<body>
+<!-- site:nav -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><svg class="brand-mark" aria-hidden="true"><use href="assets/icons.svg#i-mark"></use></svg><span>Lingsen Meng</span></a>
+    <nav class="nav-links" id="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="platforms.html" aria-current="page">Platforms</a>
+      <a href="ai-for-math.html">AI for Math</a>
+      <a href="blog.html">Blog</a>
+      <a href="https://meng-games.ling2-jin.chatgpt.site">Games</a>
+      <a href="group.html">Group</a>
+      <a href="resource.html">Resources</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><svg class="ico ico-menu" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg><svg class="ico ico-close" aria-hidden="true"><use href="assets/icons.svg#i-close"></use></svg></button>
+    </div>
+  </div>
+</header>
+<!-- /site:nav -->
+
+<main class="wrap" id="main">
+  <section class="page-head">
+    <h1 class="page-title">Platforms</h1>
+    <p class="lead">
+      Web tools built on our research. They are free for academic use, exploratory and not peer reviewed unless a paper is cited on the tool page.
+      Each states what its numbers mean and which reference they are measured against.
+    </p>
+  </section>
+
+  <section>
+    <h2>SeisForge</h2>
+    <p class="lead" style="font-size:16px">Uncertainty and quality control for seismological parameters: upload a catalogue or model outputs and get calibrated scores, sets and uncertainties back.</p>
+    <div class="cards">
+      <a class="card" href="https://seisforge.imageolab.com/focal/" target="_blank" rel="noopener">
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-target"></use></svg></span>
+        <h3>SeisForge · Focal mechanisms</h3>
+        <p>Calibrated first-motion polarity probabilities, focal-mechanism sets with a stated coverage level, and the effect of mechanism uncertainty on stress inversion. Upload a CSV, download the calibrator.<br><span class="ref">Live &middot; exploratory &middot; seisforge.imageolab.com/focal</span></p>
+      </a>
+      <div class="card">
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-ai"></use></svg></span>
+        <h3>SeisForge · Machine-learning detection</h3>
+        <p>Scores for earthquakes detected by machine-learning pickers: the calibrated chance that a seismologist would confirm a candidate event.<br>
+        <span class="ref">In preparation &middot; Meng, Huang, Ma &amp; Ma (2026), <em>Can human seismologists verify machine-learning detected earthquakes?</em>, EarthArXiv, <a href="https://doi.org/10.31223/X5MZ2D" target="_blank" rel="noopener">doi:10.31223/X5MZ2D</a></span></p>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:16px" class="lead">Overview and terms: <a href="https://seisforge.imageolab.com/" target="_blank" rel="noopener">seisforge.imageolab.com</a>.</p>
+  </section>
+
+  <section>
+    <h2>Tsunami</h2>
+    <div class="cards">
+      <a class="card" href="https://tsunami.imageolab.com" target="_blank" rel="noopener">
+        <span class="tag"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-tsunami"></use></svg></span>
+        <h3>Community tsunami fast-model service</h3>
+        <p>Paint a fault slip on a map, get the offshore maximum water level from a neural surrogate trained on a shallow-water solver, and compare with the solver on request. Registration with an academic address.<br><span class="ref">tsunami.imageolab.com &middot; trial service</span></p>
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- site:foot -->
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-name">Lingsen Meng</p>
+      <p>Department of Earth, Planetary and Space Sciences<br>University of California, Los Angeles</p>
+    </div>
+    <div class="foot-links">
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="data.html">Data &amp; figures</a>
+      <a href="https://scholar.google.com/citations?user=a25Ac-oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://github.com/lsmeng" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="foot-copy">&copy; <span id="yr">2026</span> Lingsen Meng</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+<!-- /site:foot -->
+</body>
+</html>

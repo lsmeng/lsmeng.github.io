@@ -22,6 +22,7 @@ MENU = [
     ("home", "index.html", "Home"),
     ("research", "research.html", "Research"),
     ("publications", "publications.html", "Publications"),
+    ("platforms", "platforms.html", "Platforms"),
     ("ai-for-math", "ai-for-math.html", "AI for Math"),
     ("blog", "blog.html", "Blog"),
     ("games", 'https://meng-games.ling2-jin.chatgpt.site', "Games"),

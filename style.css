@@ -446,7 +446,7 @@ svg.mpl text { font-family: var(--sans); }
 
 /* Swiss grid, thin black rules, square corners, small caps */
 .site-header { border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--paper); -webkit-backdrop-filter: none; backdrop-filter: none; }
-.nav-links a { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; font-weight: 550; color: var(--ink-2); }
+.nav-links a { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; font-weight: 550; color: var(--ink-2); white-space: nowrap; }
 .nav-links a:hover { background: transparent; color: var(--accent); }
 .nav-links a[aria-current="page"] { color: var(--accent); }
 .nav-links a[aria-current="page"]::after { background: var(--accent); height: 3px; bottom: -1px; border-radius: 0; }
@@ -485,3 +485,18 @@ img[data-zoom] { cursor: zoom-in; }
 .lightbox .lb-close { position: absolute; top: -6px; right: -6px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; color: #000; font-size: 20px; cursor: pointer; }
 .viz-controls .sel { min-width: 0; max-width: 100%; }
 .viz-controls .sel select { width: 100%; text-overflow: ellipsis; }
+
+/* Ten menu items no longer fit below ~1180px: collapse the menu earlier than the 900px layout breakpoint. */
+@media (max-width: 1180px) {
+  :root { --header-h: 56px; }
+  .nav-inner { padding: 0 16px; gap: 8px; }
+  .nav-tools { margin-left: auto; }
+  .nav-toggle { display: inline-grid; }
+  .nav-links { position: absolute; top: var(--header-h); left: 0; right: 0; margin: 0; flex-direction: column; gap: 0; padding: 8px 16px 14px;
+    background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); display: none; }
+  .site-header.open .nav-links { display: flex; }
+  .nav-links a { font-size: 16px; padding: 11px 6px; border-bottom: 1px solid var(--line); border-radius: 0; text-transform: none; letter-spacing: 0; }
+  .nav-links a:last-child { border-bottom: 0; }
+  .nav-links a[aria-current="page"]::after { left: 0; right: auto; top: 12px; bottom: 12px; width: 2px; height: auto; }
+  .nav-links a[aria-current="page"] { padding-left: 12px; }
+}
