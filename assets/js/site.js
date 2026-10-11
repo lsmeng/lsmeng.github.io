@@ -38,8 +38,20 @@
 
   /* ---- footer year, e-mail (never written in plain text in the HTML) ---- */
   var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
-  var mail = 'mailto:' + 'lsmeng' + '@' + 'g.ucla.edu';
-  document.querySelectorAll('[data-mail]').forEach(function (a) { a.href = mail; });
+  /* e-mail is hidden until a person clicks "View email address" and ticks the check,
+     like the YouTube About page; the address is never in the HTML and is assembled here */
+  var t0 = Date.now();
+  document.querySelectorAll('[data-mail-reveal]').forEach(function (box) {
+    var btn = box.querySelector('[data-mail-show]'), lab = box.querySelector('.mail-check'),
+        chk = box.querySelector('[data-mail-human]'), out = box.querySelector('.mail-out');
+    btn.addEventListener('click', function () { btn.hidden = true; lab.hidden = false; chk.focus(); });
+    chk.addEventListener('change', function (e) {
+      if (!e.isTrusted || Date.now() - t0 < 1500) { chk.checked = false; return; }
+      var u = ['g', 'ucla', 'edu'].join('.'), addr = ['lsmeng', u].join(String.fromCharCode(64));
+      var a = document.createElement('a'); a.href = 'mailto:' + addr; a.textContent = addr;
+      out.appendChild(a); out.hidden = false; lab.hidden = true;
+    });
+  });
 
   /* ---- click-to-enlarge for original figures ---- */
   var lb = null;

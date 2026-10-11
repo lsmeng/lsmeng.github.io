@@ -349,7 +349,8 @@ a.card:hover { text-decoration: none; color: inherit; border-color: var(--line-2
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 120px 1fr; gap: 12px 24px; max-width: 720px; }
 .contact-grid .k { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: .06em; padding-top: 2px; }
-.email-img { height: 22px; width: auto; vertical-align: middle; display: inline-block; }
+.mail-btn { font: inherit; padding: 2px 10px; border: 1px solid currentColor; border-radius: 4px; background: transparent; color: inherit; cursor: pointer; }
+.mail-check { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
 
 /* ---------- Topic prev/next ---------- */
 .prevnext { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
