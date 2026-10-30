@@ -50,6 +50,7 @@
       var u = ['g', 'ucla', 'edu'].join('.'), addr = ['lsmeng', u].join(String.fromCharCode(64));
       var a = document.createElement('a'); a.href = 'mailto:' + addr; a.textContent = addr;
       out.appendChild(a); out.hidden = false; lab.hidden = true;
+      if (window.gtag) gtag('event', 'conversion', {'send_to': 'AW-18515480445/AeSbCOv-hK8dEP2e7_xE', 'value': 1.0, 'currency': 'USD'});
     });
   });
 
