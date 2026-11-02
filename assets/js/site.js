@@ -41,19 +41,36 @@
   /* e-mail is hidden until a person clicks "View email address" and ticks the check,
      like the YouTube About page; the address is never in the HTML and is assembled here */
   var t0 = Date.now();
+  /* Google Ads conversion + optional on-page diagnostic (add ?adsdebug=1 to the URL) */
+  function fireConv(src) {
+    var dbg = /[?&]adsdebug=1/.test(location.search), t1 = Date.now(), done = false, box = null;
+    function say(msg) {
+      if (!dbg) return;
+      if (!box) { box = document.createElement('pre'); box.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:99999;background:#fff;color:#000;border:1px solid #888;padding:8px;font:12px/1.4 monospace;max-width:94vw;white-space:pre-wrap'; document.body.appendChild(box); }
+      box.textContent += msg + '\n';
+    }
+    say('[' + src + '] gtag=' + typeof window.gtag + ' dataLayer=' + (window.dataLayer ? window.dataLayer.length : 'none'));
+    if (!window.gtag) { say('BLOCKED: gtag.js did not load'); return; }
+    gtag('event', 'conversion', {'send_to': 'AW-18515480445/AeSbCOv-hK8dEP2e7_xE', 'value': 1.0, 'currency': 'USD',
+      'event_callback': function () { done = true; say('Google callback fired after ' + (Date.now() - t1) + ' ms (request completed)'); }});
+    setTimeout(function () {
+      var hits = (performance.getEntriesByType ? performance.getEntriesByType('resource') : []).filter(function (r) { return r.startTime > t1 - t0 + (performance.timeOrigin ? 0 : 0) - 1 && /18515480445|pagead\/conversion|ccm\/collect/.test(r.name); }).map(function (r) { return r.name.slice(0, 90); });
+      say('callback=' + done + '; ad requests seen: ' + hits.length); hits.forEach(function (h) { say('  ' + h); });
+    }, 3000);
+  }
   document.querySelectorAll('[data-mail-reveal]').forEach(function (box) {
     var btn = box.querySelector('[data-mail-show]'), lab = box.querySelector('.mail-check'),
         chk = box.querySelector('[data-mail-human]'), out = box.querySelector('.mail-out');
     btn.addEventListener('click', function (e) {
       btn.hidden = true; lab.hidden = false; chk.focus();
-      if (e.isTrusted && window.gtag) gtag('event', 'conversion', {'send_to': 'AW-18515480445/AeSbCOv-hK8dEP2e7_xE', 'value': 1.0, 'currency': 'USD'});
+      if (e.isTrusted) fireConv('button');
     });
     chk.addEventListener('change', function (e) {
       if (!e.isTrusted || Date.now() - t0 < 1500) { chk.checked = false; return; }
       var u = ['g', 'ucla', 'edu'].join('.'), addr = ['lsmeng', u].join(String.fromCharCode(64));
       var a = document.createElement('a'); a.href = 'mailto:' + addr; a.textContent = addr;
       out.appendChild(a); out.hidden = false; lab.hidden = true;
-      if (window.gtag) gtag('event', 'conversion', {'send_to': 'AW-18515480445/AeSbCOv-hK8dEP2e7_xE', 'value': 1.0, 'currency': 'USD'});
+      fireConv('check');
     });
   });
 
