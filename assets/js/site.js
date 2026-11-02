@@ -44,7 +44,10 @@
   document.querySelectorAll('[data-mail-reveal]').forEach(function (box) {
     var btn = box.querySelector('[data-mail-show]'), lab = box.querySelector('.mail-check'),
         chk = box.querySelector('[data-mail-human]'), out = box.querySelector('.mail-out');
-    btn.addEventListener('click', function () { btn.hidden = true; lab.hidden = false; chk.focus(); });
+    btn.addEventListener('click', function (e) {
+      btn.hidden = true; lab.hidden = false; chk.focus();
+      if (e.isTrusted && window.gtag) gtag('event', 'conversion', {'send_to': 'AW-18515480445/AeSbCOv-hK8dEP2e7_xE', 'value': 1.0, 'currency': 'USD'});
+    });
     chk.addEventListener('change', function (e) {
       if (!e.isTrusted || Date.now() - t0 < 1500) { chk.checked = false; return; }
       var u = ['g', 'ucla', 'edu'].join('.'), addr = ['lsmeng', u].join(String.fromCharCode(64));
