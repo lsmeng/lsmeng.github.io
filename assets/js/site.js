@@ -43,7 +43,7 @@
   var t0 = Date.now();
   /* Google Ads conversion + optional on-page diagnostic (add ?adsdebug=1 to the URL) */
   function fireConv(src) {
-    var dbg = /[?&]adsdebug=1/.test(location.search), t1 = Date.now(), done = false, box = null;
+    var dbg = /[?&]adsdebug=1/.test(location.search), t1 = Date.now(), p1 = performance.now(), done = false, box = null;
     function say(msg) {
       if (!dbg) return;
       if (!box) { box = document.createElement('pre'); box.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:99999;background:#fff;color:#000;border:1px solid #888;padding:8px;font:12px/1.4 monospace;max-width:94vw;white-space:pre-wrap'; document.body.appendChild(box); }
@@ -54,7 +54,7 @@
     gtag('event', 'conversion', {'send_to': 'AW-18515480445/AeSbCOv-hK8dEP2e7_xE', 'value': 1.0, 'currency': 'USD',
       'event_callback': function () { done = true; say('Google callback fired after ' + (Date.now() - t1) + ' ms (request completed)'); }});
     setTimeout(function () {
-      var hits = (performance.getEntriesByType ? performance.getEntriesByType('resource') : []).filter(function (r) { return r.startTime > t1 - t0 + (performance.timeOrigin ? 0 : 0) - 1 && /18515480445|pagead\/conversion|ccm\/collect/.test(r.name); }).map(function (r) { return r.name.slice(0, 90); });
+      var hits = (performance.getEntriesByType ? performance.getEntriesByType('resource') : []).filter(function (r) { return r.startTime >= p1 - 20 && /18515480445|pagead\/conversion|ccm\/collect/.test(r.name); }).map(function (r) { return r.name.slice(0, 90); });
       say('callback=' + done + '; ad requests seen: ' + hits.length); hits.forEach(function (h) { say('  ' + h); });
     }, 3000);
   }
