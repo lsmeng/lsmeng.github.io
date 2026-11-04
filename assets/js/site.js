@@ -42,7 +42,7 @@
      like the YouTube About page; the address is never in the HTML and is assembled here */
   var t0 = Date.now();
   /* Google Ads conversion + optional on-page diagnostic (add ?adsdebug=1 to the URL) */
-  function fireConv(src) {
+  function fireConv(src, label) {
     var dbg = /[?&]adsdebug=1/.test(location.search), t1 = Date.now(), p1 = performance.now(), done = false, box = null;
     function say(msg) {
       if (!dbg) return;
@@ -51,13 +51,19 @@
     }
     say('[' + src + '] gtag=' + typeof window.gtag + ' dataLayer=' + (window.dataLayer ? window.dataLayer.length : 'none'));
     if (!window.gtag) { say('BLOCKED: gtag.js did not load'); return; }
-    gtag('event', 'conversion', {'send_to': 'AW-18515480445/AeSbCOv-hK8dEP2e7_xE', 'value': 1.0, 'currency': 'USD',
+    gtag('event', 'conversion', {'send_to': 'AW-18515480445/' + (label || 'AeSbCOv-hK8dEP2e7_xE'), 'value': 1.0, 'currency': 'USD',
       'event_callback': function () { done = true; say('Google callback fired after ' + (Date.now() - t1) + ' ms (request completed)'); }});
     setTimeout(function () {
       var hits = (performance.getEntriesByType ? performance.getEntriesByType('resource') : []).filter(function (r) { return r.startTime >= p1 - 20 && /18515480445|pagead\/conversion|ccm\/collect/.test(r.name); }).map(function (r) { return r.name.slice(0, 90); });
       say('callback=' + done + '; ad requests seen: ' + hits.length); hits.forEach(function (h) { say('  ' + h); });
     }, 3000);
   }
+  /* games.html: a real click on a game counts as "started playing" (links open in a new tab) */
+  document.querySelectorAll('[data-game-play]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (e.isTrusted) fireConv('game', 'tROICOmk0rEdEP2e7_xE');
+    });
+  });
   document.querySelectorAll('[data-mail-reveal]').forEach(function (box) {
     var btn = box.querySelector('[data-mail-show]'), lab = box.querySelector('.mail-check'),
         chk = box.querySelector('[data-mail-human]'), out = box.querySelector('.mail-out');
